@@ -15,4 +15,4 @@ create table Autor_articulo(idAutor int not null, idArticulo int not null, PRIMA
 
 
 create table Articulo(id int primary key not null, titulo varchar not null, palabras_clave varchar not null, resumen varchar not null,
- fichero varchar not null, fecha date not null);
+ fichero varchar not null, fecha date not null, revisado_por int, FOREIGN KEY (revisado_por) REFERENCES Autor(id));
