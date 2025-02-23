@@ -10,4 +10,5 @@ create table Autor_articulo(idAutor int not null, idArticulo int not null, PRIMA
 	FOREIGN KEY(idAutor) REFERENCES Autor(id), FOREIGN KEY(idArticulo) REFERENCES Articulo(id));
 
 drop if exists table Articulo;
-create table Articulo(id int primary key not null, titulo varchar not null, palabras_clave varchar not null, fichero varchar not null, fecha date not null);
+create table Articulo(id int primary key not null, titulo varchar not null, palabras_clave varchar not null, resumen varchar not null,
+ fichero varchar not null, fecha date not null);
