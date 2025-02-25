@@ -6,14 +6,16 @@ insert into Autor(id,nombre,organizacion,grupo,revisor,coordinador) values
 	(2, 'Luis Fernández', 'TechCorp', 'Desarrollo Web', FALSE, FALSE),
 	(3, 'María López', 'InnovateX', 'Ciencia de Datos', TRUE, FALSE),
 	(4, 'Carlos Sánchez', 'Data Solutions', 'Big Data', FALSE, FALSE),
-	(5, 'Laura Martín', 'StartUp Inc.', 'Seguridad Informática', TRUE, FALSE);
+	(5, 'Laura Martín', 'StartUp Inc.', 'Seguridad Informática', TRUE, FALSE),
+	(6, 'Marcos Montes', 'Data Solutions', 'Big Data', FALSE, FALSE);
 
 insert into Autor_articulo(idAutor,idArticulo,envia,revisa) values 
 	(1,1,FALSE,FALSE),
 	(2,2,FALSE,FALSE),
 	(3,3,FALSE,FALSE),
 	(4,4,FALSE,FALSE),
-	(5,5,FALSE,FALSE);
+	(5,5,FALSE,FALSE),
+	(6,1,FALSE,FALSE);
 
 insert into Articulo(id,titulo,palabras_clave,resumen,fichero,fecha) values 
 	(1, 'Inteligencia Artificial en la Educación', 'IA, educación, aprendizaje','Este artículo explora el impacto de la inteligencia artificial en el aprendizaje y la educación moderna.', 'ia_educacion.pdf', '2024-01-15'),
