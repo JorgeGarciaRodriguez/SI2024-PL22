@@ -8,7 +8,7 @@ insert into Persona(id, nombre, organizacion, grupo) values
 	(4, 'Carlos Sánchez', 'Data Solutions', 'Big Data'),
 	(5, 'Laura Martín', 'StartUp Inc.', 'Seguridad Informática');
 
-insert into Autor(idAutor,correo) values 
+insert into Autor(idAutor, correo) values 
 	(1,'anag@gmail.com'),
 	(3,'marialo@gmail.com'),
 	(5,'lauram@gmail.com');
