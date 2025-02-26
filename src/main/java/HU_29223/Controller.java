@@ -39,7 +39,7 @@ public class Controller {
 			}
 		});
 		//POSIBLE IMPLEMENTACION DE ASIGNAR REVISORES CON BASE DE DATOS ACTUALIZADA
-/*        view.getBotonAsignar().addActionListener(new ActionListener() {
+        view.getBotonAsignar().addActionListener(new ActionListener() {
  
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -48,12 +48,13 @@ public class Controller {
                 if (revisorSeleccionado != null) {
                     model.asignacion(model.getIdRevisor(revisorSeleccionado),model.getIdArticulo(tituloSeleccionado));
                     JOptionPane.showMessageDialog(view.getFrame(), "Nombre guardado en la BD.");
+                    updateDetail();
                 } else {
                     JOptionPane.showMessageDialog(view.getFrame(), "Seleccione un nombre.");
                 }
             }
         });
-        */
+        
 	}
 	
 	public void updateDetail() {
