@@ -45,6 +45,13 @@ public class Controller {
             public void actionPerformed(ActionEvent e) {
             	String tituloSeleccionado = view.getListaArticulos().getSelectedValue();
                 String revisorSeleccionado = view.getListaRevisores().getSelectedValue();
+                // Verificar el número de revisores ya asignados
+                List<String> revisoresAsignados = model.getRevisoresAsignados(tituloSeleccionado);
+                if (revisoresAsignados.size() >= 3) {
+                    JOptionPane.showMessageDialog(view.getFrame(), "No se pueden asignar más de 3 revisores a un artículo.");
+                    return;
+                }
+                //Verificar si has seleccionado un revisor para asignar y en ese caso asignar.
                 if (revisorSeleccionado != null) {
                     model.asignacion(model.getIdRevisor(revisorSeleccionado),model.getIdArticulo(tituloSeleccionado));
                     JOptionPane.showMessageDialog(view.getFrame(), "Nombre guardado en la BD.");
