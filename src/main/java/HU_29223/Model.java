@@ -16,7 +16,7 @@ public class Model {
 	    db.createDatabase(true); // Crea la base de datos si no existe
 	    db.loadDatabase(); // Carga datos iniciales
 	}
-	//Si cambiamos la base de datos habra que cambiar la consulta
+
 	public List<String> getListaArticulosDisponiblesArray() {
 		List<String> resultado=new ArrayList<>();
 		String sql="SELECT A.titulo"
@@ -24,7 +24,7 @@ public class Model {
 				+ " WHERE A.id NOT IN ("
 				+ " SELECT AA.idArticulo"
 				+ " FROM Autor_articulo AA"
-				+ " WHERE AA.revisa = TRUE)";
+				+ " WHERE AA.envia = TRUE)";
 		List<Object[]> resultados=db.executeQueryArray(sql);
 		for(Object[] a:resultados) {
 			resultado.add((String)a[0]);
@@ -42,27 +42,31 @@ public class Model {
 		return (String) resultados.get(0)[0];
 	}
 	public List<Object[]> getAutores(String titulo){
-		String sql="SELECT a.nombre"+
-					" FROM Autor a"+
-					" JOIN Autor_articulo aa ON a.id = aa.idAutor"+
-					" JOIN Articulo ar ON aa.idArticulo = ar.id"+
-					" WHERE ar.titulo = ?";
+		String sql="SELECT p.nombre "
+				+ "FROM Persona p "
+				+ "JOIN Autor a ON p.id = a.idAutor "
+				+ "JOIN Autor_articulo aa ON a.idAutor = aa.idAutor "
+				+ "JOIN Articulo art ON aa.idArticulo = art.id "
+				+ "WHERE art.titulo = ?";
 		return db.executeQueryArray(sql, titulo);
 	}
 	public List<Object[]> getAutores_Organizacion(String titulo){
-		String sql="SELECT a.organizacion"+
-					" FROM Autor a"+
-					" JOIN Autor_articulo aa ON a.id = aa.idAutor"+
-					" JOIN Articulo ar ON aa.idArticulo = ar.id"+
-					" WHERE ar.titulo = ?";
+		String sql="SELECT p.organizacion "
+				+ "FROM Persona p "
+				+ "JOIN Autor a ON p.id = a.idAutor "
+				+ "JOIN Autor_articulo aa ON a.idAutor = aa.idAutor "
+				+ "JOIN Articulo art ON aa.idArticulo = art.id "
+				+ "WHERE art.titulo = ?";
+
 		return db.executeQueryArray(sql, titulo);
 	}
 	public List<Object[]> getAutores_Grupo(String titulo){
-		String sql="SELECT a.grupo"+
-					" FROM Autor a"+
-					" JOIN Autor_articulo aa ON a.id = aa.idAutor"+
-					" JOIN Articulo ar ON aa.idArticulo = ar.id"+
-					" WHERE ar.titulo = ?";
+		String sql="SELECT p.grupo "
+				+ "FROM Persona p "
+				+ "JOIN Autor a ON p.id = a.idAutor "
+				+ "JOIN Autor_articulo aa ON a.idAutor = aa.idAutor "
+				+ "JOIN Articulo art ON aa.idArticulo = art.id "
+				+ "WHERE art.titulo = ?";
 		return db.executeQueryArray(sql, titulo);
 	}
 	public List<String> getRevisoresDisponibles(String titulo){
