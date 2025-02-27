@@ -147,7 +147,7 @@ public class Model {
 		return (int) resultado.get(0)[0];
 	}
 	public int ultimoID() {
-		String sql="SELECT COUNT (idRevision) FROM Revision";
+		String sql="SELECT MAX (idRevision) FROM Revision";
 		List<Object[]> resultado=db.executeQueryArray(sql);
 		return (int) resultado.get(0)[0]+1;
 	}
