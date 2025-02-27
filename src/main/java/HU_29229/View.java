@@ -25,6 +25,7 @@ public class View {
 	private JList<String> lstRevisores;
 	private JButton BotonAsignar;
 	private JList<String> lstRevisoresAsignados;
+	private JButton BotonDesasignar;
 
 	/**
 	 * Launch the application.
@@ -77,8 +78,16 @@ public class View {
 		
 		lstArticulos=new JList<>();
 		JScrollPane scrollPane = new JScrollPane(lstArticulos);
-		scrollPane.setBounds(10, 34, 135, 260);
+		scrollPane.setBounds(10, 34, 135, 210);
 		panel.add(scrollPane);
+		
+		JButton btnNewButton_1 = new JButton("Sin revisores");
+		btnNewButton_1.setBounds(10, 261, 135, 14);
+		panel.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("Con revisores");
+		btnNewButton_2.setBounds(10, 286, 135, 14);
+		panel.add(btnNewButton_2);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
@@ -150,7 +159,7 @@ public class View {
 		frame.getContentPane().add(panel_2);
 		
 		BotonAsignar = new JButton("ASIGNAR");
-		BotonAsignar.setBounds(37, 167, 102, 14);
+		BotonAsignar.setBounds(10, 167, 129, 14);
 		panel_2.add(BotonAsignar);
 		
 		JLabel lblNewLabel_10 = new JLabel("Revisores:");
@@ -159,17 +168,21 @@ public class View {
 		
 		JLabel lblNewLabel_11 = new JLabel("Asignacion");
 		lblNewLabel_11.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_11.setBounds(37, 192, 97, 14);
+		lblNewLabel_11.setBounds(30, 192, 97, 14);
 		panel_2.add(lblNewLabel_11);
 		
 		lstRevisores=new JList<>();
 		JScrollPane scrollPane_1 = new JScrollPane(lstRevisores);
-		scrollPane_1.setBounds(37, 34, 102, 122);
+		scrollPane_1.setBounds(10, 34, 129, 122);
 		panel_2.add(scrollPane_1);
 		
 		lstRevisoresAsignados = new JList<>();
-		lstRevisoresAsignados.setBounds(37, 217, 102, 83);
+		lstRevisoresAsignados.setBounds(10, 217, 129, 58);
 		panel_2.add(lstRevisoresAsignados);
+		
+		BotonDesasignar = new JButton("DESASIGNAR");
+		BotonDesasignar.setBounds(10, 286, 129, 14);
+		panel_2.add(BotonDesasignar);
 	}
 	
 	public JFrame getFrame() {return frame;}
@@ -180,5 +193,6 @@ public class View {
 	public JList<String> getListaRevisores() {return this.lstRevisores;}
 	public JButton getBotonAsignar() {return BotonAsignar;}
 	public JList<String> getListaRevisoresAsignados() {return this.lstRevisoresAsignados;}
+	public JButton getBotonDesasignar() {return BotonDesasignar;}
 }
 

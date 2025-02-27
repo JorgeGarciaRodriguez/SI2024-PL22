@@ -155,6 +155,20 @@ public class Model {
 	public void asignacion(int idRevisor, int idArticulo){
 		db.executeUpdate(asignar_revisor,ultimoID(),idRevisor,idArticulo);
 	}
+	public int getIdRevision(String titulo,int idRevisor) {
+		String sql="SELECT r.idRevision "
+				+ "FROM Revision r "
+				+ "JOIN Articulo a ON r.idArticulo = a.id "
+				+ "JOIN Revisor rev ON r.idRevisor = rev.idRevisor "
+				+ "WHERE a.titulo = ? "
+				+ "AND rev.idRevisor = ?";
+		List<Object[]> resultado=db.executeQueryArray(sql,titulo,idRevisor);
+		return (int) resultado.get(0)[0];
+	}
+	public static final String borrar_revisor="DELETE FROM Revision WHERE idRevision=?";
+	public void desasignacion(int idRevision) {
+		db.executeUpdate(borrar_revisor, idRevision);
+	}
 	
 
 }

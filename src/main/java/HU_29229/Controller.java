@@ -62,6 +62,23 @@ public class Controller {
             }
         });
         
+        view.getBotonDesasignar().addActionListener(new ActionListener() {
+        	 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	String tituloSeleccionado = view.getListaArticulos().getSelectedValue();
+                String revisorAsignadoSeleccionado = view.getListaRevisoresAsignados().getSelectedValue();
+                //Verificar si has seleccionado un revisor para asignar y en ese caso asignar.
+                if (revisorAsignadoSeleccionado!=null) {
+                    model.desasignacion(model.getIdRevision(tituloSeleccionado,model.getIdRevisor(revisorAsignadoSeleccionado)));
+                    JOptionPane.showMessageDialog(view.getFrame(), "Revisor desasignado");
+                    updateDetail();
+                } else {
+                    JOptionPane.showMessageDialog(view.getFrame(), "Seleccione un revisor");
+                }
+            }
+        });
+        
 	}
 	
 	public void updateDetail() {
