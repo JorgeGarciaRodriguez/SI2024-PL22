@@ -52,7 +52,7 @@ public class Controller {
                     return;
                 }
                 //Verificar si has seleccionado un revisor para asignar y en ese caso asignar.
-                if (revisorSeleccionado != null) {
+                if (revisorSeleccionado!=null) {
                     model.asignacion(model.getIdRevisor(revisorSeleccionado),model.getIdArticulo(tituloSeleccionado));
                     JOptionPane.showMessageDialog(view.getFrame(), "Nombre guardado en la BD.");
                     updateDetail();
