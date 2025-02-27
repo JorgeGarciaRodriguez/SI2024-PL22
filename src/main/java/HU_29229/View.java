@@ -26,6 +26,8 @@ public class View {
 	private JButton BotonAsignar;
 	private JList<String> lstRevisoresAsignados;
 	private JButton BotonDesasignar;
+	private JButton BotonSinRevisores;
+	private JButton BotonRevisores;
 
 	/**
 	 * Launch the application.
@@ -81,13 +83,13 @@ public class View {
 		scrollPane.setBounds(10, 34, 135, 210);
 		panel.add(scrollPane);
 		
-		JButton btnNewButton_1 = new JButton("Sin revisores");
-		btnNewButton_1.setBounds(10, 261, 135, 14);
-		panel.add(btnNewButton_1);
+		BotonSinRevisores = new JButton("Sin revisores");
+		BotonSinRevisores.setBounds(10, 261, 135, 14);
+		panel.add(BotonSinRevisores);
 		
-		JButton btnNewButton_2 = new JButton("Con revisores");
-		btnNewButton_2.setBounds(10, 286, 135, 14);
-		panel.add(btnNewButton_2);
+		BotonRevisores = new JButton("Con revisores");
+		BotonRevisores.setBounds(10, 286, 135, 14);
+		panel.add(BotonRevisores);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
@@ -194,5 +196,7 @@ public class View {
 	public JButton getBotonAsignar() {return BotonAsignar;}
 	public JList<String> getListaRevisoresAsignados() {return this.lstRevisoresAsignados;}
 	public JButton getBotonDesasignar() {return BotonDesasignar;}
+	public JButton getBotonSinRevisores() {return BotonDesasignar;}
+	public JButton getBotonRevisores() {return BotonDesasignar;}
 }
 

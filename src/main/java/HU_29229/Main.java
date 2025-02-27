@@ -24,7 +24,7 @@ public class Main {
 		            List<Object[]> resultado = db.executeQueryArray("PRAGMA table_info(Revision);");
 
 		            if (resultado.isEmpty()) {
-		                System.out.println("⚠️ La tabla Colegiados no existe o no tiene columnas.");
+		                System.out.println("⚠️ La tabla Revision no existe o no tiene columnas.");
 		            } else {
 		                for (Object[] fila : resultado) {
 		                    System.out.println(Arrays.toString(fila)); // Imprime cada columna correctamente
