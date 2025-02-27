@@ -1,38 +1,58 @@
---Datos para carga inicial de la base de datos
+-- Insertar datos en la tabla Persona
+INSERT INTO Persona (id, nombre, organizacion, grupo) VALUES
+(1, 'Juan Perez', 'Universidad A', 'Grupo 1'),
+(2, 'Maria Gomez', 'Universidad B', 'Grupo 2'),
+(3, 'Carlos Lopez', 'Universidad A', 'Grupo 1'),
+(4, 'Ana Torres', 'Universidad C', 'Grupo 3'),
+(5, 'Luis Ramirez', 'Universidad B', 'Grupo 2'),
+(6, 'Elena Martínez', 'Universidad D', 'Grupo 4'),
+(7, 'Roberto Sanchez', 'Universidad A', 'Grupo 1'),
+(8, 'Marta Fernández', 'Universidad E', 'Grupo 5'),
+(9, 'Pablo Herrera', 'Universidad F', 'Grupo 6'),
+(10, 'Laura Castro', 'Universidad G', 'Grupo 7');
 
---Para giis.demo.tkrun:
-insert into Persona(id, nombre, organizacion, grupo) values
-	(1, 'Ana García', 'Universidad de Madrid', 'IA y ML'),
-	(2, 'Luis Fernández', 'TechCorp', 'Desarrollo Web'),
-	(3, 'María López', 'InnovateX', 'Ciencia de Datos'),
-	(4, 'Carlos Sánchez', 'Data Solutions', 'Big Data'),
-	(5, 'Laura Martín', 'StartUp Inc.', 'Seguridad Informática');
+-- Insertar datos en la tabla Autor
+INSERT INTO Autor (idAutor, correo) VALUES
+(1, 'juan.perez@email.com'),
+(2, 'maria.gomez@email.com'),
+(3, 'carlos.lopez@email.com'),
+(6, 'elena.martinez@email.com'),
+(8, 'marta.fernandez@email.com'),
+(9, 'pablo.herrera@email.com');
 
-insert into Autor(idAutor, correo) values 
-	(1,'anag@gmail.com'),
-	(3,'marialo@gmail.com'),
-	(5,'lauram@gmail.com');
+-- Insertar datos en la tabla Revisor
+INSERT INTO Revisor (idRevisor) VALUES
+(4),
+(5),
+(7),
+(10);
 
-insert into Revisor(idRevisor) values
-	(2),
-	(3),
-	(4);	
+-- Insertar datos en la tabla Articulo
+INSERT INTO Articulo (id, titulo, palabras_clave, resumen, fichero, fecha, decisionfinal) VALUES
+(1, 'Inteligencia Artificial', 'IA, Machine Learning', 'Resumen IA', 'ia.pdf', '2024-01-10', NULL),
+(2, 'Redes Neuronales', 'Deep Learning, Redes', 'Resumen redes', 'redes.pdf', '2024-02-15', NULL),
+(3, 'Procesamiento de Lenguaje Natural', 'PLN, NLP', 'Resumen PLN', 'pln.pdf', '2024-03-20', NULL),
+(4, 'Visión por Computador', 'Computer Vision, CV', 'Resumen CV', 'cv.pdf', '2024-04-25', NULL),
+(5, 'Algoritmos Genéticos', 'Optimización, Evolución', 'Resumen AG', 'ag.pdf', '2024-05-30', NULL),
+(6, 'Robótica Autónoma', 'Robots, IA', 'Resumen robótica', 'robotica.pdf', '2024-06-12', NULL);
 
-insert into Autor_articulo(idAutor,idArticulo,envia) values 
-	(1,1,TRUE),
-	(2,2,FALSE),
-	(3,3,TRUE),
-	(4,4,FALSE),
-	(5,5,TRUE);
+-- Insertar datos en la tabla Autor_articulo
+INSERT INTO Autor_articulo (idAutor, idArticulo, envia) VALUES
+(1, 1, TRUE),
+(2, 2, TRUE),
+(3, 2, TRUE),
+(3, 3, TRUE),
+(6, 4, TRUE),
+(8, 5, TRUE),
+(9, 6, TRUE);
 
-insert into Articulo(id, titulo, palabras_clave, resumen, fichero, fecha, decisionfinal) values 
-	(1, 'Inteligencia Artificial en la Educación', 'IA, educación, aprendizaje','Este artículo explora el impacto de la inteligencia artificial en el aprendizaje y la educación moderna.', 'ia_educacion.pdf', '2024-01-15', NULL),
-	(2, 'Desarrollo Web con React', 'React, desarrollo web, JavaScript','Guía práctica para construir aplicaciones web dinámicas utilizando React y JavaScript.', 'react_web.pdf', '2024-02-20', NULL),
-	(3, 'Análisis de Datos en Marketing', 'datos, marketing, análisis','Estrategias de análisis de datos para optimizar campañas de marketing y mejorar la segmentación de audiencias.', 'marketing_datos.pdf', '2024-03-10', NULL),
-	(4, 'Big Data y su Impacto en la Economía', 'big data, economía, análisis','Estudio sobre cómo el Big Data está transformando la economía global y la toma de decisiones empresariales.', 'big_data_economia.pdf', '2024-04-05', NULL),
-	(5, 'Ciberseguridad en la Era Digital', 'ciberseguridad, privacidad, digital','Análisis de los desafíos de ciberseguridad en el mundo digital y estrategias para proteger la información.', 'ciberseguridad.pdf', '2024-05-12', NULL);
-
-insert into Revision(idRevision, idRevisor, idArticulo, experto, decision, coment_autor, coment_coor) values
-	(1,3,5,NULL,NULL,NULL,NULL),
-	(2,2,1,NULL,NULL,NULL,NULL),
-	(3,4,3,NULL,NULL,NULL,NULL);
+-- Insertar datos en la tabla Revision
+INSERT INTO Revision (idRevision, idRevisor, idArticulo, experto, decision, coment_autor, coment_coor) VALUES
+(1, 4, 1, NULL, NULL, NULL, NULL),
+(2, 5, 2, NULL, NULL, NULL, NULL),
+(3, 7, 3, NULL, NULL, NULL, NULL),
+(4, 4, 4, NULL, NULL, NULL, NULL),
+(5, 10, 5, NULL, NULL, NULL, NULL),
+(6, 5, 6, NULL, NULL, NULL, NULL),
+(7, 7, 6, NULL, NULL, NULL, NULL),
+(8, 10, 6, NULL, NULL, NULL, NULL);
