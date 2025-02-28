@@ -1,7 +1,13 @@
 package giis.demo.util;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Properties;
 
 import org.apache.commons.dbutils.DbUtils;
@@ -57,5 +63,57 @@ public class Database extends DbUtil {
 	public void loadDatabase() {
 		executeScript(SQL_LOAD);
 	}
+	public int executeQueryForInt(String sql) {
+	    try (Connection conn = this.getConnection();
+	         PreparedStatement stmt = conn.prepareStatement(sql);
+	         ResultSet rs = stmt.executeQuery()) {
+
+	        if (rs.next()) {
+	            return rs.getInt(1); // Devuelve el primer valor de la primera columna
+	        } else {
+	            return 0; // Si no hay resultados, devuelve 0 (o el valor adecuado)
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return 0; // En caso de error, devuelve 0
+	    }
+	}
+	
+	public void executeUpdate(String query, Object... params) {
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            for (int i = 0; i < params.length; i++) {
+                pstmt.setObject(i + 1, params[i]);
+            }
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+	
+	public void appendToDataSql(String insertStatement) {
+	    try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/data.sql", true))) {
+	        // Verifica si el archivo está vacío, si es así, agrega el encabezado de los insert.
+	        // Para evitar escribir los encabezados una y otra vez.
+	        boolean isEmpty = new File("src/main/resources/data.sql").length() == 0;
+	        if (isEmpty) {
+	            writer.write("--Datos para carga inicial de la base de datos\n\n");
+	            writer.write("--Para giis.demo.tkrun:\n");
+	        }
+
+	        // Escribe el statement insert en el archivo data.sql dentro de la instrucción insert.
+	        writer.write("\ninsert into Autor(id,nombre,organizacion,grupo,revisor,coordinador) values\n");
+
+	        // Escribe el nuevo autor dentro de la misma sentencia insert
+	        writer.write(insertStatement); // Aquí se agregan los nuevos valores.
+
+	        // Cierra el escritor
+	        writer.close();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+
+	
 	
 }
