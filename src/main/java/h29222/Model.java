@@ -84,11 +84,12 @@ public class Model {
 
 	public void asignacionAutor(String correo) {
 		int id = ultimoID("Autor", "idAutor");
-	    System.out.println("Insertando en Autor con ID: " + id);
+	    
 	    
 	    if(!correoExiste(correo)) {
 	    try {
 	        db.executeUpdate(asignar_autor, id, correo);
+	        System.out.println("Insertando en Autor con ID: " + id);
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }
