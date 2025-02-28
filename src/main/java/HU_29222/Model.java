@@ -1,4 +1,4 @@
-package h29222;
+package HU_29222;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -22,8 +22,8 @@ public class Model {
 	private Database db=new Database();
 	
 	public Model() {
-	  //  db.createDatabase(true); // Crea la base de datos si no existe
-	  //  db.loadDatabase(); // Carga datos iniciales
+	   // db.createDatabase(true); // Crea la base de datos si no existe
+	   // db.loadDatabase(); // Carga datos iniciales
 	    
 	}
 
@@ -84,11 +84,12 @@ public class Model {
 
 	public void asignacionAutor(String correo) {
 		int id = ultimoID("Autor", "idAutor");
-	    System.out.println("Insertando en Autor con ID: " + id);
 	    
+
 	    if(!correoExiste(correo)) {
 	    try {
 	        db.executeUpdate(asignar_autor, id, correo);
+	        System.out.println("Insertando en Autor con ID: " + id);
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }

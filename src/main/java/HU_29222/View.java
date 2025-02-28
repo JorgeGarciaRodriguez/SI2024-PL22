@@ -1,4 +1,4 @@
-package h29222;
+package HU_29222;
 
 import java.awt.EventQueue;
 
@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
-public class Vista {
+public class View {
 
 	private JFrame frame;
 	private JTable table;
@@ -37,7 +37,7 @@ public class Vista {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Vista window = new Vista();
+					View window = new View();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +49,7 @@ public class Vista {
 	/**
 	 * Create the application.
 	 */
-	public Vista() {
+	public View() {
 		initialize();
 	}
 
@@ -193,7 +193,7 @@ public class Vista {
     }
 
     public JButton getBtnNewButton() {
-        return btnNewButton; // Debería devolver el botón btnNewButton
+        return btnNewButton; 
     }
     public DefaultTableModel getTableModel() {
         return (DefaultTableModel) table.getModel();

@@ -1,4 +1,4 @@
-package h29222;
+package HU_29222;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,51 +15,41 @@ import giis.demo.util.SwingUtil;
 
 public class Controller {
 	private Model model;
-	private Vista vista;
+	private View vista;
 	
-	public Controller(Model m, Vista v) {
+	public Controller(Model m, View v)	{
 	    this.model = m;
 	    this.vista = v;
 
         // Acceder al botón "Añadir" usando el getter
-	    vista.getBtnNewButton().addActionListener(new ActionListener() {
+	    vista.getBtnNewButton().addActionListener(new ActionListener() 	{
 	        @Override
-	        public void actionPerformed(ActionEvent e) {
-	            
+	        public void actionPerformed(ActionEvent e)	{
 	        	//Datos
 	        	String nombre = vista.getTfNombre().getText();
 	            String organizacion = vista.getTfOrganizacion().getText();
 	            String grupo = vista.getTfGrupInvs().getText();
 	            String correo = vista.getTfCorreo().getText();
 	            DefaultTableModel tabla = vista.getTableModel();
-	            
+	            //Consultas en la base de datos
 	            model.asignacionPersona(nombre ,organizacion,grupo);
 	            model.asignacionAutor(correo);
-	            
 	            //Cuerpo del codigo
 	            if (nombre.isEmpty() || organizacion.isEmpty() || grupo.isEmpty() || correo.isEmpty()) {
 	                JOptionPane.showMessageDialog(vista.getFrame(), "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
 	                return;
 	            }else {
 	            	tabla.addRow(new Object[]{nombre, correo, organizacion, grupo});
-	            
 	            }
-	            
-	            
 	            // Limpiar campos
 	            vista.getTfNombre().setText("");
 	            vista.getTfOrganizacion().setText("");
 	            vista.getTfGrupInvs().setText("");
 	            vista.getTfCorreo().setText("");
-
-	            
 	            //Confirmacion
 	            JOptionPane.showMessageDialog(vista.getFrame(), "Autor añadido correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-	        }
-	    });
-	}
-	
-	
-	
-}
+	        											}
+	    																});
+											}	
+						}
 
