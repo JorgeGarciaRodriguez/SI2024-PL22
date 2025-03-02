@@ -196,7 +196,7 @@ public class View {
 	public JButton getBotonAsignar() {return BotonAsignar;}
 	public JList<String> getListaRevisoresAsignados() {return this.lstRevisoresAsignados;}
 	public JButton getBotonDesasignar() {return BotonDesasignar;}
-	public JButton getBotonSinRevisores() {return BotonDesasignar;}
-	public JButton getBotonRevisores() {return BotonDesasignar;}
+	public JButton getBotonSinRevisores() {return BotonSinRevisores;}
+	public JButton getBotonRevisores() {return BotonRevisores;}
 }
 

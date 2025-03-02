@@ -19,15 +19,15 @@ public class Controller {
 	public Controller(Model m, View v) {
 		this.model = m;
 		this.view = v;
-		cargarArticulos();
+		//cargarArticulos();
 		initController();
 	}
 
 
 	// Método para cargar los artículos en la vista
-    public void cargarArticulos() {
+    /*public void cargarArticulos() {
         view.getListaArticulos().setListData(model.getListaArticulosDisponiblesArray().toArray(new String[0]));
-    }
+    }*/
     
 	public void initController() {
 		view.getListaArticulos().addListSelectionListener(e -> SwingUtil.exceptionWrapper(() -> view.getListaArticulos()));
@@ -76,6 +76,22 @@ public class Controller {
                 } else {
                     JOptionPane.showMessageDialog(view.getFrame(), "Seleccione un revisor");
                 }
+            }
+        });
+        
+        view.getBotonSinRevisores().addActionListener(new ActionListener() {
+       	 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	view.getListaArticulos().setListData(model.getListaArticulosSinRevisorArray().toArray(new String[0]));
+            }
+        });
+        
+        view.getBotonRevisores().addActionListener(new ActionListener() {
+       	 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	view.getListaArticulos().setListData(model.getListaArticulosRevisorArray().toArray(new String[0]));
             }
         });
         

@@ -170,6 +170,40 @@ public class Model {
 		db.executeUpdate(borrar_revisor, idRevision);
 	}
 	
+	public List<String> getListaArticulosRevisorArray() {
+		List<String> resultado=new ArrayList<>();
+		String sql = "SELECT art.titulo "
+		           + "FROM Articulo art "
+		           + "JOIN Autor_articulo aa ON art.id = aa.idArticulo "
+		           + "LEFT JOIN Revision rev ON art.id = rev.idArticulo "
+		           + "GROUP BY art.id "
+		           + "HAVING aa.envia = TRUE "
+		           + "AND COUNT(rev.idRevisor) IN (1, 2, 3) ";
+		
+		List<Object[]> resultados=db.executeQueryArray(sql);
+		for(Object[] a:resultados) {
+			resultado.add((String)a[0]);
+		}
+		return resultado;
+	}
+	
+	public List<String> getListaArticulosSinRevisorArray() {
+		List<String> resultado=new ArrayList<>();
+		String sql = "SELECT art.titulo "
+		           + "FROM Articulo art "
+		           + "JOIN Autor_articulo aa ON art.id = aa.idArticulo "
+		           + "LEFT JOIN Revision rev ON art.id = rev.idArticulo "
+		           + "GROUP BY art.id "
+		           + "HAVING aa.envia = TRUE "
+		           + "AND COUNT(rev.idRevisor) = 0 ";
+		
+		List<Object[]> resultados=db.executeQueryArray(sql);
+		for(Object[] a:resultados) {
+			resultado.add((String)a[0]);
+		}
+		return resultado;
+	}
+	
 	
 
 }
