@@ -7,6 +7,7 @@ import javax.swing.JTable;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,6 +30,8 @@ public class View {
 	private JTextField tfOrganizacion;
 	private JTextField tfGrupInvs;
 	private JButton btnNewButton;
+	private JButton btnEnviar;
+	private JLabel lblNumeroAleatorio;
 
 	/**
 	 * Launch the application.
@@ -168,9 +171,18 @@ public class View {
 		btnNewButton.setBounds(601, 235, 85, 21);
 		frame.getContentPane().add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Enviar");
-		btnNewButton_1.setBounds(540, 324, 85, 21);
-		frame.getContentPane().add(btnNewButton_1);
+		btnEnviar = new JButton("Enviar");
+		btnEnviar.setBounds(540, 324, 85, 21);
+		frame.getContentPane().add(btnEnviar);
+		
+		lblNumeroAleatorio = new JLabel("");
+		lblNumeroAleatorio.setBounds(641, 289, 92, 21);
+		frame.getContentPane().add(lblNumeroAleatorio);
+		
+		JLabel lblNewLabel = new JLabel("Lista de \r\nautores");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel.setBounds(26, 200, 109, 70);
+		frame.getContentPane().add(lblNewLabel);
 	}
 	public JFrame getFrame() {return frame;}
 	
@@ -195,9 +207,35 @@ public class View {
     public JButton getBtnNewButton() {
         return btnNewButton; 
     }
+    
+    public JButton getBtnNewButton1() {
+        return btnEnviar; 
+    }
+    
+    public JLabel getLb() {
+        return lblNumeroAleatorio; 
+    }
+    
     public DefaultTableModel getTableModel() {
         return (DefaultTableModel) table.getModel();
     }
 
+	public JTextField getTfTitulo() {
+		return tfTitulo;
+	}
 
+	public JTextField getTfPalabrasClave() {
+		// TODO Auto-generated method stub
+		return tfPalabrasClave;
+	}
+
+	public JTextField getTfArticulo() {
+		// TODO Auto-generated method stub
+		return tfArticulo;
+	}
+
+	public JTextField getTfResumen() {
+		// TODO Auto-generated method stub
+		return tfResumen;
+	}
 }

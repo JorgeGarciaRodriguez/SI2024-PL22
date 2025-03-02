@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,6 +49,9 @@ public class Model {
 	
 	public static final String asignar_persona="INSERT INTO Persona(id,nombre,organizacion,grupo) VALUES (?,?,?,?)";
 	public static final String asignar_autor = "INSERT INTO Autor(idAutor, correo) VALUES (?, ?)";
+	private static final String insertarArticulo = "INSERT INTO Articulo (id, titulo, palabras_clave, resumen, fichero, fecha, decisionfinal) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	private static final String asignarAutorArticulo = "INSERT INTO Articulo_Autor(idArticulo, idAutor) VALUES (?, ?)";
+
 
 	public void asignacionPersona(String nombre, String organizacion, String grupo) {
 		
@@ -96,7 +100,19 @@ public class Model {
 	}else {System.out.println("CORREO REPETIDO");}
 	    }
 	
-	
+    // Método para insertar un artículo en la base de datos
+	public void insertarArticulo(String titulo, String palabrasClave, String resumen, String fichero) {
+        int idArticulo = ultimoID("Articulo", "id");
+        String fechaActual = new SimpleDateFormat("yyyy-MM-dd").format(new Date()); // Obtener fecha actual
+
+        try {
+            db.executeUpdate(insertarArticulo, idArticulo, titulo, palabrasClave, resumen, fichero, fechaActual, null);
+            System.out.println("Artículo insertado con ID: " + idArticulo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }
 	
 }
 

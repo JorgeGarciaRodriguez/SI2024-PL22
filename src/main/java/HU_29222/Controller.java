@@ -50,6 +50,37 @@ public class Controller {
 	            JOptionPane.showMessageDialog(vista.getFrame(), "Autor añadido correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 	        											}
 	    																});
+	 // Acceder al botón "Enviar" usando el getter 
+	    vista.getBtnNewButton1().addActionListener(new ActionListener() {
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	            // Obtener los valores de los campos de texto
+	            String titulo = vista.getTfTitulo().getText().trim();
+	            String palabrasClave = vista.getTfPalabrasClave().getText().trim();
+	            String articulo = vista.getTfArticulo().getText().trim();
+	            String resumen = vista.getTfResumen().getText().trim();
+	            String autorCorreo = vista.getTfCorreo().getText().trim();
+	            articulo+=articulo+"pdf";
+	            // Validar que no haya campos vacíos
+	            if (titulo.isEmpty() || palabrasClave.isEmpty() || articulo.isEmpty() || resumen.isEmpty() ) {
+	                JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+	                return;
+	            }
+
+	            model.insertarArticulo(titulo,palabrasClave,resumen,articulo);
+	            
+	            
+	            // Generar un número único para el artículo (por ejemplo, un timestamp)
+	            int numeroArticulo = (int) (System.currentTimeMillis() % 100000);
+
+	            // Mostrar el número en la etiqueta correspondiente
+	            vista.getLb().setText("Nº Artículo: " + numeroArticulo);
+
+	            // Mensaje de confirmación
+	            JOptionPane.showMessageDialog(null, "Artículo registrado con éxito. Nº: " + numeroArticulo, "Éxito", JOptionPane.INFORMATION_MESSAGE);
+	        }
+	    });
+
 											}	
 						}
 
