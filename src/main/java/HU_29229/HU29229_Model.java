@@ -9,10 +9,10 @@ import javax.swing.JList;
 import giis.demo.util.Database;
 import giis.demo.util.Util;
 
-public class Model {
+public class HU29229_Model {
 	private Database db=new Database();
 	
-	public Model() {
+	public HU29229_Model() {
 	    //db.createDatabase(true); // Crea la base de datos si no existe
 	    //db.loadDatabase(); // Carga datos iniciales
 	}

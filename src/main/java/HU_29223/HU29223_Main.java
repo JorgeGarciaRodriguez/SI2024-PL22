@@ -4,16 +4,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import giis.demo.util.Database;
-public class Main {
+public class HU29223_Main {
 		    private static Database db=new Database();
 		    public static void main(String[] args) {
 		        // Crear la vista
-		        View vista = new View();
+		        HU29223_View vista = new HU29223_View();
 
 		        // Crear el modelo
-		        Model modelo = new Model();
+		        HU29223_Model modelo = new HU29223_Model();
 		        
-		        Controller controlador= new Controller(modelo,vista);
+		        HU29223_Controller controlador= new HU29223_Controller(modelo,vista);
 		        
 		        vista.getFrame().setVisible(true);
 		        
