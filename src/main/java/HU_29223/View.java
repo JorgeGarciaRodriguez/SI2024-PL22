@@ -182,3 +182,4 @@ public class View {
 	public JList<String> getListaRevisoresAsignados() {return this.lstRevisoresAsignados;}
 }
 
+
