@@ -128,7 +128,6 @@ public class Controller {
         
         view.getListaRevisoresAsignados().setListData(model.getRevisoresAsignados(articuloSeleccionado).toArray(new String[0]));
 
-        
     }
 
 }
