@@ -10,6 +10,13 @@ import HU_29229.HU29229_Controller;
 import HU_29229.HU29229_Model;
 import HU_29229.Hu29229_View;
 
+import HU_29222.H29222_Controller;
+import HU_29222.H29222_Model;
+import HU_29222.H29222_View;
+import HU_29224.H29224_Controller;
+import HU_29224.H29224_Model;
+import HU_29224.H29224_View;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -82,9 +89,9 @@ public class SwingMain {
 		});
 		frame.getContentPane().add(btnCargarDatosIniciales);
 		
-		JButton btnNewButton = new JButton("HU29222");
-		btnNewButton.setBounds(10, 57, 90, 23);
-		frame.getContentPane().add(btnNewButton);
+		JButton btn29222 = new JButton("HU29222");
+		btn29222.setBounds(10, 57, 90, 23);
+		frame.getContentPane().add(btn29222);
 		
 		JButton btnHU29223 = new JButton("HU29223");
 		btnHU29223.setBounds(125, 57, 90, 23);
@@ -99,9 +106,9 @@ public class SwingMain {
             }
         });
 		
-		JButton btnNewButton_2 = new JButton("HU29224");
-		btnNewButton_2.setBounds(236, 57, 90, 23);
-		frame.getContentPane().add(btnNewButton_2);
+		JButton btn29224 = new JButton("HU29224");
+		btn29224.setBounds(236, 57, 90, 23);
+		frame.getContentPane().add(btn29224);
 		
 		JButton btnNewButton_3 = new JButton("HU29225");
 		btnNewButton_3.setBounds(10, 104, 90, 23);
@@ -136,6 +143,24 @@ public class SwingMain {
 		btnNewButton_1.setBounds(237, 152, 89, 23);
 		frame.getContentPane().add(btnNewButton_1);
 		
+		btn29222.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
+            public void actionPerformed(ActionEvent e) {
+            	H29222_View v=new H29222_View();
+                H29222_Controller controller=new H29222_Controller(new H29222_Model(), 
+                        v);
+                v.getFrame().setVisible(true);
+            }
+        });
+		
+		
+		btn29224.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
+            public void actionPerformed(ActionEvent e) {
+            	H29224_View v=new H29224_View();
+                H29224_Controller controller=new H29224_Controller(new H29224_Model(), 
+                        v);
+                v.getFrame().setVisible(true);
+            }
+        });
 
 	}
 
