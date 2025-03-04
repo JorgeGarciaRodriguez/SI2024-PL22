@@ -11,7 +11,7 @@ import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
-public class View {
+public class H29222_View {
 
 	private JFrame frame;
 	private JTable table;
@@ -40,7 +40,7 @@ public class View {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					View window = new View();
+					H29222_View window = new H29222_View();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +52,7 @@ public class View {
 	/**
 	 * Create the application.
 	 */
-	public View() {
+	public H29222_View() {
 		initialize();
 	}
 

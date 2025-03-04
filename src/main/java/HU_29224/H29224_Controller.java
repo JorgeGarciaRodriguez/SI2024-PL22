@@ -5,14 +5,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import HU_29224.Model;
-import HU_29224.View;
+import HU_29224.H29224_Model;
+import HU_29224.H29224_View;
 
-public class Controller {
-	private Model model;
-	private View vista;
+public class H29224_Controller {
+	private H29224_Model model;
+	private H29224_View vista;
 	
-	public Controller(Model m, View v)	{
+	public H29224_Controller(H29224_Model m, H29224_View v)	{
 	    this.model = m;
 	    this.vista = v;
 	    

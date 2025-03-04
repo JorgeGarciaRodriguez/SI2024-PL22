@@ -19,10 +19,10 @@ import giis.demo.util.Database;
 import giis.demo.util.Util;
 import giis.demo.util.DbUtil;
 
-public class Model {
+public class H29222_Model {
 	private Database db=new Database();
 	
-	public Model() {
+	public H29222_Model() {
 	   // db.createDatabase(true); // Crea la base de datos si no existe
 	   // db.loadDatabase(); // Carga datos iniciales
 	    

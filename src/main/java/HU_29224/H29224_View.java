@@ -15,7 +15,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-public class View {
+public class H29224_View {
 
 	private JFrame frame;
 	private JTextField tFComentarioAutor;
@@ -26,7 +26,7 @@ public class View {
 	private JComboBox comboBox_1;
 	
 	private JList<String> listaTitulos;
-	private Model model = new Model();
+	private H29224_Model model = new H29224_Model();
 	private JLabel lblNewLabel;
 	private JLabel lblComentarioCoordinador;
 	private JLabel lblListaDeTitulos;
@@ -38,7 +38,7 @@ public class View {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					View window = new View();
+					H29224_View window = new H29224_View();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +50,7 @@ public class View {
 	/**
 	 * Create the application.
 	 */
-	public View() {
+	public H29224_View() {
 		initialize();
 	}
 

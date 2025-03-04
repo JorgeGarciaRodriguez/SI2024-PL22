@@ -4,20 +4,20 @@ import java.awt.EventQueue;
 import java.util.Arrays;
 import java.util.List;
 
-import HU_29224.Controller;
-import HU_29224.Model;
-import HU_29224.View;
+import HU_29224.H29224_Controller;
+import HU_29224.H29224_Model;
+import HU_29224.H29224_View;
 
-public class Main {
+public class H29224_Main {
 
 	public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    View vista = new View();
+                    H29224_View vista = new H29224_View();
                     vista.getFrame().setVisible(true);
-                    Model modelo = new Model();
-                    Controller controlador = new Controller(modelo, vista);
+                    H29224_Model modelo = new H29224_Model();
+                    H29224_Controller controlador = new H29224_Controller(modelo, vista);
 
                 } catch (Exception e) {
                     e.printStackTrace();

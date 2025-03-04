@@ -6,17 +6,17 @@ import java.util.Arrays;
 import java.util.List;
 
 import giis.demo.util.Database;
-public class Main {
+public class H29222_Main {
     private static Database db = new Database();
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    View vista = new View();
+                    H29222_View vista = new H29222_View();
                     vista.getFrame().setVisible(true);
-                    Model modelo = new Model();
-                    Controller controlador = new Controller(modelo, vista);
+                    H29222_Model modelo = new H29222_Model();
+                    H29222_Controller controlador = new H29222_Controller(modelo, vista);
 
                 } catch (Exception e) {
                     e.printStackTrace();
