@@ -1,12 +1,15 @@
 package HU29228;
 
-import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import giis.demo.util.SwingUtil;
 
 public class Controller {
     private Model model;
     private View view;
-    
+
     public Controller(Model m, View v) {
         this.model = m;
         this.view = v;
@@ -14,39 +17,41 @@ public class Controller {
         initController();
     }
 
-    // Carga la lista de artículos en la vista
-    private void cargarArticulos() {
-        List<Object[]> listaArticulos = model.getListaArticulos();
-        DefaultTableModel modelTabla = (DefaultTableModel) view.getTableArticulos().getModel();
-        modelTabla.setRowCount(0); // Limpiar tabla
-        
-        for (Object[] fila : listaArticulos) {
-            modelTabla.addRow(fila);
+    // Cargar los artículos del autor
+    public void cargarArticulos() {
+        List<Object[]> articulos = model.getArticulosDelAutor("Raquel Blanco"); // Se puede parametrizar
+        DefaultTableModel tableModel = (DefaultTableModel) view.getTableArticulos().getModel();
+        tableModel.setRowCount(0);
+        for (Object[] articulo : articulos) {
+            tableModel.addRow(articulo);
         }
     }
 
-    private void initController() {
-        view.getTableArticulos().getSelectionModel().addListSelectionListener(e -> {
-            if (!e.getValueIsAdjusting()) {
-                int selectedRow = view.getTableArticulos().getSelectedRow();
-                if (selectedRow != -1) {
-                    String titulo = (String) view.getTableArticulos().getValueAt(selectedRow, 1);
-                    cargarDetallesArticulo(titulo);
-                }
+    public void initController() {
+        view.getTableArticulos().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                SwingUtil.exceptionWrapper(() -> updateDetail());
             }
         });
     }
 
-    private void cargarDetallesArticulo(String titulo) {
-        Object[] detalles = model.getDetallesArticulo(titulo);
-        view.actualizarInformacionArticulo(detalles);
-        
-        List<Object[]> listaAutores = model.getAutoresArticulo(titulo);
-        DefaultTableModel modelAutores = (DefaultTableModel) view.getTableAutores().getModel();
-        modelAutores.setRowCount(0);
-        
-        for (Object[] fila : listaAutores) {
-            modelAutores.addRow(fila);
+    // Actualizar información cuando se selecciona un artículo
+    public void updateDetail() {
+        int selectedRow = view.getTableArticulos().getSelectedRow();
+        if (selectedRow == -1) return;
+        int articuloId = (int) view.getTableArticulos().getValueAt(selectedRow, 0);
+
+        Object[] detalles = model.getDetallesArticulo(articuloId);
+        if (detalles != null) {
+            view.updateArticleInfo(detalles);
+        }
+
+        List<Object[]> autores = model.getAutoresArticulo(articuloId);
+        DefaultTableModel tableModelAutores = (DefaultTableModel) view.getTableAutores().getModel();
+        tableModelAutores.setRowCount(0);
+        for (Object[] autor : autores) {
+            tableModelAutores.addRow(autor);
         }
     }
 }
