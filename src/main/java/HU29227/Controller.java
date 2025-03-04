@@ -38,7 +38,7 @@ public class Controller {
             }
         });
 
-        view.getBtnVolver().addActionListener(e -> SwingUtil.exceptionWrapper(() -> view.cerrarVista()));
+        view.getBtnVolver().addActionListener(e -> SwingUtil.exceptionWrapper(() -> view.getFrame().dispose()));
     }
 
     // Actualizar detalles cuando se selecciona un artículo
@@ -47,7 +47,7 @@ public class Controller {
         if (selectedRow == -1) return;
         
         String tituloArticulo = (String) view.getTableArticulos().getValueAt(selectedRow, 0);
-        List<Object[]> comentarios = model.getComentarios(tituloArticulo);
+        List<Object[]> comentarios = model.getComentariosArticulo(tituloArticulo);
 
         DefaultTableModel tableModel = (DefaultTableModel) view.getTableComentarios().getModel();
         tableModel.setRowCount(0);

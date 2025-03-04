@@ -13,9 +13,9 @@ public class Model {
     }
     
     // Obtiene la lista de artículos con su decisión y autor
-    public List<Object[]> getListaArticulosDisponiblesArray() {
+    public List<Object[]> getArticulosEnviados() {
         List<Object[]> resultado = new ArrayList<>();
-        String sql = "SELECT titulo, decision, autor FROM Articulo";
+        String sql = "SELECT titulo, decisionfinal FROM Articulo";
         
         List<Object[]> resultados = db.executeQueryArray(sql);
         return resultados;
