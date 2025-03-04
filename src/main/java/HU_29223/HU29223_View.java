@@ -14,7 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 
-public class View {
+public class HU29223_View {
 
 	private JFrame frame;
 	private JList<String> lstArticulos;
@@ -33,7 +33,7 @@ public class View {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					View window = new View();
+					HU29223_View window = new HU29223_View();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +45,7 @@ public class View {
 	/**
 	 * Create the application.
 	 */
-	public View() {
+	public HU29223_View() {
 		initialize();
 	}
 
@@ -55,7 +55,7 @@ public class View {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 634, 350);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		frame.getContentPane().setLayout(null);
 		

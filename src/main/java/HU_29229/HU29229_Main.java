@@ -1,19 +1,19 @@
-package HU_29223;
+package HU_29229;
 
 import java.util.Arrays;
 import java.util.List;
 
 import giis.demo.util.Database;
-public class Main {
+public class HU29229_Main {
 		    private static Database db=new Database();
 		    public static void main(String[] args) {
 		        // Crear la vista
-		        View vista = new View();
+		        Hu29229_View vista = new Hu29229_View();
 
 		        // Crear el modelo
-		        Model modelo = new Model();
+		        HU29229_Model modelo = new HU29229_Model();
 		        
-		        Controller controlador= new Controller(modelo,vista);
+		        HU29229_Controller controlador= new HU29229_Controller(modelo,vista);
 		        
 		        vista.getFrame().setVisible(true);
 		        

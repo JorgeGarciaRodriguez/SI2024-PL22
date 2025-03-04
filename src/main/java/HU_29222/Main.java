@@ -1,4 +1,4 @@
-package h29222;
+package HU_29222;
 
 
 import java.awt.EventQueue;
@@ -13,7 +13,7 @@ public class Main {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Vista vista = new Vista();
+                    View vista = new View();
                     vista.getFrame().setVisible(true);
                     Model modelo = new Model();
                     Controller controlador = new Controller(modelo, vista);

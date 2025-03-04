@@ -1,4 +1,4 @@
-package h29222;
+package HU_29222;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,8 +23,8 @@ public class Model {
 	private Database db=new Database();
 	
 	public Model() {
-	  //  db.createDatabase(true); // Crea la base de datos si no existe
-	  //  db.loadDatabase(); // Carga datos iniciales
+	   // db.createDatabase(true); // Crea la base de datos si no existe
+	   // db.loadDatabase(); // Carga datos iniciales
 	    
 	}
 
@@ -48,6 +49,9 @@ public class Model {
 	
 	public static final String asignar_persona="INSERT INTO Persona(id,nombre,organizacion,grupo) VALUES (?,?,?,?)";
 	public static final String asignar_autor = "INSERT INTO Autor(idAutor, correo) VALUES (?, ?)";
+	private static final String insertarArticulo = "INSERT INTO Articulo (id, titulo, palabras_clave, resumen, fichero, fecha, decisionfinal) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	private static final String asignarAutorArticulo = "INSERT INTO Articulo_Autor(idArticulo, idAutor) VALUES (?, ?)";
+
 
 	public void asignacionPersona(String nombre, String organizacion, String grupo) {
 		
@@ -84,18 +88,31 @@ public class Model {
 
 	public void asignacionAutor(String correo) {
 		int id = ultimoID("Autor", "idAutor");
-	    System.out.println("Insertando en Autor con ID: " + id);
 	    
+
 	    if(!correoExiste(correo)) {
 	    try {
 	        db.executeUpdate(asignar_autor, id, correo);
+	        System.out.println("Insertando en Autor con ID: " + id);
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }
 	}else {System.out.println("CORREO REPETIDO");}
 	    }
 	
-	
+    // Método para insertar un artículo en la base de datos
+	public void insertarArticulo(String titulo, String palabrasClave, String resumen, String fichero) {
+        int idArticulo = ultimoID("Articulo", "id");
+        String fechaActual = new SimpleDateFormat("yyyy-MM-dd").format(new Date()); // Obtener fecha actual
+
+        try {
+            db.executeUpdate(insertarArticulo, idArticulo, titulo, palabrasClave, resumen, fichero, fechaActual, null);
+            System.out.println("Artículo insertado con ID: " + idArticulo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }
 	
 }
 
