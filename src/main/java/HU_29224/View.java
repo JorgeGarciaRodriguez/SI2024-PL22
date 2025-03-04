@@ -87,16 +87,6 @@ public class View {
 	    btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    btnNewButton.setBounds(67, 430, 118, 21);
 	    frame.getContentPane().add(btnNewButton);
-
-	    JButton btnEnviar_autor = new JButton("Enviar");
-	    btnEnviar_autor.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	    btnEnviar_autor.setBounds(254, 216, 85, 21);
-	    frame.getContentPane().add(btnEnviar_autor);
-
-	    JButton btnEnviar_coordinador = new JButton("Enviar");
-	    btnEnviar_coordinador.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	    btnEnviar_coordinador.setBounds(254, 430, 85, 21);
-	    frame.getContentPane().add(btnEnviar_coordinador);
 	    
 	    lblNewLabel = new JLabel("Comentario Autor");
 	    lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
