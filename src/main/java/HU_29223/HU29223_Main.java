@@ -21,7 +21,7 @@ public class HU29223_Main {
 		        
 		        // Hacer visible la vista
 		        try {
-		            List<Object[]> resultado = db.executeQueryArray("PRAGMA table_info(Revision);");
+		            List<Object[]> resultado = db.executeQueryArray("PRAGMA table_info(Revisor);");
 
 		            if (resultado.isEmpty()) {
 		                System.out.println("⚠️ La tabla Revision no existe o no tiene columnas.");
