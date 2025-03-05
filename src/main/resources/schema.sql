@@ -20,7 +20,7 @@ create table Autor_articulo(idAutor int not null, idArticulo int not null, envia
 	FOREIGN KEY(idAutor) REFERENCES Autor(id), FOREIGN KEY(idArticulo) REFERENCES Articulo(id));
 
 create table Articulo(id int primary key not null, titulo varchar not null, palabras_clave varchar not null, resumen varchar not null,
- 	fichero varchar not null, fecha date not null, decisionfinal boolean, aceptado boolean);
+ 	fichero varchar not null, fecha date not null, aceptado boolean);
  	
 create table Revision(idRevision int not null, idRevisor int not null, idArticulo int not null,experto varchar,decision int,coment_autor varchar,
 	coment_coor varchar, PRIMARY KEY(idRevisor,idArticulo));

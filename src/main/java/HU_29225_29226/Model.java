@@ -12,8 +12,8 @@ public class Model {
 	private Database db=new Database();
 
 	public Model() {
-		//db.createDatabase(true); // Crea la base de datos si no existe
-		//db.loadDatabase(); // Carga datos iniciales
+		db.createDatabase(true); // Crea la base de datos si no existe
+		db.loadDatabase(); // Carga datos iniciales
 	}
 	//OBTENGO LISTA DE ARTICULOS CON MENOS DE 3 REVISORES Y QUE YA ESTAN ENVIADOS
 	public List<String> getListaArticulosDisponiblesArray() {
