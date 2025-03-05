@@ -60,7 +60,7 @@ public class H29224_View {
 	private void initialize() {
 	    frame = new JFrame();
 	    frame.setBounds(100, 100, 644, 505);
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	    frame.getContentPane().setLayout(null);
 
 	    tFComentarioAutor = new JTextField();

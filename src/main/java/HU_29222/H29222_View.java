@@ -62,7 +62,7 @@ public class H29222_View {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 863, 443);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		DefaultTableModel model = new DefaultTableModel();
