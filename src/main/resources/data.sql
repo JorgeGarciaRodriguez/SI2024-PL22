@@ -28,7 +28,7 @@ INSERT INTO Revisor (idRevisor) VALUES
 (10);
 
 -- Insertar datos en la tabla Articulo
-INSERT INTO Articulo (id, titulo, palabras_clave, resumen, fichero, fecha, decisionfinal) VALUES
+INSERT INTO Articulo (id, titulo, palabras_clave, resumen, fichero, fecha, aceptado) VALUES
 (1, 'Inteligencia Artificial', 'IA, Machine Learning', 'Resumen IA', 'ia.pdf', '2024-01-10', NULL),
 (2, 'Redes Neuronales', 'Deep Learning, Redes', 'Resumen redes', 'redes.pdf', '2024-02-15', NULL),
 (3, 'Procesamiento de Lenguaje Natural', 'PLN, NLP', 'Resumen PLN', 'pln.pdf', '2024-03-20', NULL),
