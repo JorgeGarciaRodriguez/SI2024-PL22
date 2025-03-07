@@ -1,4 +1,4 @@
-package HU_29229;
+package asignar_revisores;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;

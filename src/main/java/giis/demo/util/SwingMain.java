@@ -6,16 +6,15 @@ import javax.swing.JFrame;
 import HU_29223.HU29223_Controller;
 import HU_29223.HU29223_Model;
 import HU_29223.HU29223_View;
-import HU_29229.HU29229_Controller;
-import HU_29229.HU29229_Model;
-import HU_29229.Hu29229_View;
-
-import HU_29222.H29222_Controller;
-import HU_29222.H29222_Model;
-import HU_29222.H29222_View;
-import HU_29224.H29224_Controller;
-import HU_29224.H29224_Model;
-import HU_29224.H29224_View;
+import asignar_revisores.HU29229_Controller;
+import asignar_revisores.HU29229_Model;
+import asignar_revisores.Hu29229_View;
+import nuevo_envio.H29222_Controller;
+import nuevo_envio.H29222_Model;
+import nuevo_envio.H29222_View;
+import revisar_articulo.H29224_Controller;
+import revisar_articulo.H29224_Model;
+import revisar_articulo.H29224_View;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;

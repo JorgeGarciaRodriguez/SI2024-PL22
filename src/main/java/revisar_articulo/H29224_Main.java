@@ -1,12 +1,12 @@
-package HU_29224;
+package revisar_articulo;
 
 import java.awt.EventQueue;
 import java.util.Arrays;
 import java.util.List;
 
-import HU_29224.H29224_Controller;
-import HU_29224.H29224_Model;
-import HU_29224.H29224_View;
+import revisar_articulo.H29224_Controller;
+import revisar_articulo.H29224_Model;
+import revisar_articulo.H29224_View;
 
 public class H29224_Main {
 
