@@ -7,9 +7,9 @@ import giis.demo.util.Database;
 public class main {
 	private static Database db = new Database();
 	public static void main(String[] args) {
-		View vista = new View();
-		Model modelo = new Model();
-		Controller controlador =  new Controller(modelo,vista);
+		HU29225_29226_View vista = new HU29225_29226_View();
+		HU29225_29226_Model modelo = new HU29225_29226_Model();
+		HU29225_29226_Controller controlador =  new HU29225_29226_Controller(modelo,vista);
 		
 		vista.getFrame().setVisible(true);
         // Hacer visible la vista

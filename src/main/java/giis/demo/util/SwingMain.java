@@ -17,6 +17,10 @@ import HU_29224.H29224_Controller;
 import HU_29224.H29224_Model;
 import HU_29224.H29224_View;
 
+import HU_29225_29226.HU29225_29226_Controller;
+import HU_29225_29226.HU29225_29226_View;
+import HU_29225_29226.HU29225_29226_Model;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -110,13 +114,10 @@ public class SwingMain {
 		btn29224.setBounds(236, 57, 90, 23);
 		frame.getContentPane().add(btn29224);
 		
-		JButton btnNewButton_3 = new JButton("HU29225");
-		btnNewButton_3.setBounds(10, 104, 90, 23);
-		frame.getContentPane().add(btnNewButton_3);
+		JButton btn29225 = new JButton("HU29225");
+		btn29225.setBounds(10, 104, 90, 23);
+		frame.getContentPane().add(btn29225);
 		
-		JButton btnNewButton_4 = new JButton("HU29226");
-		btnNewButton_4.setBounds(125, 104, 90, 23);
-		frame.getContentPane().add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("HU29227");
 		btnNewButton_5.setBounds(236, 104, 90, 23);
@@ -152,6 +153,15 @@ public class SwingMain {
             }
         });
 		
+		btn29225.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
+            public void actionPerformed(ActionEvent e) {
+            	HU29225_29226_View v=new HU29225_29226_View();
+                HU29225_29226_Controller controller=new HU29225_29226_Controller(new HU29225_29226_Model(), 
+                        v);
+                v.getFrame().setVisible(true);
+            }
+        });
+		
 		
 		btn29224.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
             public void actionPerformed(ActionEvent e) {
@@ -161,8 +171,10 @@ public class SwingMain {
                 v.getFrame().setVisible(true);
             }
         });
-
+		
 	}
+	
+	
 
 	public JFrame getFrame() { return this.frame; }
 	

@@ -11,11 +11,11 @@ import javax.swing.table.DefaultTableModel;
 
 import giis.demo.util.SwingUtil;
 
-public class Controller {
-	private Model model;
-	private View view;
+public class HU29225_29226_Controller {
+	private HU29225_29226_Model model;
+	private HU29225_29226_View view;
 
-	public Controller(Model m, View v) {
+	public HU29225_29226_Controller(HU29225_29226_Model m, HU29225_29226_View v) {
 		this.model = m;
 		this.view = v;
 		initController();

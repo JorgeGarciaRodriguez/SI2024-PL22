@@ -14,7 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
-public class View {
+public class HU29225_29226_View {
 
 	private JFrame frame;
 
@@ -25,7 +25,7 @@ public class View {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					View window = new View();
+					HU29225_29226_View window = new HU29225_29226_View();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +37,7 @@ public class View {
 	/**
 	 * Create the application.
 	 */
-	public View() {
+	public HU29225_29226_View() {
 		initialize();
 	}
 
