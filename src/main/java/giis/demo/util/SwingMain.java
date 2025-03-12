@@ -3,19 +3,15 @@ package giis.demo.util;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 
-import HU_29223.HU29223_Controller;
-import HU_29223.HU29223_Model;
-import HU_29223.HU29223_View;
-import HU_29229.HU29229_Controller;
-import HU_29229.HU29229_Model;
-import HU_29229.Hu29229_View;
-
-import HU_29222.H29222_Controller;
-import HU_29222.H29222_Model;
-import HU_29222.H29222_View;
-import HU_29224.H29224_Controller;
-import HU_29224.H29224_Model;
-import HU_29224.H29224_View;
+import asignar_revisores.HU29229_Controller;
+import asignar_revisores.HU29229_Model;
+import asignar_revisores.Hu29229_View;
+import nuevo_envio.H29222_Controller;
+import nuevo_envio.H29222_Model;
+import nuevo_envio.H29222_View;
+import revisar_articulo.H29224_Controller;
+import revisar_articulo.H29224_Model;
+import revisar_articulo.H29224_View;
 
 import HU_29225_29226.HU29225_29226_Controller;
 import HU_29225_29226.HU29225_29226_View;
@@ -25,7 +21,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import giis.demo.tkrun.*;
 
 /**
  * Punto de entrada principal que incluye botones para la ejecucion de las pantallas 
@@ -96,19 +91,6 @@ public class SwingMain {
 		JButton btn29222 = new JButton("HU29222");
 		btn29222.setBounds(10, 57, 90, 23);
 		frame.getContentPane().add(btn29222);
-		
-		JButton btnHU29223 = new JButton("HU29223");
-		btnHU29223.setBounds(125, 57, 90, 23);
-		frame.getContentPane().add(btnHU29223);
-		
-		btnHU29223.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
-            public void actionPerformed(ActionEvent e) {
-            	HU29223_View v=new HU29223_View();
-                HU29223_Controller controller=new HU29223_Controller(new HU29223_Model(), 
-                        v);
-                v.getFrame().setVisible(true);
-            }
-        });
 		
 		JButton btn29224 = new JButton("HU29224");
 		btn29224.setBounds(236, 57, 90, 23);

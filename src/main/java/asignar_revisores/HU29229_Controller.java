@@ -1,4 +1,4 @@
-package HU_29223;
+package asignar_revisores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,22 +12,22 @@ import javax.swing.table.DefaultTableModel;
 
 import giis.demo.util.SwingUtil;
 
-public class HU29223_Controller {
-	private HU29223_Model model;
-	private HU29223_View view;
+public class HU29229_Controller {
+	private HU29229_Model model;
+	private Hu29229_View view;
 	
-	public HU29223_Controller(HU29223_Model m, HU29223_View v) {
+	public HU29229_Controller(HU29229_Model m, Hu29229_View v) {
 		this.model = m;
 		this.view = v;
-		cargarArticulos();
+		//cargarArticulos();
 		initController();
 	}
 
 
 	// Método para cargar los artículos en la vista
-    public void cargarArticulos() {
+    /*public void cargarArticulos() {
         view.getListaArticulos().setListData(model.getListaArticulosDisponiblesArray().toArray(new String[0]));
-    }
+    }*/
     
 	public void initController() {
 		view.getListaArticulos().addListSelectionListener(e -> SwingUtil.exceptionWrapper(() -> view.getListaArticulos()));
@@ -54,11 +54,44 @@ public class HU29223_Controller {
                 //Verificar si has seleccionado un revisor para asignar y en ese caso asignar.
                 if (revisorSeleccionado!=null) {
                     model.asignacion(model.getIdRevisor(revisorSeleccionado),model.getIdArticulo(tituloSeleccionado));
-                    JOptionPane.showMessageDialog(view.getFrame(), "Revisor asignado.");
+                    JOptionPane.showMessageDialog(view.getFrame(), "Nombre guardado en la BD.");
                     updateDetail();
                 } else {
-                    JOptionPane.showMessageDialog(view.getFrame(), "Seleccione un revisor.");
+                    JOptionPane.showMessageDialog(view.getFrame(), "Seleccione un nombre.");
                 }
+            }
+        });
+        
+        view.getBotonDesasignar().addActionListener(new ActionListener() {
+        	 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	String tituloSeleccionado = view.getListaArticulos().getSelectedValue();
+                String revisorAsignadoSeleccionado = view.getListaRevisoresAsignados().getSelectedValue();
+                //Verificar si has seleccionado un revisor para asignar y en ese caso asignar.
+                if (revisorAsignadoSeleccionado!=null) {
+                    model.desasignacion(model.getIdRevision(tituloSeleccionado,model.getIdRevisor(revisorAsignadoSeleccionado)));
+                    JOptionPane.showMessageDialog(view.getFrame(), "Revisor desasignado");
+                    updateDetail();
+                } else {
+                    JOptionPane.showMessageDialog(view.getFrame(), "Seleccione un revisor");
+                }
+            }
+        });
+        
+        view.getBotonSinRevisores().addActionListener(new ActionListener() {
+       	 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	view.getListaArticulos().setListData(model.getListaArticulosSinRevisorArray().toArray(new String[0]));
+            }
+        });
+        
+        view.getBotonRevisores().addActionListener(new ActionListener() {
+       	 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	view.getListaArticulos().setListData(model.getListaArticulosRevisorArray().toArray(new String[0]));
             }
         });
         
@@ -95,7 +128,6 @@ public class HU29223_Controller {
         
         view.getListaRevisoresAsignados().setListData(model.getRevisoresAsignados(articuloSeleccionado).toArray(new String[0]));
 
-        
     }
 
 }

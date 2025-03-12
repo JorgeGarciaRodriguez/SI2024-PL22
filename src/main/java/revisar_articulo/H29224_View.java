@@ -1,4 +1,4 @@
-package HU_29224;
+package revisar_articulo;
 
 import java.awt.EventQueue;
 

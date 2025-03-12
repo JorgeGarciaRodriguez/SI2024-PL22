@@ -1,12 +1,12 @@
-package HU_29224;
+package revisar_articulo;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import HU_29224.H29224_Model;
-import HU_29224.H29224_View;
+import revisar_articulo.H29224_Model;
+import revisar_articulo.H29224_View;
 
 public class H29224_Controller {
 	private H29224_Model model;

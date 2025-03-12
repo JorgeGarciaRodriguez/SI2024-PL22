@@ -1,4 +1,4 @@
-package HU_29223;
+package asignar_revisores;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -14,7 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 
-public class HU29223_View {
+public class Hu29229_View {
 
 	private JFrame frame;
 	private JList<String> lstArticulos;
@@ -25,6 +25,9 @@ public class HU29223_View {
 	private JList<String> lstRevisores;
 	private JButton BotonAsignar;
 	private JList<String> lstRevisoresAsignados;
+	private JButton BotonDesasignar;
+	private JButton BotonSinRevisores;
+	private JButton BotonRevisores;
 
 	/**
 	 * Launch the application.
@@ -33,7 +36,7 @@ public class HU29223_View {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HU29223_View window = new HU29223_View();
+					Hu29229_View window = new Hu29229_View();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +48,7 @@ public class HU29223_View {
 	/**
 	 * Create the application.
 	 */
-	public HU29223_View() {
+	public Hu29229_View() {
 		initialize();
 	}
 
@@ -77,8 +80,16 @@ public class HU29223_View {
 		
 		lstArticulos=new JList<>();
 		JScrollPane scrollPane = new JScrollPane(lstArticulos);
-		scrollPane.setBounds(10, 34, 135, 260);
+		scrollPane.setBounds(10, 34, 135, 210);
 		panel.add(scrollPane);
+		
+		BotonSinRevisores = new JButton("Sin revisores");
+		BotonSinRevisores.setBounds(10, 261, 135, 14);
+		panel.add(BotonSinRevisores);
+		
+		BotonRevisores = new JButton("Con revisores");
+		BotonRevisores.setBounds(10, 286, 135, 14);
+		panel.add(BotonRevisores);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
@@ -150,7 +161,7 @@ public class HU29223_View {
 		frame.getContentPane().add(panel_2);
 		
 		BotonAsignar = new JButton("ASIGNAR");
-		BotonAsignar.setBounds(37, 167, 102, 14);
+		BotonAsignar.setBounds(10, 167, 129, 14);
 		panel_2.add(BotonAsignar);
 		
 		JLabel lblNewLabel_10 = new JLabel("Revisores:");
@@ -159,17 +170,21 @@ public class HU29223_View {
 		
 		JLabel lblNewLabel_11 = new JLabel("Asignacion");
 		lblNewLabel_11.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_11.setBounds(37, 192, 97, 14);
+		lblNewLabel_11.setBounds(30, 192, 97, 14);
 		panel_2.add(lblNewLabel_11);
 		
 		lstRevisores=new JList<>();
 		JScrollPane scrollPane_1 = new JScrollPane(lstRevisores);
-		scrollPane_1.setBounds(37, 34, 102, 122);
+		scrollPane_1.setBounds(10, 34, 129, 122);
 		panel_2.add(scrollPane_1);
 		
 		lstRevisoresAsignados = new JList<>();
-		lstRevisoresAsignados.setBounds(37, 217, 102, 83);
+		lstRevisoresAsignados.setBounds(10, 217, 129, 58);
 		panel_2.add(lstRevisoresAsignados);
+		
+		BotonDesasignar = new JButton("DESASIGNAR");
+		BotonDesasignar.setBounds(10, 286, 129, 14);
+		panel_2.add(BotonDesasignar);
 	}
 	
 	public JFrame getFrame() {return frame;}
@@ -180,5 +195,8 @@ public class HU29223_View {
 	public JList<String> getListaRevisores() {return this.lstRevisores;}
 	public JButton getBotonAsignar() {return BotonAsignar;}
 	public JList<String> getListaRevisoresAsignados() {return this.lstRevisoresAsignados;}
+	public JButton getBotonDesasignar() {return BotonDesasignar;}
+	public JButton getBotonSinRevisores() {return BotonSinRevisores;}
+	public JButton getBotonRevisores() {return BotonRevisores;}
 }
 
