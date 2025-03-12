@@ -3,6 +3,9 @@ package giis.demo.util;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 
+import aceptar_articulos.HU29225_29226_Controller;
+import aceptar_articulos.HU29225_29226_Model;
+import aceptar_articulos.HU29225_29226_View;
 import asignar_revisores.HU29229_Controller;
 import asignar_revisores.HU29229_Model;
 import asignar_revisores.Hu29229_View;
@@ -12,10 +15,6 @@ import nuevo_envio.H29222_View;
 import revisar_articulo.H29224_Controller;
 import revisar_articulo.H29224_Model;
 import revisar_articulo.H29224_View;
-
-import HU_29225_29226.HU29225_29226_Controller;
-import HU_29225_29226.HU29225_29226_View;
-import HU_29225_29226.HU29225_29226_Model;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;

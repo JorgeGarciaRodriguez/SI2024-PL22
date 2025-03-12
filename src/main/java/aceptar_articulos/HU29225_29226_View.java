@@ -1,4 +1,4 @@
-package HU_29225_29226;
+package aceptar_articulos;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
