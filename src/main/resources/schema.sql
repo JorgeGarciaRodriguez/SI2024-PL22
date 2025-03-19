@@ -2,7 +2,6 @@
 --(en este caso en cada aplicacion se usa solo una tabla, por lo que no hace falta)
 
 --Para giis.demo.tkrun:
-
 DROP TABLE IF EXISTS Autor_articulo;
 DROP TABLE IF EXISTS Revision;
 DROP TABLE IF EXISTS Articulo;

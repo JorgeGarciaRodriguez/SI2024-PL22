@@ -95,8 +95,8 @@ public class SwingMain {
 		btn29224.setBounds(236, 57, 90, 23);
 		frame.getContentPane().add(btn29224);
 		
-		JButton btn29225 = new JButton("HU29225");
-		btn29225.setBounds(10, 104, 90, 23);
+		JButton btn29225 = new JButton("Aceptar Articulos");
+		btn29225.setBounds(10, 104, 150, 23);
 		frame.getContentPane().add(btn29225);
 		
 		
