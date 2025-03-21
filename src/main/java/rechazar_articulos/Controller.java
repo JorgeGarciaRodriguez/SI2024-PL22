@@ -57,9 +57,9 @@ public class Controller {
             		if(valoracion==2) {
             			model.aceptar_concambios(titulo);
             		}else if(valoracion==1) {
-            		//	if() {
-            		//		model.aceptar_concambios(titulo);
-            		//	}
+            			if(model.cumpleCondicionEspecial(titulo)) {
+            				model.aceptar_concambios(titulo);
+            			}
             		}
             	}
             	view.getListaArticulos().setListData(model.getListaArticulosPendientesArray().toArray(new String[0]));
