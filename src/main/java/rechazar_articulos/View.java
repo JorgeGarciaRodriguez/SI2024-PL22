@@ -15,6 +15,7 @@ public class View {
 	private JList<String> ListaArticulosPendientes;
 	private JLabel LabelValoracion;
 	private JButton BotonRechazoAutomatico;
+	private JButton BotonAceptacionConCambios;
 
 	/**
 	 * Launch the application.
@@ -72,10 +73,15 @@ public class View {
 		LabelValoracion = new JLabel("");
 		LabelValoracion.setBounds(136, 63, 96, 28);
 		frame.getContentPane().add(LabelValoracion);
+		
+		BotonAceptacionConCambios = new JButton("Aceptación con cambios auto.");
+		BotonAceptacionConCambios.setBounds(126, 193, 216, 23);
+		frame.getContentPane().add(BotonAceptacionConCambios);
 	}
 	
 	public JFrame getFrame() {return frame;}
 	public JList<String> getListaArticulos() {return this.ListaArticulosPendientes;}
 	public JLabel getLabelValoracion() {return this.LabelValoracion;}
 	public JButton getBotonRechazoAutomatico() {return BotonRechazoAutomatico;}
+	public JButton getBotonAceptacionConCambios() {return BotonAceptacionConCambios;}
 }

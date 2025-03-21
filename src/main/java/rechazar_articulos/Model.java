@@ -39,8 +39,13 @@ public class Model {
 		 return (int) resultados.get(0)[0]; 
 	}
 	
-	public static final String rechazar_articulo="UPDATE Articulo SET aceptado = FALSE WHERE titulo = ?";
+	public static final String rechazar_articulo="UPDATE Articulo SET aceptado = 0 WHERE titulo = ?";
 	public void rechazar(String titulo) {
 		db.executeUpdate(rechazar_articulo,titulo);
+	}
+	
+	public static final String aceptar_concambios_articulo="UPDATE Articulo SET aceptado = 1 WHERE titulo = ?";
+	public void aceptar_concambios(String titulo) {
+		db.executeUpdate(aceptar_concambios_articulo,titulo);
 	}
 }

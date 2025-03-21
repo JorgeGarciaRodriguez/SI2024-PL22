@@ -45,7 +45,29 @@ public class Controller {
             	view.getListaArticulos().setListData(model.getListaArticulosPendientesArray().toArray(new String[0]));
             }
         });
+		
+/*		view.getBotonAceptacionConCambios().addActionListener(new ActionListener() {
+			 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	List<String> ListaArticulosPendientes=model.getListaArticulosPendientesArray();
+            	int valoracion=0;
+            	for(String titulo:ListaArticulosPendientes) {
+            		valoracion=model.getValoracionGlobalInt(titulo);
+            		if(valoracion==2) {
+            			model.aceptar_concambios(titulo);
+            		}else if(valoracion==1) {
+            			if() {
+            				model.aceptar_concambios(titulo);
+            			}
+            		}
+            	}
+            	view.getListaArticulos().setListData(model.getListaArticulosPendientesArray().toArray(new String[0]));
+            }
+        });
+        */
 	}
+	
 	public void updateDetail() {
 		String articuloSeleccionado = view.getListaArticulos().getSelectedValue();
 		

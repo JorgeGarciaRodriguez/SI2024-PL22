@@ -35,14 +35,14 @@ INSERT INTO Revisor (idRevisor) VALUES
 
 -- Insertar datos en la tabla Articulo
 INSERT INTO Articulo (id, titulo, palabras_clave, resumen, fichero, fecha, aceptado) VALUES
-(1, 'Inteligencia Artificial', 'IA, Machine Learning', 'Resumen IA', 'ia.pdf', '2024-01-10', TRUE),
-(2, 'Redes Neuronales', 'Deep Learning, Redes', 'Resumen redes', 'redes.pdf', '2024-02-15', FALSE),
+(1, 'Inteligencia Artificial', 'IA, Machine Learning', 'Resumen IA', 'ia.pdf', '2024-01-10', 2),
+(2, 'Redes Neuronales', 'Deep Learning, Redes', 'Resumen redes', 'redes.pdf', '2024-02-15', 0),
 (3, 'Procesamiento de Lenguaje Natural', 'PLN, NLP', 'Resumen PLN', 'pln.pdf', '2024-03-20', NULL),
-(4, 'Visión por Computador', 'Computer Vision, CV', 'Resumen CV', 'cv.pdf', '2024-04-25', TRUE),
-(5, 'Algoritmos Genéticos', 'Optimización, Evolución', 'Resumen AG', 'ag.pdf', '2024-05-30', FALSE),
+(4, 'Visión por Computador', 'Computer Vision, CV', 'Resumen CV', 'cv.pdf', '2024-04-25', 2),
+(5, 'Algoritmos Genéticos', 'Optimización, Evolución', 'Resumen AG', 'ag.pdf', '2024-05-30', NULL),
 (6, 'Robótica Autónoma', 'Robots, IA', 'Resumen robótica', 'robotica.pdf', '2024-06-12', NULL),
-(7, 'Ciberseguridad en Redes', 'Seguridad, Criptografía', 'Resumen ciberseguridad', 'ciberseguridad.pdf', '2024-07-18', TRUE),
-(8, 'Blockchain y Finanzas', 'Blockchain, Finanzas', 'Resumen blockchain', 'blockchain.pdf', '2024-08-22', FALSE);
+(7, 'Ciberseguridad en Redes', 'Seguridad, Criptografía', 'Resumen ciberseguridad', 'ciberseguridad.pdf', '2024-07-18', 2),
+(8, 'Blockchain y Finanzas', 'Blockchain, Finanzas', 'Resumen blockchain', 'blockchain.pdf', '2024-08-22', 0);
 
 -- Insertar datos en la tabla Autor_articulo
 INSERT INTO Autor_articulo (idAutor, idArticulo, envia) VALUES
@@ -60,7 +60,7 @@ INSERT INTO Autor_articulo (idAutor, idArticulo, envia) VALUES
 INSERT INTO Revision (idRevision, idRevisor, idArticulo, experto, decision, coment_autor, coment_coor) VALUES
 (1, 4, 1, 'Alto', 2, 'El artículo es excelente y bien fundamentado.', 'Recomiendo su publicación inmediata.'),
 (2, 5, 2, 'Medio', -1, 'El trabajo tiene potencial, pero necesita mejoras.', 'Faltan referencias clave para su aceptación.'),
-(3, 7, 3, 'Normal', 1, 'El artículo es bueno, pero hay algunos errores menores.', 'Sugiero realizar pequeñas correcciones antes de aceptar.'),
+(3, 7, 3, 'Normal', -2, 'El artículo es bueno, pero hay algunos errores menores.', 'Sugiero realizar pequeñas correcciones antes de aceptar.'),
 (4, 4, 4, 'Bajo', -2, 'El trabajo carece de originalidad y estructura.', 'Recomiendo rechazar en su estado actual.'),
 (5, 10, 5, 'Alto', 2, 'Gran contribución al área, excelente calidad técnica.', 'Aprobado sin modificaciones.'),
 (6, 5, 6, 'Medio', -1, 'Faltan detalles técnicos en algunos apartados.', 'Se recomienda una revisión en profundidad.'),
