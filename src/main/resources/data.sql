@@ -41,7 +41,7 @@ INSERT INTO Articulo (id, titulo, palabras_clave, resumen, fichero, fecha, acept
 (4, 'Visión por Computador', 'Computer Vision, CV', 'Resumen CV', 'cv.pdf', '2024-04-25', 2),
 (5, 'Algoritmos Genéticos', 'Optimización, Evolución', 'Resumen AG', 'ag.pdf', '2024-05-30', NULL),
 (6, 'Robótica Autónoma', 'Robots, IA', 'Resumen robótica', 'robotica.pdf', '2024-06-12', NULL),
-(7, 'Ciberseguridad en Redes', 'Seguridad, Criptografía', 'Resumen ciberseguridad', 'ciberseguridad.pdf', '2024-07-18', 2),
+(7, 'Ciberseguridad en Redes', 'Seguridad, Criptografía', 'Resumen ciberseguridad', 'ciberseguridad.pdf', '2024-07-18', NULL),
 (8, 'Blockchain y Finanzas', 'Blockchain, Finanzas', 'Resumen blockchain', 'blockchain.pdf', '2024-08-22', NULL);
 
 -- Insertar datos en la tabla Autor_articulo
@@ -66,7 +66,7 @@ INSERT INTO Revision (idRevision, idRevisor, idArticulo, experto, decision, come
 (6, 5, 6, 'Medio', -1, 'Faltan detalles técnicos en algunos apartados.', 'Se recomienda una revisión en profundidad.'),
 (7, 7, 6, 'Normal', -2, 'Buena investigación, aunque necesita más pruebas.', 'Se aceptará tras ajustes menores.'),
 (8, 10, 6, 'Bajo', -2, 'No cumple con los estándares de calidad esperados.', 'Debe ser reformulado antes de reconsiderar.'),
-(9, 11, 7, 'Alto', 2, 'Artículo innovador y bien estructurado.', 'Publicable en su versión actual.'),
+(9, 11, 7, 'Alto', 1, 'Artículo innovador y bien estructurado.', 'Publicable en su versión actual.'),
 (10, 12, 8, 'Normal', 1, 'Interesante, pero algunos puntos no están bien explicados.', 'Se recomienda una revisión menor antes de aceptar.'),
 (11, 11, 8, 'Bajo', -2, 'ejemplo', 'ejemplo'),
 (12, 10, 8, 'Alto', 2, 'ejemplo', 'ejemplo');
