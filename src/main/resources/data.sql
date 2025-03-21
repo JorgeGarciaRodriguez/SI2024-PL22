@@ -64,7 +64,7 @@ INSERT INTO Revision (idRevision, idRevisor, idArticulo, experto, decision, come
 (4, 4, 4, 'Bajo', -2, 'El trabajo carece de originalidad y estructura.', 'Recomiendo rechazar en su estado actual.'),
 (5, 10, 5, 'Alto', 2, 'Gran contribución al área, excelente calidad técnica.', 'Aprobado sin modificaciones.'),
 (6, 5, 6, 'Medio', -1, 'Faltan detalles técnicos en algunos apartados.', 'Se recomienda una revisión en profundidad.'),
-(7, 7, 6, 'Normal', 1, 'Buena investigación, aunque necesita más pruebas.', 'Se aceptará tras ajustes menores.'),
+(7, 7, 6, 'Normal', -2, 'Buena investigación, aunque necesita más pruebas.', 'Se aceptará tras ajustes menores.'),
 (8, 10, 6, 'Bajo', -2, 'No cumple con los estándares de calidad esperados.', 'Debe ser reformulado antes de reconsiderar.'),
 (9, 11, 7, 'Alto', 2, 'Artículo innovador y bien estructurado.', 'Publicable en su versión actual.'),
 (10, 12, 8, 'Normal', 1, 'Interesante, pero algunos puntos no están bien explicados.', 'Se recomienda una revisión menor antes de aceptar.');

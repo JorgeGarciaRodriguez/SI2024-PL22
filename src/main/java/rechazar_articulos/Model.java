@@ -22,21 +22,22 @@ public class Model {
 	} 
 	
 	public String getValoracionGlobal(String titulo){
-		String sql = "SELECT r.decision " + 
+		String sql = "SELECT SUM(r.decision) " + 
 	             "FROM Revision r " + 
 	             "JOIN Articulo a ON r.idArticulo = a.id " + 
-	             "WHERE a.titulo = '" + titulo + "';";
-		List<Object[]> resultados=db.executeQueryArray(sql);
+	             "WHERE a.titulo = ?;";
+		List<Object[]> resultados=db.executeQueryArray(sql,titulo);
 		 return String.valueOf(resultados.get(0)[0]); 
 	}
 	
 	public int getValoracionGlobalInt(String titulo){
-		String sql = "SELECT r.decision " + 
+		String sql = "SELECT SUM(r.decision) " + 
 	             "FROM Revision r " + 
 	             "JOIN Articulo a ON r.idArticulo = a.id " + 
-	             "WHERE a.titulo = '" + titulo + "';";
-		List<Object[]> resultados=db.executeQueryArray(sql);
-		 return (int) resultados.get(0)[0]; 
+	             "WHERE a.titulo = ?;";
+		List<Object[]> resultados=db.executeQueryArray(sql,titulo);
+		
+		return ((Number) resultados.get(0)[0]).intValue();
 	}
 	
 	public static final String rechazar_articulo="UPDATE Articulo SET aceptado = 0 WHERE titulo = ?";
