@@ -62,7 +62,7 @@ public class Rechazar_aceptarView {
 		scrollPane.setViewportView(ListaArticulosPendientes);
 		
 		BotonRechazoAutomatico = new JButton("Rechazo auto.");
-		BotonRechazoAutomatico.setBounds(126, 227, 106, 23);
+		BotonRechazoAutomatico.setBounds(126, 227, 216, 23);
 		frame.getContentPane().add(BotonRechazoAutomatico);
 		
 		JLabel lblNewLabel_1 = new JLabel("Valoración global");
