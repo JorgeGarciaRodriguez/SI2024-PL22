@@ -54,32 +54,58 @@ public class H29222_Controller {
 	    vista.getBtnNewButton1().addActionListener(new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
-	            // Obtener los valores de los campos de texto
+	            // 1. Obtener los valores de los campos de texto
 	            String titulo = vista.getTfTitulo().getText().trim();
 	            String palabrasClave = vista.getTfPalabrasClave().getText().trim();
 	            String articulo = vista.getTfArticulo().getText().trim();
 	            String resumen = vista.getTfResumen().getText().trim();
-	            String autorCorreo = vista.getTfCorreo().getText().trim();
-	            articulo+=articulo+"pdf";
-	            // Validar que no haya campos vacíos
-	            if (titulo.isEmpty() || palabrasClave.isEmpty() || articulo.isEmpty() || resumen.isEmpty() ) {
+	            articulo += ".pdf"; // Agregar la extensión de archivo
+
+	            // 2. Validar que no haya campos vacíos
+	            if (titulo.isEmpty() || palabrasClave.isEmpty() || articulo.isEmpty() || resumen.isEmpty()) {
 	                JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
 	                return;
 	            }
 
-	            model.insertarArticulo(titulo,palabrasClave,resumen,articulo);
-	            
-	            
-	            // Generar un número único para el artículo (por ejemplo, un timestamp)
-	            int numeroArticulo = (int) (System.currentTimeMillis() % 100000);
+	            // 3. Insertar el artículo en la base de datos
+	            model.insertarArticulo(titulo, palabrasClave, resumen, articulo);
 
-	            // Mostrar el número en la etiqueta correspondiente
+	            // 4. Obtener el ID del artículo recién insertado
+	            int idArticulo = model.obtenerIdArticuloPorTitulo(titulo);
+	            if (idArticulo == -1) {
+	                JOptionPane.showMessageDialog(null, "Error al obtener el ID del artículo.", "Error", JOptionPane.ERROR_MESSAGE);
+	                return;
+	            }
+
+	            // 5. Obtener los autores de la tabla
+	            DefaultTableModel tablaModel = vista.getTableModel();
+	            int numFilas = tablaModel.getRowCount();
+	            
+	            if (numFilas == 0) {
+	                JOptionPane.showMessageDialog(null, "Debe añadir al menos un autor.", "Error", JOptionPane.ERROR_MESSAGE);
+	                return;
+	            }
+
+	            for (int i = 0; i < numFilas; i++) {
+	                String correoAutor = (String) tablaModel.getValueAt(i, 1); // Obtener el correo del autor
+	                int idAutor = model.obtenerIdAutorPorCorreo(correoAutor);
+
+	                if (idAutor != -1) {
+	                    model.asignarAutorArticulo(idArticulo, idAutor);
+	                } else {
+	                    JOptionPane.showMessageDialog(null, "No se encontró el autor con correo: " + correoAutor, "Error", JOptionPane.ERROR_MESSAGE);
+	                }
+	            }
+
+	            // 6. Generar un número único para el artículo (ejemplo: timestamp)
+	            int numeroArticulo = (int) (System.currentTimeMillis() % 100000);
 	            vista.getLb().setText("Nº Artículo: " + numeroArticulo);
 
-	            // Mensaje de confirmación
+	            // 7. Mensaje de confirmación
 	            JOptionPane.showMessageDialog(null, "Artículo registrado con éxito. Nº: " + numeroArticulo, "Éxito", JOptionPane.INFORMATION_MESSAGE);
 	        }
 	    });
+
 
 											}	
 						}

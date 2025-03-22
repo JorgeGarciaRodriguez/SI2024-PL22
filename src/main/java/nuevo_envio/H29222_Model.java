@@ -49,8 +49,8 @@ public class H29222_Model {
 	
 	public static final String asignar_persona="INSERT INTO Persona(id,nombre,organizacion,grupo) VALUES (?,?,?,?)";
 	public static final String asignar_autor = "INSERT INTO Autor(idAutor, correo) VALUES (?, ?)";
-	private static final String insertarArticulo = "INSERT INTO Articulo (id, titulo, palabras_clave, resumen, fichero, fecha, decisionfinal) VALUES (?, ?, ?, ?, ?, ?, ?)";
-	private static final String asignarAutorArticulo = "INSERT INTO Articulo_Autor(idArticulo, idAutor) VALUES (?, ?)";
+	private static final String insertarArticulo = "INSERT INTO Articulo (id, titulo, palabras_clave, resumen, fichero, fecha, aceptado) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	private static final String asignarAutorArticulo = "INSERT INTO Autor_articulo (idAutor, idArticulo, envia) VALUES (?, ?, ?)";
 
 
 	public void asignacionPersona(String nombre, String organizacion, String grupo) {
@@ -113,6 +113,58 @@ public class H29222_Model {
         }
         
     }
+	
+	public int obtenerIdArticuloPorTitulo(String titulo) {
+	    String query = "SELECT id FROM Articulo WHERE titulo = ?";
+	    
+	    try (Connection conn = db.getConnection();
+	         PreparedStatement ps = conn.prepareStatement(query)) {
+	        ps.setString(1, titulo);
+	        
+	        try (ResultSet rs = ps.executeQuery()) {
+	            if (rs.next()) {
+	                return rs.getInt("id");
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return -1; // Si no se encuentra, retorna -1
+	}
+
+	public int obtenerIdAutorPorCorreo(String correo) {
+	    String query = "SELECT idAutor FROM Autor WHERE correo = ?";
+	    
+	    try (Connection conn = db.getConnection();
+	         PreparedStatement ps = conn.prepareStatement(query)) {
+	        ps.setString(1, correo);
+	        
+	        try (ResultSet rs = ps.executeQuery()) {
+	            if (rs.next()) {
+	                return rs.getInt("idAutor");
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return -1; // Si no se encuentra, retorna -1
+	}
+
+	public void asignarAutorArticulo(int idArticulo, int idAutor) {
+	    String query = asignarAutorArticulo;
+
+	    try (Connection conn = db.getConnection();
+	         PreparedStatement ps = conn.prepareStatement(query)) {
+	        ps.setInt(1, idArticulo);
+	        ps.setInt(2, idAutor);
+	        ps.setBoolean(3, true);
+	        ps.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
 	
 }
 
