@@ -15,6 +15,7 @@ import nuevo_envio.H29222_View;
 import revisar_articulo.H29224_Controller;
 import revisar_articulo.H29224_Model;
 import revisar_articulo.H29224_View;
+import Discusiones.*;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -144,8 +145,8 @@ public class SwingMain {
 		
 		btn29511.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
             public void actionPerformed(ActionEvent e) {
-            	H29511_View v=new H29511_View();
-                H29511_Controller controller=new H29511_Controller(new H29511_Model(), 
+            	HU29511_View v=new HU29511_View();
+                HU29511_Controller controller=new HU29511_Controller(new HU29511_Model(), 
                         v);
                 v.getFrame().setVisible(true);
             }
