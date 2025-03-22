@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS Articulo;
 DROP TABLE IF EXISTS Persona;
 DROP TABLE IF EXISTS Autor;
 DROP TABLE IF EXISTS Revisor;
+DROP TABLE IF EXISTS Discusion;
 
 create table Persona(id int primary key not null, nombre varchar not null, organizacion varchar not null, grupo varchar not null);
 
@@ -19,7 +20,13 @@ create table Autor_articulo(idAutor int not null, idArticulo int not null, envia
 	FOREIGN KEY(idAutor) REFERENCES Autor(id), FOREIGN KEY(idArticulo) REFERENCES Articulo(id));
 
 create table Articulo(id int primary key not null, titulo varchar not null, palabras_clave varchar not null, resumen varchar not null,
- 	fichero varchar not null, fecha date not null, aceptado boolean);
+ 	fichero varchar not null, fecha date not null, aceptado int);
  	
 create table Revision(idRevision int not null, idRevisor int not null, idArticulo int not null,experto varchar,decision int,coment_autor varchar,
 	coment_coor varchar, PRIMARY KEY(idRevisor,idArticulo));
+	
+create table Discusion (id_discusion SERIAL PRIMARY KEY, id_articulo INT REFERENCES articulo(id) ON DELETE CASCADE,
+	estado VARCHAR(20) CHECK (estado IN ('abierta', 'cerrada')));
+	
+CREATE TABLE Notificacion (id INT PRIMARY KEY AUTO_INCREMENT,id_revisor INT,id_discusion INT,estado VARCHAR(10) DEFAULT 'pendiente' CHECK (estado IN ('pendiente', 'enviado')),
+    FOREIGN KEY (id_revisor) REFERENCES Revisor(id), FOREIGN KEY (id_discusion) REFERENCES Discusion(id));

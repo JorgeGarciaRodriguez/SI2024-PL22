@@ -35,14 +35,14 @@ INSERT INTO Revisor (idRevisor) VALUES
 
 -- Insertar datos en la tabla Articulo
 INSERT INTO Articulo (id, titulo, palabras_clave, resumen, fichero, fecha, aceptado) VALUES
-(1, 'Inteligencia Artificial', 'IA, Machine Learning', 'Resumen IA', 'ia.pdf', '2024-01-10', TRUE),
-(2, 'Redes Neuronales', 'Deep Learning, Redes', 'Resumen redes', 'redes.pdf', '2024-02-15', FALSE),
-(3, 'Procesamiento de Lenguaje Natural', 'PLN, NLP', 'Resumen PLN', 'pln.pdf', '2024-03-20', NULL),
-(4, 'Visión por Computador', 'Computer Vision, CV', 'Resumen CV', 'cv.pdf', '2024-04-25', TRUE),
-(5, 'Algoritmos Genéticos', 'Optimización, Evolución', 'Resumen AG', 'ag.pdf', '2024-05-30', FALSE),
-(6, 'Robótica Autónoma', 'Robots, IA', 'Resumen robótica', 'robotica.pdf', '2024-06-12', NULL),
-(7, 'Ciberseguridad en Redes', 'Seguridad, Criptografía', 'Resumen ciberseguridad', 'ciberseguridad.pdf', '2024-07-18', TRUE),
-(8, 'Blockchain y Finanzas', 'Blockchain, Finanzas', 'Resumen blockchain', 'blockchain.pdf', '2024-08-22', FALSE);
+(1, 'Inteligencia Artificial', 'IA, Machine Learning', 'Resumen IA', 'ia.pdf', '2024-01-10', 2, NULL),
+(2, 'Redes Neuronales', 'Deep Learning, Redes', 'Resumen redes', 'redes.pdf', '2024-02-15', 0, NULL),
+(3, 'Procesamiento de Lenguaje Natural', 'PLN, NLP', 'Resumen PLN', 'pln.pdf', '2024-03-20', NULL, NULL),
+(4, 'Visión por Computador', 'Computer Vision, CV', 'Resumen CV', 'cv.pdf', '2024-04-25', 2, NULL),
+(5, 'Algoritmos Genéticos', 'Optimización, Evolución', 'Resumen AG', 'ag.pdf', '2024-05-30', 2, NULL),
+(6, 'Robótica Autónoma', 'Robots, IA', 'Resumen robótica', 'robotica.pdf', '2024-06-12', NULL, NULL),
+(7, 'Ciberseguridad en Redes', 'Seguridad, Criptografía', 'Resumen ciberseguridad', 'ciberseguridad.pdf', '2024-07-18', 2, NULL),
+(8, 'Blockchain y Finanzas', 'Blockchain, Finanzas', 'Resumen blockchain', 'blockchain.pdf', '2024-08-22', 0, NULL);
 
 -- Insertar datos en la tabla Autor_articulo
 INSERT INTO Autor_articulo (idAutor, idArticulo, envia) VALUES

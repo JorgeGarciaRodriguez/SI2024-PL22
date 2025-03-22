@@ -3,6 +3,9 @@ package giis.demo.util;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 
+import Discusiones.HU29511_Controller;
+import Discusiones.HU29511_Model;
+import Discusiones.HU29511_View;
 import aceptar_articulos.HU29225_29226_Controller;
 import aceptar_articulos.HU29225_29226_Model;
 import aceptar_articulos.HU29225_29226_View;
@@ -99,6 +102,10 @@ public class SwingMain {
 		btn29225.setBounds(10, 104, 150, 23);
 		frame.getContentPane().add(btn29225);
 		
+		JButton btn29511 = new JButton("Articulos Dudosos");
+		btn29511.setBounds(10, 150, 150, 23);
+		frame.getContentPane().add(btn29511);
+		
 		
 		JButton btnNewButton_5 = new JButton("HU29227");
 		btnNewButton_5.setBounds(236, 104, 90, 23);
@@ -143,6 +150,14 @@ public class SwingMain {
             }
         });
 		
+		btn29511.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
+            public void actionPerformed(ActionEvent e) {
+            	HU29511_View v=new HU29511_View();
+                HU29511_Controller controller=new HU29511_Controller(new HU29511_Model(), 
+                        v);
+                v.getFrame().setVisible(true);
+            }
+        });
 		
 		btn29224.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
             public void actionPerformed(ActionEvent e) {
