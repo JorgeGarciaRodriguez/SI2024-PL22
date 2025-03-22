@@ -128,7 +128,7 @@ public class SwingMain {
 		lblNewLabel_2.setBounds(312, 61, 134, 14);
 		frame.getContentPane().add(lblNewLabel_2);
 		
-		JButton btnRechazar_Aceptar = new JButton("Rechazo/AceptCambios");
+		JButton btnRechazar_Aceptar = new JButton("Rechazo/Cambios");
 		btnRechazar_Aceptar.setBounds(312, 188, 150, 23);
 		frame.getContentPane().add(btnRechazar_Aceptar);
 		
