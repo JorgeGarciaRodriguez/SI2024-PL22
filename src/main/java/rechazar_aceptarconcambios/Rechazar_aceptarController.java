@@ -1,4 +1,4 @@
-package rechazar_articulos;
+package rechazar_aceptarconcambios;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,11 +10,11 @@ import javax.swing.JOptionPane;
 
 import giis.demo.util.SwingUtil;
 
-public class Controller {
-	private Model model;
-	private View view;
+public class Rechazar_aceptarController {
+	private Rechazar_aceptarModel model;
+	private Rechazar_aceptarView view;
 
-	public Controller(Model m, View v) {
+	public Rechazar_aceptarController(Rechazar_aceptarModel m, Rechazar_aceptarView v) {
 		this.model = m;
 		this.view = v;
 		initController();

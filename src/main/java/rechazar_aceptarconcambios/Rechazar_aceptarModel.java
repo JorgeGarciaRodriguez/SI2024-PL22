@@ -1,14 +1,14 @@
-package rechazar_articulos;
+package rechazar_aceptarconcambios;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import giis.demo.util.Database;
 
-public class Model {
+public class Rechazar_aceptarModel {
 	private Database db=new Database();
 	
-	public Model() {
+	public Rechazar_aceptarModel() {
 
 	}
 	public List<String> getListaArticulosPendientesArray() {

@@ -12,6 +12,9 @@ import asignar_revisores.Hu29229_View;
 import nuevo_envio.H29222_Controller;
 import nuevo_envio.H29222_Model;
 import nuevo_envio.H29222_View;
+import rechazar_aceptarconcambios.Rechazar_aceptarController;
+import rechazar_aceptarconcambios.Rechazar_aceptarModel;
+import rechazar_aceptarconcambios.Rechazar_aceptarView;
 import revisar_articulo.H29224_Controller;
 import revisar_articulo.H29224_Model;
 import revisar_articulo.H29224_View;
@@ -103,7 +106,7 @@ public class SwingMain {
 		frame.getContentPane().add(btn29225);
 		
 		JButton btn29511 = new JButton("Discutir Articulos");
-		btn29511.setBounds(312, 163, 150, 23);
+		btn29511.setBounds(312, 154, 150, 23);
 		frame.getContentPane().add(btn29511);
 		
 		JButton btnHU29229 = new JButton("Asignar revisores");
@@ -124,6 +127,10 @@ public class SwingMain {
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setBounds(312, 61, 134, 14);
 		frame.getContentPane().add(lblNewLabel_2);
+		
+		JButton btnRechazar_Aceptar = new JButton("Rechazo/AceptCambios");
+		btnRechazar_Aceptar.setBounds(312, 188, 150, 23);
+		frame.getContentPane().add(btnRechazar_Aceptar);
 		
 		btnHU29229.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
             public void actionPerformed(ActionEvent e) {
@@ -171,11 +178,18 @@ public class SwingMain {
             }
         });
 		
+		btnRechazar_Aceptar.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
+            public void actionPerformed(ActionEvent e) {
+            	Rechazar_aceptarView v=new Rechazar_aceptarView();
+            	Rechazar_aceptarController controller=new Rechazar_aceptarController(new Rechazar_aceptarModel(), 
+                        v);
+                v.getFrame().setVisible(true);
+            }
+        });
+		
 	}
 	
 	
 
 	public JFrame getFrame() { return this.frame; }
-	
-	
 }

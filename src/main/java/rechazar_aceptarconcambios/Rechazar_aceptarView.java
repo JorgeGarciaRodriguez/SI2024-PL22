@@ -1,4 +1,4 @@
-package rechazar_articulos;
+package rechazar_aceptarconcambios;
 
 import java.awt.EventQueue;
 
@@ -9,7 +9,7 @@ import javax.swing.JList;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
-public class View {
+public class Rechazar_aceptarView {
 
 	private JFrame frame;
 	private JList<String> ListaArticulosPendientes;
@@ -24,7 +24,7 @@ public class View {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					View window = new View();
+					Rechazar_aceptarView window = new Rechazar_aceptarView();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,7 +36,7 @@ public class View {
 	/**
 	 * Create the application.
 	 */
-	public View() {
+	public Rechazar_aceptarView() {
 		initialize();
 	}
 
@@ -46,7 +46,7 @@ public class View {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Articulos pendientes");
