@@ -1,4 +1,4 @@
--- Insertar datos en la tabla Persona
+	-- Insertar datos en la tabla Persona
 INSERT INTO Persona (id, nombre, organizacion, grupo) VALUES
 (1, 'Juan Perez', 'Universidad A', 'Grupo 1'),
 (2, 'Maria Gomez', 'Universidad B', 'Grupo 2'),
