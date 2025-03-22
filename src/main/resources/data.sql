@@ -42,7 +42,9 @@ INSERT INTO Articulo (id, titulo, palabras_clave, resumen, fichero, fecha, acept
 (5, 'Algoritmos Genéticos', 'Optimización, Evolución', 'Resumen AG', 'ag.pdf', '2024-05-30', NULL),
 (6, 'Robótica Autónoma', 'Robots, IA', 'Resumen robótica', 'robotica.pdf', '2024-06-12', NULL),
 (7, 'Ciberseguridad en Redes', 'Seguridad, Criptografía', 'Resumen ciberseguridad', 'ciberseguridad.pdf', '2024-07-18', NULL),
-(8, 'Blockchain y Finanzas', 'Blockchain, Finanzas', 'Resumen blockchain', 'blockchain.pdf', '2024-08-22', NULL);
+(8, 'Blockchain y Finanzas', 'Blockchain, Finanzas', 'Resumen blockchain', 'blockchain.pdf', '2024-08-22', NULL),
+(9, 'Computación Cuántica', 'Quantum Computing, Algoritmos Cuánticos', 'Resumen computación cuántica', 'cuantica.pdf', '2024-09-15', NULL),
+(10, 'Redes 5G y su impacto', '5G, Telecomunicaciones', 'Resumen redes 5G', '5g.pdf', '2024-10-10', 0);
 
 -- Insertar datos en la tabla Autor_articulo
 INSERT INTO Autor_articulo (idAutor, idArticulo, envia) VALUES
@@ -54,7 +56,9 @@ INSERT INTO Autor_articulo (idAutor, idArticulo, envia) VALUES
 (8, 5, TRUE),
 (9, 6, TRUE),
 (11, 7, TRUE),
-(12, 8, TRUE);
+(12, 8, TRUE),
+(1, 9, TRUE),
+(2, 10, TRUE);
 
 -- Insertar datos en la tabla Revision
 INSERT INTO Revision (idRevision, idRevisor, idArticulo, experto, decision, coment_autor, coment_coor) VALUES
@@ -69,4 +73,7 @@ INSERT INTO Revision (idRevision, idRevisor, idArticulo, experto, decision, come
 (9, 11, 7, 'Alto', 1, 'Artículo innovador y bien estructurado.', 'Publicable en su versión actual.'),
 (10, 12, 8, 'Normal', 1, 'Interesante, pero algunos puntos no están bien explicados.', 'Se recomienda una revisión menor antes de aceptar.'),
 (11, 11, 8, 'Bajo', -2, 'ejemplo', 'ejemplo'),
-(12, 10, 8, 'Alto', 2, 'ejemplo', 'ejemplo');
+(12, 10, 8, 'Alto', 2, 'ejemplo', 'ejemplo'),
+(13, 4, 9, 'Normal', -1, 'ejemplo', 'ejemplo'),
+(14, 7, 9, 'Alto', 2, 'ejemplo', 'ejemplo'),
+(15, 11, 10, 'Alto', 2, 'ejemplo', 'ejemplo');
