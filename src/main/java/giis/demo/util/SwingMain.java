@@ -3,9 +3,6 @@ package giis.demo.util;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 
-import Discusiones.HU29511_Controller;
-import Discusiones.HU29511_Model;
-import Discusiones.HU29511_View;
 import aceptar_articulos.HU29225_29226_Controller;
 import aceptar_articulos.HU29225_29226_Model;
 import aceptar_articulos.HU29225_29226_View;
@@ -18,11 +15,16 @@ import nuevo_envio.H29222_View;
 import revisar_articulo.H29224_Controller;
 import revisar_articulo.H29224_Model;
 import revisar_articulo.H29224_View;
+import Discusiones.HU29511_Model;
+import Discusiones.HU29511_Controller;
+import Discusiones.HU29511_View;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 /**
  * Punto de entrada principal que incluye botones para la ejecucion de las pantallas 
@@ -64,12 +66,12 @@ public class SwingMain {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("Main");
-		frame.setBounds(0, 0, 352, 225);
+		frame.setBounds(0, 0, 500, 300);
 		frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		
 			
 		JButton btnInicializarBaseDeDatos = new JButton("Inicializar Base de Datos en Blanco");
-		btnInicializarBaseDeDatos.setBounds(51, 0, 235, 23);
+		btnInicializarBaseDeDatos.setBounds(114, 0, 235, 23);
 		btnInicializarBaseDeDatos.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
 			public void actionPerformed(ActionEvent e) {
 				Database db=new Database();
@@ -80,7 +82,7 @@ public class SwingMain {
 		frame.getContentPane().add(btnInicializarBaseDeDatos);
 			
 		JButton btnCargarDatosIniciales = new JButton("Cargar Datos Iniciales para Pruebas");
-		btnCargarDatosIniciales.setBounds(51, 23, 235, 23);
+		btnCargarDatosIniciales.setBounds(114, 23, 235, 23);
 		btnCargarDatosIniciales.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
 			public void actionPerformed(ActionEvent e) {
 				Database db=new Database();
@@ -90,34 +92,40 @@ public class SwingMain {
 		});
 		frame.getContentPane().add(btnCargarDatosIniciales);
 		
-		JButton btn29222 = new JButton("HU29222");
-		btn29222.setBounds(10, 57, 90, 23);
+		JButton btn29222 = new JButton("Nuevo Envio");
+		btn29222.setBounds(10, 86, 102, 23);
 		frame.getContentPane().add(btn29222);
 		
-		JButton btn29224 = new JButton("HU29224");
-		btn29224.setBounds(236, 57, 90, 23);
+		JButton btn29224 = new JButton("Revisar articulo");
+		btn29224.setBounds(150, 86, 134, 23);
 		frame.getContentPane().add(btn29224);
 		
 		JButton btn29225 = new JButton("Aceptar Articulos");
-		btn29225.setBounds(10, 104, 150, 23);
+		btn29225.setBounds(312, 120, 150, 23);
 		frame.getContentPane().add(btn29225);
 		
-		JButton btn29511 = new JButton("Articulos Dudosos");
-		btn29511.setBounds(10, 150, 150, 23);
+		JButton btn29511 = new JButton("Discutir Articulos");
+		btn29511.setBounds(312, 163, 150, 23);
 		frame.getContentPane().add(btn29511);
 		
-		
-		JButton btnNewButton_5 = new JButton("HU29227");
-		btnNewButton_5.setBounds(236, 104, 90, 23);
-		frame.getContentPane().add(btnNewButton_5);
-		
-		JButton btnNewButton_6 = new JButton("HU29228");
-		btnNewButton_6.setBounds(10, 152, 90, 23);
-		frame.getContentPane().add(btnNewButton_6);
-		
-		JButton btnHU29229 = new JButton("HU29229");
-		btnHU29229.setBounds(125, 152, 90, 23);
+		JButton btnHU29229 = new JButton("Asignar revisores");
+		btnHU29229.setBounds(312, 86, 150, 23);
 		frame.getContentPane().add(btnHU29229);
+		
+		JLabel lblNewLabel = new JLabel("AUTOR");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(10, 61, 90, 14);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("REVISOR");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(163, 61, 108, 14);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("COORDINADOR");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setBounds(312, 61, 134, 14);
+		frame.getContentPane().add(lblNewLabel_2);
 		
 		btnHU29229.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
             public void actionPerformed(ActionEvent e) {
@@ -128,14 +136,19 @@ public class SwingMain {
             }
         });
 		
-		JButton btnNewButton_1 = new JButton("HU29230");
-		btnNewButton_1.setBounds(237, 152, 89, 23);
-		frame.getContentPane().add(btnNewButton_1);
-		
 		btn29222.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
             public void actionPerformed(ActionEvent e) {
             	H29222_View v=new H29222_View();
                 H29222_Controller controller=new H29222_Controller(new H29222_Model(), 
+                        v);
+                v.getFrame().setVisible(true);
+            }
+        });
+		
+		btn29511.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
+            public void actionPerformed(ActionEvent e) {
+            	HU29511_View v=new HU29511_View();
+                HU29511_Controller controller=new HU29511_Controller(new HU29511_Model(), 
                         v);
                 v.getFrame().setVisible(true);
             }
@@ -150,14 +163,6 @@ public class SwingMain {
             }
         });
 		
-		btn29511.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
-            public void actionPerformed(ActionEvent e) {
-            	HU29511_View v=new HU29511_View();
-                HU29511_Controller controller=new HU29511_Controller(new HU29511_Model(), 
-                        v);
-                v.getFrame().setVisible(true);
-            }
-        });
 		
 		btn29224.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
             public void actionPerformed(ActionEvent e) {
