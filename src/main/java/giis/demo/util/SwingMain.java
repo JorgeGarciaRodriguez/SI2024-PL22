@@ -101,6 +101,10 @@ public class SwingMain {
 		btn29225.setBounds(312, 120, 150, 23);
 		frame.getContentPane().add(btn29225);
 		
+		JButton btn29511 = new JButton("Discutir Articulos");
+		btn29511.setBounds(312, 163, 150, 23);
+		frame.getContentPane().add(btn29511);
+		
 		JButton btnHU29229 = new JButton("Asignar revisores");
 		btnHU29229.setBounds(312, 86, 150, 23);
 		frame.getContentPane().add(btnHU29229);
@@ -133,6 +137,15 @@ public class SwingMain {
             public void actionPerformed(ActionEvent e) {
             	H29222_View v=new H29222_View();
                 H29222_Controller controller=new H29222_Controller(new H29222_Model(), 
+                        v);
+                v.getFrame().setVisible(true);
+            }
+        });
+		
+		btn29511.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
+            public void actionPerformed(ActionEvent e) {
+            	H29511_View v=new H29511_View();
+                H29511_Controller controller=new H29511_Controller(new H29511_Model(), 
                         v);
                 v.getFrame().setVisible(true);
             }
