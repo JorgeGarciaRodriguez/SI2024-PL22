@@ -12,19 +12,13 @@ import asignar_revisores.Hu29229_View;
 import login.Login_Controller;
 import login.Login_Model;
 import login.Login_View;
-import nuevo_envio.H29222_Controller;
-import nuevo_envio.H29222_Model;
-import nuevo_envio.H29222_View;
-
 import rechazar_aceptarconcambios.Rechazar_aceptarController;
 import rechazar_aceptarconcambios.Rechazar_aceptarModel;
 import rechazar_aceptarconcambios.Rechazar_aceptarView;
-
 import revisar_articulo.H29224_Controller;
 import revisar_articulo.H29224_Model;
 import revisar_articulo.H29224_View;
 import Discusiones.*;
-
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
