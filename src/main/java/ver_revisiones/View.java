@@ -26,6 +26,7 @@ public class View {
 	private JButton btnInicioSesion;
 	private JComboBox cbDecision;
 	private JButton btnModificar;
+	private JScrollPane sp_Revisiones;
 	
 
 	/**
@@ -123,12 +124,12 @@ public class View {
 		frame.getContentPane().add(tfComentariosRevisor);
 		tfComentariosRevisor.setColumns(10);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(276, 197, 198, 83);
-		frame.getContentPane().add(scrollPane_1);
+		sp_Revisiones = new JScrollPane();
+		sp_Revisiones.setBounds(276, 197, 198, 83);
+		frame.getContentPane().add(sp_Revisiones);
 		
 		tablaRevisiones = new JTable();
-		scrollPane_1.setViewportView(tablaRevisiones);
+		sp_Revisiones.setViewportView(tablaRevisiones);
 	}
 	public JTextField getTF_IdRevisor() {return this.tf_IdRevisor;}
 	public JButton getBotonRevisados() {return this.btnRevisados;}
@@ -141,4 +142,5 @@ public class View {
 	public JFrame getFrame() {return this.frame;}
 	public JTable getTablaRevisiones() {return this.tablaRevisiones ;}
 	public void setTablaRevisiones(TableModel tm) {tablaRevisiones.setModel(tm);}
+	public JScrollPane getSP_Revisiones() {return this.sp_Revisiones;}
 }

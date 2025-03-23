@@ -62,7 +62,7 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
             	view.getListaArticulos().setListData(model.getListaArticulosPendientesArray(idRevisorLogueado).toArray(new String[0]));
-            	view.getTablaRevisiones().setVisible(false);
+            	view.getSP_Revisiones().setVisible(false);
             }
         });
         
@@ -71,7 +71,7 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
             	view.getListaArticulos().setListData(model.getListaArticulosRevisadosArray(idRevisorLogueado).toArray(new String[0]));
-            	view.getTablaRevisiones().setVisible(true);
+            	view.getSP_Revisiones().setVisible(true);
             }
         });
         
