@@ -52,8 +52,39 @@ private Database db=new Database();
 		return (String) resultados.get(0)[0];
 	}
 	
-	public int getDecision(String titulo,int idRevisor){
+	/*public int getDecision(String titulo,int idRevisor){
 		String sql = "SELECT r.decision " +  
+		"FROM Revision r "+  
+		"JOIN Articulo a ON r.idArticulo = a.id "+ 
+		"WHERE a.titulo = ? AND r.idRevisor = ?;";
+		List<Object[]> resultados=db.executeQueryArray(sql, titulo, idRevisor);
+		return (int) resultados.get(0)[0];
+	  }*/
+	
+	public Integer getDecision(String titulo, int idRevisor) {
+	    String sql = "SELECT r.decision " +  
+	                 "FROM Revision r "+  
+	                 "JOIN Articulo a ON r.idArticulo = a.id "+ 
+	                 "WHERE a.titulo = ? AND r.idRevisor = ?;";
+	    
+	    List<Object[]> resultados = db.executeQueryArray(sql, titulo, idRevisor);
+	    
+	    if (resultados != null && !resultados.isEmpty()) {
+	        return (Integer) resultados.get(0)[0];  
+	    } else {
+	        return null;  
+	    }
+	}
+
+	
+	public boolean isRevisorValido(int idRevisor) {
+	    String sql = "SELECT COUNT(*) FROM Revisor WHERE idRevisor = ?";
+	    List<Object[]> resultados = db.executeQueryArray(sql, idRevisor);
+	    return (Integer) resultados.get(0)[0] > 0;
+	}
+	
+	public int getIdRevision(String titulo,int idRevisor){
+		String sql = "SELECT r.idRevision " +  
 		"FROM Revision r "+  
 		"JOIN Articulo a ON r.idArticulo = a.id "+ 
 		"WHERE a.titulo = ? AND r.idRevisor = ?;";
@@ -61,10 +92,22 @@ private Database db=new Database();
 		return (int) resultados.get(0)[0];
 	}
 	
-	public boolean isRevisorValido(int idRevisor) {
-	    String sql = "SELECT COUNT(*) FROM Revisor WHERE idRevisor = ?";
-	    List<Object[]> resultados = db.executeQueryArray(sql, idRevisor);
+	public boolean isListaRevisados(int idRevision) {
+	    String sql = "SELECT COUNT(*) FROM Revision WHERE idRevision = ? AND decision IS NOT NULL";
+	    List<Object[]> resultados = db.executeQueryArray(sql, idRevision);
 	    return (Integer) resultados.get(0)[0] > 0;
+	}
+	
+	public List<RevisionesDTO> getDatosTabla(String titulo){
+		String sql = "SELECT r.idRevisor, r.decision, r.coment_autor FROM Revision r "
+		           + "JOIN Articulo a ON r.idArticulo = a.id WHERE a.titulo = ?";
+		List<RevisionesDTO> resultados=db.executeQueryPojo(RevisionesDTO.class,sql,titulo);
+		return resultados;
+	}
+	
+	public static final String modificar_revision = "UPDATE Revision SET coment_autor = ?, decision = ? WHERE idRevision = ?";
+	public void modificar_revision(String coment,int decision,int idRevision) {
+		db.executeUpdate(modificar_revision,coment,decision,idRevision);
 	}
 
 }

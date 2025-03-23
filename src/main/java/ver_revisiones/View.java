@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.table.TableModel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
@@ -18,7 +19,7 @@ public class View {
 	private JFrame frame;
 	private JTextField tf_IdRevisor;
 	private JTextField tfComentariosRevisor;
-	private JTable table;
+	private JTable tablaRevisiones;
 	private JButton btnPendientes;
 	private JButton btnRevisados;
 	private JList<String> listArticulos;
@@ -99,7 +100,7 @@ public class View {
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		cbDecision = new JComboBox();
-		cbDecision.setModel(new DefaultComboBoxModel(new String[] {"2", "1", "-1", "-2"}));
+		cbDecision.setModel(new DefaultComboBoxModel(new String[] {"", "2", "1", "-1", "-2"}));
 		cbDecision.setBounds(270, 43, 49, 22);
 		frame.getContentPane().add(cbDecision);
 		
@@ -126,16 +127,18 @@ public class View {
 		scrollPane_1.setBounds(276, 197, 198, 83);
 		frame.getContentPane().add(scrollPane_1);
 		
-		table = new JTable();
-		scrollPane_1.setViewportView(table);
+		tablaRevisiones = new JTable();
+		scrollPane_1.setViewportView(tablaRevisiones);
 	}
 	public JTextField getTF_IdRevisor() {return this.tf_IdRevisor;}
 	public JButton getBotonRevisados() {return this.btnRevisados;}
 	public JButton getBotonPendientes() {return this.btnPendientes;}
-	public JButton getBotonModificar() {return this.btnPendientes;}
+	public JButton getBotonModificar() {return this.btnModificar;}
 	public JList<String> getListaArticulos() {return this.listArticulos ;}
 	public JButton getBotonInicioSesion() {return this.btnInicioSesion;}
 	public JComboBox getcbDecision() {return this.cbDecision;}
 	public JTextField getTF_ComentarioRevisor() {return this.tfComentariosRevisor;}
 	public JFrame getFrame() {return this.frame;}
+	public JTable getTablaRevisiones() {return this.tablaRevisiones ;}
+	public void setTablaRevisiones(TableModel tm) {tablaRevisiones.setModel(tm);}
 }
