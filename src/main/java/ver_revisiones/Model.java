@@ -1,5 +1,6 @@
 package ver_revisiones;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,6 +104,14 @@ private Database db=new Database();
 		           + "JOIN Articulo a ON r.idArticulo = a.id WHERE a.titulo = ?";
 		List<RevisionesDTO> resultados=db.executeQueryPojo(RevisionesDTO.class,sql,titulo);
 		return resultados;
+	}
+	
+	public boolean Revision_antes_deadline(int idRevision){
+		String sql = "SELECT deadline FROM Revision WHERE idRevision = ?;";
+		List<Object[]> resultados=db.executeQueryArray(sql, idRevision);
+		Date deadline=(Date) resultados.get(0)[0];
+		Date fechaActual = new Date(System.currentTimeMillis());
+		return !fechaActual.after(deadline);
 	}
 	
 	public static final String modificar_revision = "UPDATE Revision SET coment_autor = ?, decision = ? WHERE idRevision = ?";
