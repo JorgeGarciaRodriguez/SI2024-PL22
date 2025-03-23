@@ -24,6 +24,7 @@ public class View {
 	private JList<String> listArticulos;
 	private JButton btnInicioSesion;
 	private JComboBox cbDecision;
+	private JButton btnModificar;
 	
 
 	/**
@@ -102,9 +103,9 @@ public class View {
 		cbDecision.setBounds(270, 43, 49, 22);
 		frame.getContentPane().add(cbDecision);
 		
-		JButton btnNewButton_3 = new JButton("Modificar");
-		btnNewButton_3.setBounds(315, 124, 75, 23);
-		frame.getContentPane().add(btnNewButton_3);
+		btnModificar = new JButton("Modificar");
+		btnModificar.setBounds(315, 124, 75, 23);
+		frame.getContentPane().add(btnModificar);
 		
 		JLabel lblNewLabel_3 = new JLabel("Revisiones");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
@@ -131,6 +132,7 @@ public class View {
 	public JTextField getTF_IdRevisor() {return this.tf_IdRevisor;}
 	public JButton getBotonRevisados() {return this.btnRevisados;}
 	public JButton getBotonPendientes() {return this.btnPendientes;}
+	public JButton getBotonModificar() {return this.btnPendientes;}
 	public JList<String> getListaArticulos() {return this.listArticulos ;}
 	public JButton getBotonInicioSesion() {return this.btnInicioSesion;}
 	public JComboBox getcbDecision() {return this.cbDecision;}

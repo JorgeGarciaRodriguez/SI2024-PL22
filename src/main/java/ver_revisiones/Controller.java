@@ -45,6 +45,9 @@ public class Controller {
 	            }
 	        }
 	    });
+	    
+	    
+	    
 
 	    initController();
 	}
@@ -76,6 +79,14 @@ public class Controller {
 				SwingUtil.exceptionWrapper(() -> updateDetail());
 			}
 		});
+		
+        view.getBotonModificar().addActionListener(new ActionListener() {
+         	 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	
+            }
+        });
 	
 	
 	}
