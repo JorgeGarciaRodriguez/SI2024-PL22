@@ -166,6 +166,81 @@ public class H29222_Model {
 	    }
 	}
 	
+	
+	
+    // Método para obtener todos los nombres de los tracks
+    public List<String> obtenerNombresTracks() {
+        List<String> nombresTracks = new ArrayList<>();
+        String query = "SELECT nombre FROM Track";
+
+        try (Connection conn = db.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                nombresTracks.add(rs.getString("nombre"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return nombresTracks;
+    }
+
+    // Método para obtener las palabras clave de un track específico
+    public List<String> obtenerPalabrasClavePorTrack(String nombreTrack) {
+        List<String> palabrasClave = new ArrayList<>();
+        String query = "SELECT palabra_clave FROM PalabraClaveTrack WHERE idTrack = (SELECT id FROM Track WHERE nombre = ?)";
+
+        try (Connection conn = db.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+
+            ps.setString(1, nombreTrack);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    palabrasClave.add(rs.getString("palabra_clave"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return palabrasClave;
+    }
+
+    
+ // Método para enviar un artículo a un track
+    public void enviarArticuloATrack(int idArticulo, int idTrack, List<String> palabrasClaveSeleccionadas) {
+        // Convertir la lista de palabras clave a una cadena separada por comas
+        String palabrasClave = String.join(", ", palabrasClaveSeleccionadas);
+
+        // Insertar en la tabla ArticuloTrack
+        String query = "INSERT INTO ArticuloTrack (idArticulo, idTrack, palabras_clave_seleccionadas) VALUES (?, ?, ?)";
+        try (Connection conn = db.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, idArticulo);
+            ps.setInt(2, idTrack);
+            ps.setString(3, palabrasClave);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public int obtenerIdTrackPorNombre(String nombreTrack) {
+        String query = "SELECT id FROM Track WHERE nombre = ?";
+        try (Connection conn = db.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, nombreTrack);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("id");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1; // Si no se encuentra, retorna -1
+    }
 }
 
 

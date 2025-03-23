@@ -68,3 +68,33 @@ INSERT INTO Revision (idRevision, idRevisor, idArticulo, experto, decision, come
 (8, 10, 6, 'Bajo', 1, 'No cumple con los estándares de calidad esperados.', 'Debe ser reformulado antes de reconsiderar.'),
 (9, 11, 7, 'Alto', 2, 'Artículo innovador y bien estructurado.', 'Publicable en su versión actual.'),
 (10, 12, 8, 'Normal', 1, 'Interesante, pero algunos puntos no están bien explicados.', 'Se recomienda una revisión menor antes de aceptar.');
+
+-- Insertar datos en la tabla Track
+INSERT INTO Track (id, nombre, deadline) VALUES
+(1, 'Inteligencia Artificial', '2024-12-31'),
+(2, 'Machine Learning', '2024-11-30'),
+(3, 'Procesamiento de Lenguaje Natural', '2024-10-31'),
+(4, 'Visión por Computador', '2024-09-30'),
+(5, 'Robótica', '2024-08-31'),
+(6, 'Ciberseguridad', '2024-07-31'),
+(7, 'Blockchain', '2024-06-30');
+
+-- Insertar datos en la tabla PalabraClaveTrack
+INSERT INTO PalabraClaveTrack (id, idTrack, palabra_clave) VALUES
+(1, 1, 'Inteligencia Artificial'),
+(2, 1, 'IA'),
+(3, 2, 'Machine Learning'),
+(4, 2, 'ML'),
+(5, 3, 'Procesamiento de Lenguaje Natural'),
+(6, 3, 'PLN'),
+(7, 4, 'Visión por Computador'),
+(8, 4, 'Computer Vision'),
+(9, 5, 'Robótica'),
+(10, 5, 'Robots'),
+(11, 6, 'Ciberseguridad'),
+(12, 6, 'Seguridad'),
+(13, 7, 'Blockchain'),
+(14, 7, 'Finanzas');
+
+-- Insertar datos en la tabla ArticuloTrack
+INSERT INTO ArticuloTrack (idArticulo, idTrack, palabras_clave_seleccionadas) VALUES

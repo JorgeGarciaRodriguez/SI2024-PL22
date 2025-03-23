@@ -5,11 +5,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.JLabel;
+import javax.swing.JList;
+
 import java.awt.Font;
+import java.util.List;
+
 import javax.swing.JTextField;
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.JScrollPane;
 
 public class H29222_View {
 
@@ -31,29 +37,44 @@ public class H29222_View {
 	private JTextField tfGrupInvs;
 	private JButton btnNewButton;
 	private JButton btnEnviar;
+	private JButton btnAadir;
 	private JLabel lblNumeroAleatorio;
+    private JList<String> listaTracks;
+    private JList<String> listaPalabrasClave;
+    private H29222_Model model;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					H29222_View window = new H29222_View();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    // Crea una instancia de H29222_Model
+                    H29222_Model model = new H29222_Model();
+
+                    // Pasa el modelo al constructor de H29222_View
+                    H29222_View window = new H29222_View(model);
+
+                    // Haz visible la ventana
+                    window.getFrame().setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
 	/**
 	 * Create the application.
 	 */
-	public H29222_View() {
+	public H29222_View(H29222_Model model) {
+		this.model = model;
 		initialize();
+		
+		// Cargar los nombres de los tracks al iniciar la vista
+	    List<String> nombresTracks = model.obtenerNombresTracks();
+	    actualizarListaTracks(nombresTracks);
 	}
 
 	/**
@@ -61,17 +82,17 @@ public class H29222_View {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 863, 443);
+		frame.setBounds(100, 100, 863, 611);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		DefaultTableModel model = new DefaultTableModel();
-		model.addColumn("Nombre");
-		model.addColumn("Correo");
-		model.addColumn("Organización");
-		model.addColumn("Grupo Invst");
+		DefaultTableModel tableModel  = new DefaultTableModel();
+		tableModel .addColumn("Nombre");
+		tableModel .addColumn("Correo");
+		tableModel .addColumn("Organización");
+		tableModel .addColumn("Grupo Invst");
 		
-		table = new JTable(model);
+		table = new JTable(tableModel );
 		table.setCellSelectionEnabled(true);
 		table.setColumnSelectionAllowed(true);
 		table.setBounds(145, 211, 307, 150);
@@ -183,7 +204,59 @@ public class H29222_View {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setBounds(26, 200, 109, 70);
 		frame.getContentPane().add(lblNewLabel);
-	}
+		
+		JLabel lblListaDeTracks = new JLabel("Lista de \r\ntracks");
+		lblListaDeTracks.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblListaDeTracks.setBounds(26, 427, 109, 70);
+		frame.getContentPane().add(lblListaDeTracks);
+		
+		JScrollPane PalabraTrack = new JScrollPane();
+		PalabraTrack.setBounds(592, 398, 247, 150);
+		frame.getContentPane().add(PalabraTrack);
+		
+		JLabel lblPalabrasClaveTrack = new JLabel("Palabras clave track");
+		lblPalabrasClaveTrack.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblPalabrasClaveTrack.setBounds(439, 427, 136, 70);
+		frame.getContentPane().add(lblPalabrasClaveTrack);
+		
+		btnAadir = new JButton("Añadir");
+		btnAadir.setBounds(26, 517, 85, 21);
+		frame.getContentPane().add(btnAadir);
+		
+		JScrollPane ListaTrack = new JScrollPane();
+		ListaTrack.setBounds(169, 398, 247, 150);
+		frame.getContentPane().add(ListaTrack);
+		
+		
+		// Crear JList para mostrar los tracks
+        listaTracks = new JList<>();
+        ListaTrack.setViewportView(listaTracks);
+
+        // Crear JList para mostrar las palabras clave
+        listaPalabrasClave = new JList<>();
+        PalabraTrack.setViewportView(listaPalabrasClave);
+
+        // Añadir un listener para cuando se seleccione un track
+        listaTracks.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                String selectedTrack = listaTracks.getSelectedValue();
+                if (selectedTrack != null) {
+                    // Obtener las palabras clave del track seleccionado
+                    List<String> palabrasClave = model.obtenerPalabrasClavePorTrack(selectedTrack);
+                    listaPalabrasClave.setListData(palabrasClave.toArray(new String[0]));
+                }
+            }
+        });
+    }
+
+    // Método para actualizar la lista de tracks
+    public void actualizarListaTracks(List<String> tracks) {
+        listaTracks.setListData(tracks.toArray(new String[0]));
+    }
+		
+		
+		
+	
 	public JFrame getFrame() {return frame;}
 	
 	// Métodos get para acceder a los campos de texto
@@ -206,6 +279,10 @@ public class H29222_View {
 
     public JButton getBtnNewButton() {
         return btnNewButton; 
+    }
+
+    public JButton getBtnAñadir() {
+        return btnAadir; 
     }
     
     public JButton getBtnNewButton1() {
@@ -238,4 +315,10 @@ public class H29222_View {
 		// TODO Auto-generated method stub
 		return tfResumen;
 	}
+	public JList<String> getListaTracks() {
+        return listaTracks;
+    }
+	public JList<String> getListaPalabrasClave() {
+        return listaPalabrasClave;
+    }
 }

@@ -21,6 +21,8 @@ public class H29222_Controller {
 	    this.model = m;
 	    this.vista = v;
 
+	    
+	    
         // Acceder al botón "Añadir" usando el getter
 	    vista.getBtnNewButton().addActionListener(new ActionListener() 	{
 	        @Override
@@ -51,6 +53,8 @@ public class H29222_Controller {
 	        											}
 	    																});
 	 // Acceder al botón "Enviar" usando el getter 
+	 // Configurar el listener del botón "Enviar"
+	 // Configurar el listener del botón "Enviar"
 	    vista.getBtnNewButton1().addActionListener(new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
@@ -63,26 +67,46 @@ public class H29222_Controller {
 
 	            // 2. Validar que no haya campos vacíos
 	            if (titulo.isEmpty() || palabrasClave.isEmpty() || articulo.isEmpty() || resumen.isEmpty()) {
-	                JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+	                JOptionPane.showMessageDialog(vista.getFrame(), "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
 	                return;
 	            }
 
-	            // 3. Insertar el artículo en la base de datos
+	            // 3. Validar que se haya seleccionado un track
+	            String nombreTrack = vista.getListaTracks().getSelectedValue();
+	            if (nombreTrack == null) {
+	                JOptionPane.showMessageDialog(vista.getFrame(), "Debe seleccionar un track.", "Error", JOptionPane.ERROR_MESSAGE);
+	                return;
+	            }
+
+	            // 4. Validar que se haya seleccionado al menos una palabra clave
+	            List<String> palabrasClaveSeleccionadas = vista.getListaPalabrasClave().getSelectedValuesList();
+	            if (palabrasClaveSeleccionadas.isEmpty()) {
+	                JOptionPane.showMessageDialog(vista.getFrame(), "Debe seleccionar al menos una palabra clave.", "Error", JOptionPane.ERROR_MESSAGE);
+	                return;
+	            }
+
+	            // 5. Si todas las validaciones pasan, insertar el artículo en la base de datos
 	            model.insertarArticulo(titulo, palabrasClave, resumen, articulo);
 
-	            // 4. Obtener el ID del artículo recién insertado
+	            // 6. Obtener el ID del artículo recién insertado
 	            int idArticulo = model.obtenerIdArticuloPorTitulo(titulo);
 	            if (idArticulo == -1) {
-	                JOptionPane.showMessageDialog(null, "Error al obtener el ID del artículo.", "Error", JOptionPane.ERROR_MESSAGE);
+	                JOptionPane.showMessageDialog(vista.getFrame(), "Error al obtener el ID del artículo.", "Error", JOptionPane.ERROR_MESSAGE);
 	                return;
 	            }
 
-	            // 5. Obtener los autores de la tabla
+	            // 7. Obtener el ID del track seleccionado
+	            int idTrack = model.obtenerIdTrackPorNombre(nombreTrack);
+
+	            // 8. Enviar el artículo al track
+	            model.enviarArticuloATrack(idArticulo, idTrack, palabrasClaveSeleccionadas);
+
+	            // 9. Obtener los autores de la tabla
 	            DefaultTableModel tablaModel = vista.getTableModel();
 	            int numFilas = tablaModel.getRowCount();
-	            
+
 	            if (numFilas == 0) {
-	                JOptionPane.showMessageDialog(null, "Debe añadir al menos un autor.", "Error", JOptionPane.ERROR_MESSAGE);
+	                JOptionPane.showMessageDialog(vista.getFrame(), "Debe añadir al menos un autor.", "Error", JOptionPane.ERROR_MESSAGE);
 	                return;
 	            }
 
@@ -91,18 +115,18 @@ public class H29222_Controller {
 	                int idAutor = model.obtenerIdAutorPorCorreo(correoAutor);
 
 	                if (idAutor != -1) {
-	                    model.asignarAutorArticulo(idArticulo, idAutor);
+	                    model.asignarAutorArticulo(idAutor, idArticulo);
 	                } else {
-	                    JOptionPane.showMessageDialog(null, "No se encontró el autor con correo: " + correoAutor, "Error", JOptionPane.ERROR_MESSAGE);
+	                    JOptionPane.showMessageDialog(vista.getFrame(), "No se encontró el autor con correo: " + correoAutor, "Error", JOptionPane.ERROR_MESSAGE);
 	                }
 	            }
 
-	            // 6. Generar un número único para el artículo (ejemplo: timestamp)
+	            // 10. Generar un número único para el artículo (ejemplo: timestamp)
 	            int numeroArticulo = (int) (System.currentTimeMillis() % 100000);
 	            vista.getLb().setText("Nº Artículo: " + numeroArticulo);
 
-	            // 7. Mensaje de confirmación
-	            JOptionPane.showMessageDialog(null, "Artículo registrado con éxito. Nº: " + numeroArticulo, "Éxito", JOptionPane.INFORMATION_MESSAGE);
+	            // 11. Mensaje de confirmación
+	            JOptionPane.showMessageDialog(vista.getFrame(), "Artículo enviado correctamente al track.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 	        }
 	    });
 

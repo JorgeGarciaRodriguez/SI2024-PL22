@@ -51,12 +51,13 @@ public class Login_Controller {
     // Método para abrir la vista H29222
     private void openH29222View() {
         // Crear la vista de H29222
-        H29222_View h29222View = new H29222_View();
+        
         
         // Crear el modelo y el controlador de H29222
         H29222_Model h29222Model = new H29222_Model();
+        H29222_View h29222View = new H29222_View(h29222Model);
         H29222_Controller h29222Controller = new H29222_Controller(h29222Model, h29222View);
-        
+       
         // Obtener los datos del login
         String nombre = view.getNombreLogin();
         String correo = view.getCorreoLogin();
