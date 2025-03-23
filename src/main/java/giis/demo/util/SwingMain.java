@@ -9,9 +9,13 @@ import aceptar_articulos.HU29225_29226_View;
 import asignar_revisores.HU29229_Controller;
 import asignar_revisores.HU29229_Model;
 import asignar_revisores.Hu29229_View;
+import login.Login_Controller;
+import login.Login_Model;
+import login.Login_View;
 import nuevo_envio.H29222_Controller;
 import nuevo_envio.H29222_Model;
 import nuevo_envio.H29222_View;
+
 import revisar_articulo.H29224_Controller;
 import revisar_articulo.H29224_Model;
 import revisar_articulo.H29224_View;
@@ -134,14 +138,14 @@ public class SwingMain {
             }
         });
 		
-		btn29222.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
-            public void actionPerformed(ActionEvent e) {
-            	H29222_View v=new H29222_View();
-                H29222_Controller controller=new H29222_Controller(new H29222_Model(), 
-                        v);
+		btn29222.addActionListener(new ActionListener() { 
+		    public void actionPerformed(ActionEvent e) {
+            	Login_View v=new Login_View();
+            	Login_Controller controller=new Login_Controller(new Login_Model(), v);
                 v.getFrame().setVisible(true);
             }
-        });
+		});
+
 		
 		btn29511.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
             public void actionPerformed(ActionEvent e) {
