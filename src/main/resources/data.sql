@@ -1,4 +1,4 @@
-	-- Insertar datos en la tabla Persona
+-- Insertar datos en la tabla Persona
 INSERT INTO Persona (id, nombre, organizacion, grupo) VALUES
 (1, 'Juan Perez', 'Universidad A', 'Grupo 1'),
 (2, 'Maria Gomez', 'Universidad B', 'Grupo 2'),
@@ -60,19 +60,6 @@ INSERT INTO Autor_articulo (idAutor, idArticulo, envia) VALUES
 (1, 9, TRUE),
 (2, 10, TRUE);
 
--- Insertar datos en la tabla Revision
-INSERT INTO Revision (idRevision, idRevisor, idArticulo, experto, decision, coment_autor, coment_coor) VALUES
-(1, 4, 1, 'Alto', 2, 'El artículo es excelente y bien fundamentado.', 'Recomiendo su publicación inmediata.'),
-(2, 5, 2, 'Medio', -1, 'El trabajo tiene potencial, pero necesita mejoras.', 'Faltan referencias clave para su aceptación.'),
-(3, 7, 3, 'Normal', -2, 'El artículo es bueno, pero hay algunos errores menores.', 'Sugiero realizar pequeñas correcciones antes de aceptar.'),
-(4, 4, 4, 'Bajo', -2, 'El trabajo carece de originalidad y estructura.', 'Recomiendo rechazar en su estado actual.'),
-(5, 10, 5, 'Alto', 2, 'Gran contribución al área, excelente calidad técnica.', 'Aprobado sin modificaciones.'),
-(6, 5, 6, 'Medio', -1, 'Faltan detalles técnicos en algunos apartados.', 'Se recomienda una revisión en profundidad.'),
-(7, 7, 6, 'Normal', 1, 'Buena investigación, aunque necesita más pruebas.', 'Se aceptará tras ajustes menores.'),
-(8, 10, 6, 'Bajo', 1, 'No cumple con los estándares de calidad esperados.', 'Debe ser reformulado antes de reconsiderar.'),
-(9, 11, 7, 'Alto', 2, 'Artículo innovador y bien estructurado.', 'Publicable en su versión actual.'),
-(10, 12, 8, 'Normal', 1, 'Interesante, pero algunos puntos no están bien explicados.', 'Se recomienda una revisión menor antes de aceptar.');
-
 -- Insertar datos en la tabla Track
 INSERT INTO Track (id, nombre, deadline) VALUES
 (1, 'Inteligencia Artificial', '2024-12-31'),
@@ -102,13 +89,28 @@ INSERT INTO PalabraClaveTrack (id, idTrack, palabra_clave) VALUES
 
 -- Insertar datos en la tabla ArticuloTrack
 INSERT INTO ArticuloTrack (idArticulo, idTrack, palabras_clave_seleccionadas) VALUES
-(7, 7, 6, 'Normal', -2, 'Buena investigación, aunque necesita más pruebas.', 'Se aceptará tras ajustes menores.'),
-(8, 10, 6, 'Bajo', -2, 'No cumple con los estándares de calidad esperados.', 'Debe ser reformulado antes de reconsiderar.'),
-(9, 11, 7, 'Alto', 1, 'Artículo innovador y bien estructurado.', 'Publicable en su versión actual.'),
-(10, 12, 8, 'Normal', 1, 'Interesante, pero algunos puntos no están bien explicados.', 'Se recomienda una revisión menor antes de aceptar.'),
-(11, 11, 8, 'Bajo', -2, 'ejemplo', 'ejemplo'),
-(12, 10, 8, 'Alto', 2, 'ejemplo', 'ejemplo'),
-(13, 4, 9, 'Normal', -1, 'ejemplo', 'ejemplo'),
-(14, 7, 9, 'Alto', 2, 'ejemplo', 'ejemplo'),
-(15, 11, 10, 'Alto', 2, 'ejemplo', 'ejemplo');
+(1, 1, 'IA, Machine Learning'),
+(4, 1, 'Computer Vision, CV'),
+(9, 1, 'Quantum Computing, Algoritmos Cuánticos');
 
+-- Insertar datos en la tabla RevisorTrack
+INSERT INTO RevisorTrack (idRevisor, idTrack) VALUES
+(4, 1),
+(5, 2),
+(7, 3),
+(10, 4),
+(11, 5),
+(12, 6);
+
+-- Insertar datos en la tabla Revision
+INSERT INTO Revision (idRevision, idRevisor, idArticulo, experto, decision, coment_autor, coment_coor) VALUES
+(1, 4, 1, 'Alto', 2, 'El artículo es excelente y bien fundamentado.', 'Recomiendo su publicación inmediata.'),
+(2, 5, 2, 'Medio', -1, 'El trabajo tiene potencial, pero necesita mejoras.', 'Faltan referencias clave para su aceptación.'),
+(3, 7, 3, 'Normal', -2, 'El artículo es bueno, pero hay algunos errores menores.', 'Sugiero realizar pequeñas correcciones antes de aceptar.'),
+(4, 4, 4, 'Bajo', -2, 'El trabajo carece de originalidad y estructura.', 'Recomiendo rechazar en su estado actual.'),
+(5, 10, 5, 'Alto', 2, 'Gran contribución al área, excelente calidad técnica.', 'Aprobado sin modificaciones.'),
+(6, 5, 6, 'Medio', -1, 'Faltan detalles técnicos en algunos apartados.', 'Se recomienda una revisión en profundidad.'),
+(7, 7, 6, 'Normal', 1, 'Buena investigación, aunque necesita más pruebas.', 'Se aceptará tras ajustes menores.'),
+(8, 10, 6, 'Bajo', 1, 'No cumple con los estándares de calidad esperados.', 'Debe ser reformulado antes de reconsiderar.'),
+(9, 11, 7, 'Alto', 2, 'Artículo innovador y bien estructurado.', 'Publicable en su versión actual.'),
+(10, 12, 8, 'Normal', 1, 'Interesante, pero algunos puntos no están bien explicados.', 'Se recomienda una revisión menor antes de aceptar.');
