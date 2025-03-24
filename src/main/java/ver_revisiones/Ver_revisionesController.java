@@ -11,12 +11,12 @@ import javax.swing.table.TableModel;
 
 import giis.demo.util.SwingUtil;
 
-public class Controller {
-	private Model model;
-	private View view;
+public class Ver_revisionesController {
+	private Ver_revisionesModel model;
+	private Ver_revisionesView view;
 	private int idRevisorLogueado;
 		
-	public Controller(Model m, View v) {
+	public Ver_revisionesController(Ver_revisionesModel m, Ver_revisionesView v) {
 		this.model = m;
 		this.view = v;
 		revisarLogin();

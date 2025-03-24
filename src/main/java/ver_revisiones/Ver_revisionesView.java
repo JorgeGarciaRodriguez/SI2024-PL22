@@ -14,7 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.DefaultComboBoxModel;
 
-public class View {
+public class Ver_revisionesView {
 
 	private JFrame frame;
 	private JTextField tf_IdRevisor;
@@ -36,7 +36,7 @@ public class View {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					View window = new View();
+					Ver_revisionesView window = new Ver_revisionesView();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +48,7 @@ public class View {
 	/**
 	 * Create the application.
 	 */
-	public View() {
+	public Ver_revisionesView() {
 		initialize();
 	}
 
@@ -58,7 +58,7 @@ public class View {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 500, 330);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		tf_IdRevisor = new JTextField();

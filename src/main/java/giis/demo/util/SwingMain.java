@@ -21,6 +21,9 @@ import rechazar_aceptarconcambios.Rechazar_aceptarView;
 import revisar_articulo.H29224_Controller;
 import revisar_articulo.H29224_Model;
 import revisar_articulo.H29224_View;
+import ver_revisiones.Ver_revisionesController;
+import ver_revisiones.Ver_revisionesModel;
+import ver_revisiones.Ver_revisionesView;
 import Discusiones.*;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -138,6 +141,10 @@ public class SwingMain {
 		btnEvaluarArticulo.setBounds(150, 119, 134, 23);
 		frame.getContentPane().add(btnEvaluarArticulo);
 		
+		JButton btn_ver_revisiones = new JButton("Ver revisiones");
+		btn_ver_revisiones.setBounds(150, 154, 134, 23);
+		frame.getContentPane().add(btn_ver_revisiones);
+		
 		btnHU29229.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
             public void actionPerformed(ActionEvent e) {
             	Hu29229_View v=new Hu29229_View();
@@ -197,6 +204,14 @@ public class SwingMain {
 		    public void actionPerformed(ActionEvent e) {
 		        Evaluacion_View v = new Evaluacion_View();
 		        Evaluacion_Controller controller = new Evaluacion_Controller(new Evaluacion_Model(), v);
+		        v.getFrame().setVisible(true);
+		    }
+		});
+		
+		btn_ver_revisiones.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        Ver_revisionesView v = new Ver_revisionesView();
+		        Ver_revisionesController controller = new Ver_revisionesController(new Ver_revisionesModel(), v);
 		        v.getFrame().setVisible(true);
 		    }
 		});
