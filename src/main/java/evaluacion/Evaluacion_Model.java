@@ -35,11 +35,25 @@ public class Evaluacion_Model {
                        "JOIN ArticuloTrack at ON a.id = at.idArticulo " +
                        "JOIN Track t ON at.idTrack = t.id " +
                        "JOIN RevisorTrack rt ON t.id = rt.idTrack " +
-                       "WHERE rt.idRevisor = ?";
+                       "WHERE rt.idRevisor = ? " +
+                       "AND a.id NOT IN ( " +
+                       "    SELECT aa.idArticulo FROM Autor_articulo aa " +
+                       "    JOIN Autor aut ON aa.idAutor = aut.idAutor " +
+                       "    WHERE aut.idAutor = ? " +
+                       ") " +
+                       "AND a.id NOT IN ( " +
+                       "    SELECT aa.idArticulo FROM Autor_articulo aa " +
+                       "    JOIN Autor aut ON aa.idAutor = aut.idAutor " +
+                       "    JOIN Persona p1 ON aut.idAutor = p1.id " +
+                       "    JOIN Persona p2 ON p2.id = ? " +
+                       "    WHERE p1.grupo = p2.grupo " +
+                       ")";
 
         try (Connection conn = db.getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setInt(1, idRevisor);
+            ps.setInt(2, idRevisor);
+            ps.setInt(3, idRevisor);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     articulos.add(rs.getString("titulo"));

@@ -44,7 +44,8 @@ INSERT INTO Articulo (id, titulo, palabras_clave, resumen, fichero, fecha, acept
 (7, 'Ciberseguridad en Redes', 'Seguridad, Criptografía', 'Resumen ciberseguridad', 'ciberseguridad.pdf', '2024-07-18', NULL),
 (8, 'Blockchain y Finanzas', 'Blockchain, Finanzas', 'Resumen blockchain', 'blockchain.pdf', '2024-08-22', NULL),
 (9, 'Computación Cuántica', 'Quantum Computing, Algoritmos Cuánticos', 'Resumen computación cuántica', 'cuantica.pdf', '2024-09-15', NULL),
-(10, 'Redes 5G y su impacto', '5G, Telecomunicaciones', 'Resumen redes 5G', '5g.pdf', '2024-10-10', 0);
+(10, 'Redes 5G y su impacto', '5G, Telecomunicaciones', 'Resumen redes 5G', '5g.pdf', '2024-10-10', 0),
+(11, 'Aprendizaje Automático', 'Machine Learning, AI', 'Resumen sobre ML', 'ml.pdf', '2025-01-01', NULL);
 
 -- Insertar datos en la tabla Autor_articulo
 INSERT INTO Autor_articulo (idAutor, idArticulo, envia) VALUES
@@ -58,7 +59,10 @@ INSERT INTO Autor_articulo (idAutor, idArticulo, envia) VALUES
 (11, 7, TRUE),
 (12, 8, TRUE),
 (1, 9, TRUE),
-(2, 10, TRUE);
+(2, 10, TRUE),
+(4, 2,  TRUE),
+(4, 3,  TRUE),
+(1, 11, TRUE); 
 
 -- Insertar datos en la tabla Track
 INSERT INTO Track (id, nombre, deadline) VALUES
@@ -68,7 +72,8 @@ INSERT INTO Track (id, nombre, deadline) VALUES
 (4, 'Visión por Computador', '2024-09-30'),
 (5, 'Robótica', '2024-08-31'),
 (6, 'Ciberseguridad', '2024-07-31'),
-(7, 'Blockchain', '2024-06-30');
+(7, 'Blockchain', '2024-06-30'),
+(8, 'Machine Learning', '2025-12-31');
 
 -- Insertar datos en la tabla PalabraClaveTrack
 INSERT INTO PalabraClaveTrack (id, idTrack, palabra_clave) VALUES
@@ -91,7 +96,9 @@ INSERT INTO PalabraClaveTrack (id, idTrack, palabra_clave) VALUES
 INSERT INTO ArticuloTrack (idArticulo, idTrack, palabras_clave_seleccionadas) VALUES
 (1, 1, 'IA, Machine Learning'),
 (4, 1, 'Computer Vision, CV'),
-(9, 1, 'Quantum Computing, Algoritmos Cuánticos');
+(9, 1, 'Quantum Computing, Algoritmos Cuánticos'),
+(9, 2, 'Quantum Computing, Algoritmos Cuánticos'),
+(11, 8, 'Machine Learning, AI');
 
 -- Insertar datos en la tabla RevisorTrack
 INSERT INTO RevisorTrack (idRevisor, idTrack) VALUES
@@ -100,7 +107,8 @@ INSERT INTO RevisorTrack (idRevisor, idTrack) VALUES
 (7, 3),
 (10, 4),
 (11, 5),
-(12, 6);
+(12, 6),
+(7, 8);
 
 -- Insertar datos en la tabla Revision
 INSERT INTO Revision (idRevision, idRevisor, idArticulo, experto, decision, coment_autor, coment_coor) VALUES
