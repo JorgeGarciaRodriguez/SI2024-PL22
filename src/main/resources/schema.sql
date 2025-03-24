@@ -66,6 +66,7 @@ CREATE TABLE Revision (
     decision INT,
     coment_autor VARCHAR,
     coment_coor VARCHAR,
+    deadline DATE NOT NULL DEFAULT '2025-03-27',
     PRIMARY KEY (idRevisor, idArticulo)
 );
 
