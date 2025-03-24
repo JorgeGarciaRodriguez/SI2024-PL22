@@ -30,15 +30,18 @@ public class Rechazar_aceptarModel {
 		 return String.valueOf(resultados.get(0)[0]); 
 	}
 	
-	public int getValoracionGlobalInt(String titulo){
-		String sql = "SELECT SUM(r.decision) " + 
-	             "FROM Revision r " + 
-	             "JOIN Articulo a ON r.idArticulo = a.id " + 
-	             "WHERE a.titulo = ?;";
+	public Integer getValoracionGlobalInt(String titulo){
+	    String sql = "SELECT CASE " + 
+                "WHEN COUNT(r.decision) = 0 THEN NULL " + 
+                "ELSE SUM(COALESCE(r.decision, 0)) " + 
+                "END " +
+                "FROM Revision r " + 
+                "JOIN Articulo a ON r.idArticulo = a.id " + 
+                "WHERE a.titulo = ?;";
 		List<Object[]> resultados=db.executeQueryArray(sql,titulo);
 		
 	    if (resultados.isEmpty() || resultados.get(0)[0] == null) {
-	        return -1000; //numero asociado a null
+	        return null; //numero asociado a null
 	    }
 
 		

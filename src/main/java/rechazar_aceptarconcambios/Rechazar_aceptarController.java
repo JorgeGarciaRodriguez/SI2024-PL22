@@ -31,40 +31,45 @@ public class Rechazar_aceptarController {
 		});
 		
 		view.getBotonRechazoAutomatico().addActionListener(new ActionListener() {
-			 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	List<String> ListaArticulosPendientes=model.getListaArticulosPendientesArray();
-            	int valoracion=0;
-            	for(String titulo:ListaArticulosPendientes) {
-            		valoracion=model.getValoracionGlobalInt(titulo);
-            		if(valoracion<=-2 && valoracion!=-1000) {
-            			model.rechazar(titulo);
-            		}
-            	}
-            	view.getListaArticulos().setListData(model.getListaArticulosPendientesArray().toArray(new String[0]));
-            }
-        });
-		
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        List<String> ListaArticulosPendientes = model.getListaArticulosPendientesArray();
+		        Integer valoracion; // Usamos Integer en lugar de int para manejar null
+
+		        for (String titulo : ListaArticulosPendientes) {
+		            valoracion = model.getValoracionGlobalInt(titulo);
+		            
+		            if (valoracion != null && valoracion <= -2) { 
+		                model.rechazar(titulo);
+		            }
+		        }
+		        
+		        view.getListaArticulos().setListData(model.getListaArticulosPendientesArray().toArray(new String[0]));
+		    }
+		});
+
 		view.getBotonAceptacionConCambios().addActionListener(new ActionListener() {
-			 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	List<String> ListaArticulosPendientes=model.getListaArticulosPendientesArray();
-            	int valoracion=0;
-            	for(String titulo:ListaArticulosPendientes) {
-            		valoracion=model.getValoracionGlobalInt(titulo);
-            		if(valoracion==2) {
-            			model.aceptar_concambios(titulo);
-            		}else if(valoracion==1) {
-            			if(model.cumpleCondicionEspecial(titulo)) {
-            				model.aceptar_concambios(titulo);
-            			}
-            		}
-            	}
-            	view.getListaArticulos().setListData(model.getListaArticulosPendientesArray().toArray(new String[0]));
-            }
-        });
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        List<String> ListaArticulosPendientes = model.getListaArticulosPendientesArray();
+		        Integer valoracion;
+
+		        for (String titulo : ListaArticulosPendientes) {
+		            valoracion = model.getValoracionGlobalInt(titulo);
+		            
+		            if (valoracion != null) { 
+		                if (valoracion == 2) {
+		                    model.aceptar_concambios(titulo);
+		                } else if (valoracion == 1 && model.cumpleCondicionEspecial(titulo)) {
+		                    model.aceptar_concambios(titulo);
+		                }
+		            }
+		        }
+
+		        view.getListaArticulos().setListData(model.getListaArticulosPendientesArray().toArray(new String[0]));
+		    }
+		});
+
         
 	}
 	
