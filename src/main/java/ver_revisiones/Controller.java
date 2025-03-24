@@ -102,8 +102,15 @@ public class Controller {
             	String tituloseleccionado=view.getListaArticulos().getSelectedValue();
             	int idRevision=model.getIdRevision(tituloseleccionado,idRevisorLogueado);
             	
-            	model.modificar_revision(comentario, selectedValue, idRevision);
-            	RellenaTabla();
+            	if(model.Revision_antes_deadline()) {
+            		model.modificar_revision(comentario, selectedValue, idRevision);
+            		RellenaTabla();
+            		JOptionPane.showMessageDialog(null, "Revision modificada");
+            	}else {
+            		JOptionPane.showMessageDialog(null, "No puedes modificar ya que estás fuera de plazo", "Error", JOptionPane.ERROR_MESSAGE);
+
+            	}
+
             }
         });
 	

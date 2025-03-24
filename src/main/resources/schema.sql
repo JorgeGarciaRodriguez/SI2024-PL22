@@ -22,4 +22,4 @@ create table Articulo(id int primary key not null, titulo varchar not null, pala
  	fichero varchar not null, fecha date not null, aceptado int);
  	
 create table Revision(idRevision int not null, idRevisor int not null, idArticulo int not null,experto varchar,decision int,coment_autor varchar,
-	coment_coor varchar, PRIMARY KEY(idRevisor,idArticulo));
+	coment_coor varchar,deadline DATE NOT NULL DEFAULT '2025-03-27', PRIMARY KEY(idRevisor,idArticulo));

@@ -1,6 +1,9 @@
 package ver_revisiones;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,13 +109,39 @@ private Database db=new Database();
 		return resultados;
 	}
 	
-	public boolean Revision_antes_deadline(int idRevision){
-		String sql = "SELECT deadline FROM Revision WHERE idRevision = ?;";
-		List<Object[]> resultados=db.executeQueryArray(sql, idRevision);
-		Date deadline=(Date) resultados.get(0)[0];
-		Date fechaActual = new Date(System.currentTimeMillis());
-		return !fechaActual.after(deadline);
+	public boolean Revision_antes_deadline() {
+	    String sql = "SELECT deadline FROM Revision LIMIT 1;";
+	    List<Object[]> resultados = db.executeQueryArray(sql);
+
+	    if (resultados.isEmpty() || resultados.get(0)[0] == null) {
+	        return true; 
+	    }
+
+	    Object resultado = resultados.get(0)[0];
+	    Date deadline;
+
+	    try {
+	        if (resultado instanceof String) {
+	            // Convertimos el String a java.sql.Date usando SimpleDateFormat
+	            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	            java.util.Date parsedDate = format.parse((String) resultado);
+	            deadline = new Date(parsedDate.getTime());
+	        } else if (resultado instanceof Timestamp) {
+	            deadline = new Date(((Timestamp) resultado).getTime());
+	        } else if (resultado instanceof Date) {
+	            deadline = (Date) resultado;
+	        } else {
+	            throw new IllegalArgumentException("Formato de fecha no reconocido: " + resultado.getClass().getName());
+	        }
+	    } catch (ParseException e) {
+	        throw new RuntimeException("Error al parsear la fecha: " + resultado, e);
+	    }
+
+	    Date fechaActual = new Date(System.currentTimeMillis());
+
+	    return !fechaActual.after(deadline);
 	}
+
 	
 	public static final String modificar_revision = "UPDATE Revision SET coment_autor = ?, decision = ? WHERE idRevision = ?";
 	public void modificar_revision(String coment,int decision,int idRevision) {
