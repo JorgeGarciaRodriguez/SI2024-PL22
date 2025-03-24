@@ -121,13 +121,3 @@ CREATE TABLE RevisorTrack (
     FOREIGN KEY (idRevisor) REFERENCES Revisor(idRevisor),
     FOREIGN KEY (idTrack) REFERENCES Track(id)
 );
-
--- Tabla Decision (depende de Revisor y Articulo)
-CREATE TABLE Decision (
-    idRevisor INT,
-    idArticulo INT,
-    decision VARCHAR NOT NULL,
-    PRIMARY KEY (idRevisor, idArticulo),
-    FOREIGN KEY (idRevisor) REFERENCES Revisor(idRevisor),
-    FOREIGN KEY (idArticulo) REFERENCES Articulo(id)
-);
