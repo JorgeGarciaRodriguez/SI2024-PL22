@@ -38,7 +38,7 @@ public class Rechazar_aceptarController {
             	int valoracion=0;
             	for(String titulo:ListaArticulosPendientes) {
             		valoracion=model.getValoracionGlobalInt(titulo);
-            		if(valoracion<=-2) {
+            		if(valoracion<=-2 && valoracion!=-1000) {
             			model.rechazar(titulo);
             		}
             	}

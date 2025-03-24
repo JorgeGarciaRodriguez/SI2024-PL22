@@ -38,7 +38,7 @@ public class Rechazar_aceptarModel {
 		List<Object[]> resultados=db.executeQueryArray(sql,titulo);
 		
 	    if (resultados.isEmpty() || resultados.get(0)[0] == null) {
-	        return -100; 
+	        return -1000; //numero asociado a null
 	    }
 
 		
