@@ -37,6 +37,11 @@ public class Rechazar_aceptarModel {
 	             "WHERE a.titulo = ?;";
 		List<Object[]> resultados=db.executeQueryArray(sql,titulo);
 		
+	    if (resultados.isEmpty() || resultados.get(0)[0] == null) {
+	        return -100; 
+	    }
+
+		
 		return ((Number) resultados.get(0)[0]).intValue();
 	}
 	//PRUEBA IMPLEMENTACION CONDICIONESPECIAL

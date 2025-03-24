@@ -116,7 +116,7 @@ INSERT INTO Revision (idRevision, idRevisor, idArticulo, experto, decision, come
 (2, 5, 2, 'Medio', -1, 'El trabajo tiene potencial, pero necesita mejoras.', 'Faltan referencias clave para su aceptación.'),
 (3, 7, 3, 'Normal', -2, 'El artículo es bueno, pero hay algunos errores menores.', 'Sugiero realizar pequeñas correcciones antes de aceptar.'),
 (4, 4, 4, 'Bajo', -2, 'El trabajo carece de originalidad y estructura.', 'Recomiendo rechazar en su estado actual.'),
-(5, 10, 5, 'Alto', 2, 'Gran contribución al área, excelente calidad técnica.', 'Aprobado sin modificaciones.'),
+(5, 10, 5, 'Alto', -2, 'Gran contribución al área, excelente calidad técnica.', 'Aprobado sin modificaciones.'),
 (6, 5, 6, 'Medio', -1, 'Faltan detalles técnicos en algunos apartados.', 'Se recomienda una revisión en profundidad.'),
 (7, 7, 6, 'Normal', 1, 'Buena investigación, aunque necesita más pruebas.', 'Se aceptará tras ajustes menores.'),
 (8, 10, 6, 'Bajo', 1, 'No cumple con los estándares de calidad esperados.', 'Debe ser reformulado antes de reconsiderar.'),
@@ -126,4 +126,5 @@ INSERT INTO Revision (idRevision, idRevisor, idArticulo, experto, decision, come
 (12, 10, 8, 'Alto', 2, 'ejemplo', 'ejemplo'),
 (13, 4, 9, 'Normal', -1, 'ejemplo', 'ejemplo'),
 (14, 7, 9, 'Alto', 2, 'ejemplo', 'ejemplo'),
-(15, 11, 10, 'Alto', 2, 'ejemplo', 'ejemplo');
+(15, 11, 10, 'Alto', 2, 'ejemplo', 'ejemplo'),
+(16, 4, 5, 'Alto', -2, 'ejemplo', 'ejemplo');
