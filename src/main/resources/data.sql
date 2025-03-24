@@ -108,5 +108,3 @@ INSERT INTO PalabraClaveTrack (id, idTrack, palabra_clave) VALUES
 
 -- Insertar datos en la tabla ArticuloTrack
 INSERT INTO ArticuloTrack (idArticulo, idTrack, palabras_clave_seleccionadas) VALUES
-
-

@@ -9,6 +9,9 @@ import aceptar_articulos.HU29225_29226_View;
 import asignar_revisores.HU29229_Controller;
 import asignar_revisores.HU29229_Model;
 import asignar_revisores.Hu29229_View;
+import evaluacion.Evaluacion_Controller;
+import evaluacion.Evaluacion_Model;
+import evaluacion.Evaluacion_View;
 import login.Login_Controller;
 import login.Login_Model;
 import login.Login_View;
@@ -131,6 +134,10 @@ public class SwingMain {
 		btnRechazar_Aceptar.setBounds(312, 188, 150, 23);
 		frame.getContentPane().add(btnRechazar_Aceptar);
 		
+		JButton btnEvaluarArticulo = new JButton("Evaluar articulo");
+		btnEvaluarArticulo.setBounds(150, 119, 134, 23);
+		frame.getContentPane().add(btnEvaluarArticulo);
+		
 		btnHU29229.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
             public void actionPerformed(ActionEvent e) {
             	Hu29229_View v=new Hu29229_View();
@@ -185,6 +192,14 @@ public class SwingMain {
                 v.getFrame().setVisible(true);
             }
         });
+		
+		btnEvaluarArticulo.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        Evaluacion_View v = new Evaluacion_View();
+		        Evaluacion_Controller controller = new Evaluacion_Controller(new Evaluacion_Model(), v);
+		        v.getFrame().setVisible(true);
+		    }
+		});
 		
 	}
 	
