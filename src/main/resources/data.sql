@@ -136,7 +136,6 @@ INSERT INTO Revision (idRevision, idRevisor, idArticulo, experto, decision, come
 (14, 7, 9, 'Alto', 2, 'ejemplo', 'ejemplo'),
 (15, 11, 10, 'Alto', 2, 'ejemplo', 'ejemplo'),
 (16, 4, 5, 'Alto', -2, 'ejemplo', 'ejemplo'),
-(17, 11, 2, 'Medio', 2, 'ejemplo', 'ejemplo'),
-(18, 12, 11, 'Medio', NULL, 'ejemplo', 'ejemplo');
-(10, 12, 8, 'Normal', 1, 'Interesante, pero algunos puntos no están bien explicados.', 'Se recomienda una revisión menor antes de aceptar.');
+(17, 11, 2, 'Medio', 2, 'ejemplo', 'ejemplo');
+
 

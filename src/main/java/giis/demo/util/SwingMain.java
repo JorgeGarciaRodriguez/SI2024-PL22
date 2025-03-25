@@ -146,7 +146,7 @@ public class SwingMain {
 		
 
 		JButton btn_ver_revisiones = new JButton("Ver revisiones");
-		btn_ver_revisiones.setBounds(150, 154, 134, 23);
+		btn_ver_revisiones.setBounds(150, 188, 134, 23);
 		frame.getContentPane().add(btn_ver_revisiones);
 
 		JButton btnSubrevisor = new JButton("Subrevisor");
