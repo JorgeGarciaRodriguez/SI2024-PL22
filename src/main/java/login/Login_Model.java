@@ -49,7 +49,7 @@ public class Login_Model {
 	public void asignacionPersona(String nombre, String organizacion, String grupo) {
 		
 	    int id = ultimoID("Persona", "id");
-	    System.out.println("Insertando en Persona con ID: " + id);
+	   
 
 	    try {
 	        db.executeUpdate(asignar_persona, id, nombre, organizacion, grupo);
@@ -87,7 +87,7 @@ public class Login_Model {
 	    if(!correoExiste(correo)) {
 	    try {
 	        db.executeUpdate(asignar_autor, id, correo);
-	        System.out.println("Insertando en Autor con ID: " + id);
+	       
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }

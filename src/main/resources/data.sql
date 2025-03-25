@@ -97,18 +97,26 @@ INSERT INTO ArticuloTrack (idArticulo, idTrack, palabras_clave_seleccionadas) VA
 (1, 1, 'IA, Machine Learning'),
 (4, 1, 'Computer Vision, CV'),
 (9, 1, 'Quantum Computing, Algoritmos Cuánticos'),
-(9, 2, 'Quantum Computing, Algoritmos Cuánticos'),
+(8, 2, 'Blockchain, Finanzas'),
 (11, 8, 'Machine Learning, AI');
 
 -- Insertar datos en la tabla RevisorTrack
 INSERT INTO RevisorTrack (idRevisor, idTrack) VALUES
 (4, 1),
-(5, 2),
+(4, 2),
+(4, 3),
+(5, 1),
+(5, 3),
 (7, 3),
 (10, 4),
 (11, 5),
 (12, 6),
-(7, 8);
+(7, 8),
+(7, 1),
+(10, 2),
+(11, 3),
+(11, 1);
+
 
 -- Insertar datos en la tabla Revision
 INSERT INTO Revision (idRevision, idRevisor, idArticulo, experto, decision, coment_autor, coment_coor) VALUES
@@ -122,3 +130,5 @@ INSERT INTO Revision (idRevision, idRevisor, idArticulo, experto, decision, come
 (8, 10, 6, 'Bajo', 1, 'No cumple con los estándares de calidad esperados.', 'Debe ser reformulado antes de reconsiderar.'),
 (9, 11, 7, 'Alto', 2, 'Artículo innovador y bien estructurado.', 'Publicable en su versión actual.'),
 (10, 12, 8, 'Normal', 1, 'Interesante, pero algunos puntos no están bien explicados.', 'Se recomienda una revisión menor antes de aceptar.');
+
+  
