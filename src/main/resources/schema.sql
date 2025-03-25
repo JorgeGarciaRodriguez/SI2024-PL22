@@ -46,7 +46,9 @@ CREATE TABLE Articulo (
     resumen VARCHAR NOT NULL,
     fichero VARCHAR NOT NULL,
     fecha DATE NOT NULL,
-    aceptado INT
+    aceptado INT,
+    modificable BOOLEAN,
+    deadline VARCHAR 
 );
 
 -- Tabla Autor_articulo (depende de Autor y Articulo)
