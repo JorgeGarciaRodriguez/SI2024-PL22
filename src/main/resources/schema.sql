@@ -12,6 +12,8 @@ DROP TABLE IF EXISTS Articulo;
 DROP TABLE IF EXISTS Autor;
 DROP TABLE IF EXISTS Revisor;
 DROP TABLE IF EXISTS Persona;
+DROP TABLE IF EXISTS Subrevisor;
+DROP TABLE IF EXISTS NotificacionSubrevisor;
 
 -- Crear tablas en orden correcto (de maestro a detalle)
 
@@ -122,3 +124,38 @@ CREATE TABLE RevisorTrack (
     FOREIGN KEY (idRevisor) REFERENCES Revisor(idRevisor),
     FOREIGN KEY (idTrack) REFERENCES Track(id)
 );
+
+-- Tabla Decision (depende de Revisor y Articulo)
+CREATE TABLE Decision (
+    idRevisor INT,
+    idArticulo INT,
+    decision VARCHAR NOT NULL,
+    PRIMARY KEY (idRevisor, idArticulo),
+    FOREIGN KEY (idRevisor) REFERENCES Revisor(idRevisor),
+    FOREIGN KEY (idArticulo) REFERENCES Articulo(id)
+);
+-- Tabla Subrevisor (relación entre revisores)
+CREATE TABLE Subrevisor (
+    idRevisorPrincipal INT NOT NULL,
+    idSubrevisor INT NOT NULL,
+    idTrack INT NOT NULL,
+    estado_invitacion VARCHAR(20) DEFAULT 'pendiente' CHECK (estado_invitacion IN ('pendiente', 'aceptada', 'rechazada')),
+    fecha_invitacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (idRevisorPrincipal, idSubrevisor, idTrack),
+    FOREIGN KEY (idRevisorPrincipal) REFERENCES Revisor(idRevisor),
+    FOREIGN KEY (idSubrevisor) REFERENCES Revisor(idRevisor),
+    FOREIGN KEY (idTrack) REFERENCES Track(id),
+    CONSTRAINT no_auto_invitacion CHECK (idRevisorPrincipal != idSubrevisor)
+);
+
+-- Tabla NotificacionSubrevisor (registro de invitaciones)
+CREATE TABLE NotificacionSubrevisor (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    idRevisorPrincipal INT NOT NULL,
+    idSubrevisor INT NOT NULL,
+    idTrack INT NOT NULL,
+    mensaje VARCHAR(255) NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (idRevisorPrincipal, idSubrevisor, idTrack) REFERENCES Subrevisor(idRevisorPrincipal, idSubrevisor, idTrack)
+);
+

@@ -1,4 +1,5 @@
 package giis.demo.util;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;
@@ -6,6 +7,8 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.table.*;
+import javax.swing.*;
+
 
 /**
  *	Class to manage the widths of colunmns in a table (Posted by Rob Camick on November 10, 2008

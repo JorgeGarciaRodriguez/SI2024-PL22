@@ -25,12 +25,15 @@ import ver_revisiones.Ver_revisionesController;
 import ver_revisiones.Ver_revisionesModel;
 import ver_revisiones.Ver_revisionesView;
 import Discusiones.*;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import subrevisores.subrevisor_Controller;
+import subrevisores.subrevisor_View;
+import subrevisores.subrevisor_Model;
 
 /**
  * Punto de entrada principal que incluye botones para la ejecucion de las pantallas 
@@ -141,15 +144,21 @@ public class SwingMain {
 		btnEvaluarArticulo.setBounds(150, 119, 134, 23);
 		frame.getContentPane().add(btnEvaluarArticulo);
 		
+
 		JButton btn_ver_revisiones = new JButton("Ver revisiones");
 		btn_ver_revisiones.setBounds(150, 154, 134, 23);
 		frame.getContentPane().add(btn_ver_revisiones);
+
+		JButton btnSubrevisor = new JButton("Subrevisor");
+		btnSubrevisor.setBounds(150, 155, 134, 23);
+		frame.getContentPane().add(btnSubrevisor);
+
 		
 		btnHU29229.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
             public void actionPerformed(ActionEvent e) {
             	Hu29229_View v=new Hu29229_View();
-                HU29229_Controller controller=new HU29229_Controller(new HU29229_Model(), 
-                        v);
+            	@SuppressWarnings("unused")
+                HU29229_Controller controller=new HU29229_Controller(new HU29229_Model(), v);
                 v.getFrame().setVisible(true);
             }
         });
@@ -157,6 +166,7 @@ public class SwingMain {
 		btn29222.addActionListener(new ActionListener() { 
 		    public void actionPerformed(ActionEvent e) {
             	Login_View v=new Login_View();
+            	@SuppressWarnings("unused")
             	Login_Controller controller=new Login_Controller(new Login_Model(), v);
                 v.getFrame().setVisible(true);
             }
@@ -166,8 +176,8 @@ public class SwingMain {
 		btn29511.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
             public void actionPerformed(ActionEvent e) {
             	HU29511_View v=new HU29511_View();
-                HU29511_Controller controller=new HU29511_Controller(new HU29511_Model(), 
-                        v);
+            	@SuppressWarnings("unused")
+                HU29511_Controller controller=new HU29511_Controller(new HU29511_Model(), v);
                 v.getFrame().setVisible(true);
             }
         });
@@ -175,8 +185,8 @@ public class SwingMain {
 		btn29225.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
             public void actionPerformed(ActionEvent e) {
             	HU29225_29226_View v=new HU29225_29226_View();
-                HU29225_29226_Controller controller=new HU29225_29226_Controller(new HU29225_29226_Model(), 
-                        v);
+            	@SuppressWarnings("unused")
+                HU29225_29226_Controller controller=new HU29225_29226_Controller(new HU29225_29226_Model(), v);
                 v.getFrame().setVisible(true);
             }
         });
@@ -185,8 +195,8 @@ public class SwingMain {
 		btn29224.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
             public void actionPerformed(ActionEvent e) {
             	H29224_View v=new H29224_View();
-                H29224_Controller controller=new H29224_Controller(new H29224_Model(), 
-                        v);
+            	@SuppressWarnings("unused")
+                H29224_Controller controller=new H29224_Controller(new H29224_Model(), v);
                 v.getFrame().setVisible(true);
             }
         });
@@ -194,8 +204,8 @@ public class SwingMain {
 		btnRechazar_Aceptar.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
             public void actionPerformed(ActionEvent e) {
             	Rechazar_aceptarView v=new Rechazar_aceptarView();
-            	Rechazar_aceptarController controller=new Rechazar_aceptarController(new Rechazar_aceptarModel(), 
-                        v);
+            	@SuppressWarnings("unused")
+            	Rechazar_aceptarController controller=new Rechazar_aceptarController(new Rechazar_aceptarModel(), v);
                 v.getFrame().setVisible(true);
             }
         });
@@ -203,7 +213,17 @@ public class SwingMain {
 		btnEvaluarArticulo.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        Evaluacion_View v = new Evaluacion_View();
-		        Evaluacion_Controller controller = new Evaluacion_Controller(new Evaluacion_Model(), v);
+		        @SuppressWarnings("unused")
+				Evaluacion_Controller controller = new Evaluacion_Controller(new Evaluacion_Model(), v);
+		        v.getFrame().setVisible(true);
+		    }
+		});
+		
+		btnSubrevisor.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        subrevisor_View v = new subrevisor_View();
+		        @SuppressWarnings("unused")
+				subrevisor_Controller controller = new subrevisor_Controller(new subrevisor_Model(), v);
 		        v.getFrame().setVisible(true);
 		    }
 		});
