@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -49,7 +51,7 @@ public class H29222_Model {
 	
 	public static final String asignar_persona="INSERT INTO Persona(id,nombre,organizacion,grupo) VALUES (?,?,?,?)";
 	public static final String asignar_autor = "INSERT INTO Autor(idAutor, correo) VALUES (?, ?)";
-	private static final String insertarArticulo = "INSERT INTO Articulo (id, titulo, palabras_clave, resumen, fichero, fecha, aceptado) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	private static final String insertarArticulo = "INSERT INTO Articulo (id, titulo, palabras_clave, resumen, fichero, fecha, aceptado, modificable, deadline) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String asignarAutorArticulo = "INSERT INTO Autor_articulo (idAutor, idArticulo, envia) VALUES (?, ?, ?)";
 
 
@@ -100,12 +102,18 @@ public class H29222_Model {
 	    }
 	
     // Método para insertar un artículo en la base de datos
-	public void insertarArticulo(String titulo, String palabrasClave, String resumen, String fichero) {
+	public void insertarArticulo(String titulo, String palabrasClave, String resumen, String fichero, boolean modificable) {
         int idArticulo = ultimoID("Articulo", "id");
-        String fechaActual = new SimpleDateFormat("yyyy-MM-dd").format(new Date()); // Obtener fecha actual
+        LocalDate fActual = LocalDate.now(); // Obtener fecha actual
 
+        //sumar 5 días
+        LocalDate fDeadline = fActual.plusDays(2);
+        
+        String fechaActual = fActual.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String fechaDeadline = fDeadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        
         try {
-            db.executeUpdate(insertarArticulo, idArticulo, titulo, palabrasClave, resumen, fichero, fechaActual, null);
+            db.executeUpdate(insertarArticulo, idArticulo, titulo, palabrasClave, resumen, fichero, fechaActual, null, modificable, fechaDeadline);
             
         } catch (Exception e) {
             e.printStackTrace();

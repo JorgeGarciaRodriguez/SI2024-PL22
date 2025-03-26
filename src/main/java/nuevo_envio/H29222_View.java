@@ -19,6 +19,7 @@ public class H29222_View {
     private JButton btnAñadir, btnEnviar;
     private JLabel lblNumeroAleatorio;
     private JList<String> listaTracks, listaPalabrasClave;
+    private JCheckBox chkModificable;
     private H29222_Model model;
 
     public static void main(String[] args) {
@@ -134,6 +135,18 @@ public class H29222_View {
         tfResumen.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         tfResumen.setPreferredSize(new Dimension(300, 60));
         panel.add(tfResumen, gbc);
+        
+     // CheckBox "Modificable"
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.gridheight = 1;
+        JLabel lblModificable = createLabel("Modificable:");
+        panel.add(lblModificable, gbc);
+        
+        gbc.gridx = 1;
+        chkModificable = new JCheckBox();
+        chkModificable.setBackground(Color.WHITE);
+        panel.add(chkModificable, gbc);
 
         return panel;
     }
@@ -348,5 +361,6 @@ public class H29222_View {
     public JTextField getTfArticulo() { return tfArticulo; }
     public JTextField getTfResumen() { return tfResumen; }
     public JList<String> getListaTracks() { return listaTracks; }
+    public boolean isModificable() {return chkModificable.isSelected();}
     public JList<String> getListaPalabrasClave() { return listaPalabrasClave; }
 }

@@ -25,6 +25,8 @@ import ver_revisiones.Ver_revisionesController;
 import ver_revisiones.Ver_revisionesModel;
 import ver_revisiones.Ver_revisionesView;
 import Discusiones.*;
+import modificar_articulos.*;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -117,6 +119,10 @@ public class SwingMain {
 		btn29511.setBounds(312, 154, 150, 23);
 		frame.getContentPane().add(btn29511);
 		
+		JButton btnModificar_articulos = new JButton("Modificar Articulos");
+		btnModificar_articulos.setBounds(10, 130, 120, 23);
+		frame.getContentPane().add(btnModificar_articulos);
+		
 		JButton btnHU29229 = new JButton("Asignar revisores");
 		btnHU29229.setBounds(312, 86, 150, 23);
 		frame.getContentPane().add(btnHU29229);
@@ -197,6 +203,15 @@ public class SwingMain {
             	H29224_View v=new H29224_View();
             	@SuppressWarnings("unused")
                 H29224_Controller controller=new H29224_Controller(new H29224_Model(), v);
+                v.getFrame().setVisible(true);
+            }
+        });
+		
+		btnModificar_articulos.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
+            public void actionPerformed(ActionEvent e) {
+            	Modificar_articulos_View v=new Modificar_articulos_View();
+            	@SuppressWarnings("unused")
+            	Modificar_articulos_Controller controller=new Modificar_articulos_Controller(new Modificar_articulos_Model(), v);
                 v.getFrame().setVisible(true);
             }
         });

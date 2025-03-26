@@ -86,7 +86,7 @@ public class H29222_Controller {
 	            }
 
 	            // 5. Si todas las validaciones pasan, insertar el artículo en la base de datos
-	            model.insertarArticulo(titulo, palabrasClave, resumen, articulo);
+	            model.insertarArticulo(titulo, palabrasClave, resumen, articulo, vista.isModificable());
 
 	            // 6. Obtener el ID del artículo recién insertado
 	            int idArticulo = model.obtenerIdArticuloPorTitulo(titulo);
