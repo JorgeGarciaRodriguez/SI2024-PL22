@@ -34,10 +34,10 @@ INSERT INTO Revisor (idRevisor) VALUES
 (12);
 
 -- Insertar datos en la tabla Articulo
-INSERT INTO Articulo (id, titulo, palabras_clave, resumen, fichero, fecha, aceptado, modificable,vers) VALUES
+INSERT INTO Articulo (id, titulo, palabras_clave, resumen, fichero, fecha, aceptado, modificable, vers) VALUES
 (1, 'Inteligencia Artificial', 'IA, Machine Learning', 'Resumen IA', 'ia.pdf', '2024-01-10', 2, TRUE, 0),
-(2, 'Redes Neuronales', 'Deep Learning, Redes', 'Resumen redes', 'redes.pdf', '2024-02-15', NULL, TRUE, 0),
-(3, 'Procesamiento de Lenguaje Natural', 'PLN, NLP', 'Resumen PLN', 'pln.pdf', '2024-03-20', NULL, TRUE, 0),
+(2, 'Redes Neuronales', 'Deep Learning, Redes', 'Resumen redes', 'redes.pdf', '2024-02-15', 2, TRUE, 0),
+(3, 'Procesamiento de Lenguaje Natural', 'PLN, NLP', 'Resumen PLN', 'pln.pdf', '2024-03-20', 1, TRUE, 0),
 (4, 'Visión por Computador', 'Computer Vision, CV', 'Resumen CV', 'cv.pdf', '2024-04-25', 2, TRUE, 0),
 (5, 'Algoritmos Genéticos', 'Optimización, Evolución', 'Resumen AG', 'ag.pdf', '2024-05-30', NULL, TRUE, 0),
 (6, 'Robótica Autónoma', 'Robots, IA', 'Resumen robótica', 'robotica.pdf', '2024-06-12', NULL, TRUE, 0),
@@ -60,9 +60,11 @@ INSERT INTO Autor_articulo (idAutor, idArticulo, envia) VALUES
 (12, 8, TRUE),
 (1, 9, TRUE),
 (2, 10, TRUE),
-(4, 2,  TRUE),
-(4, 3,  TRUE),
+--(4, 2,  TRUE),
+--(4, 3,  TRUE),
 (1, 11, TRUE); 
+
+--Solo puede enviar un unico autor un articulo
 
 -- Insertar datos en la tabla Track
 INSERT INTO Track (id, nombre, deadline) VALUES

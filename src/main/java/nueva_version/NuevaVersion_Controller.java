@@ -2,6 +2,8 @@ package nueva_version;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JOptionPane;
 
@@ -48,5 +50,25 @@ public class NuevaVersion_Controller {
 		System.out.print(idAutorLogueado);
     	view.getListaArticulos().setListData(model.getListaArticulosAceptadosArray(idAutorLogueado).toArray(new String[0]));
 		
+		view.getListaArticulos().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				String tituloseleccionado=view.getListaArticulos().getSelectedValue();
+				
+				view.getTA_Resumen().setText(model.getResumen(tituloseleccionado));
+				view.getTF_PalabrasClave().setText(model.getPalabrasClave(tituloseleccionado));
+				view.getTF_Fichero().setText(model.getFichero(tituloseleccionado));
+				
+				int AutorEnvio=model.getAutorEnvio(tituloseleccionado);
+				String AutorEnvioString=String.valueOf(AutorEnvio);
+				view.getTF_IdAutorEnvio().setText(AutorEnvioString);
+				if(idAutorLogueado==AutorEnvio) {
+					view.getTA_Resumen().setEnabled(true);
+					view.getTF_PalabrasClave().setEnabled(true);
+					view.getTF_Fichero().setEnabled(true);
+				}
+			}
+		});
 	}
+	
 }
