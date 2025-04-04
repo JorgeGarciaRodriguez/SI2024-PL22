@@ -49,7 +49,7 @@ CREATE TABLE Articulo (
     aceptado INT,
     modificable BOOLEAN,
     deadline VARCHAR,
-    vers INT			--Este campo si vale 0 es que es la version original y si es 1 es la nueva
+    vers INT 
 );
 
 -- Tabla Autor_articulo (depende de Autor y Articulo)
@@ -161,4 +161,5 @@ CREATE TABLE NotificacionSubrevisor (
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (idRevisorPrincipal, idSubrevisor, idTrack) REFERENCES Subrevisor(idRevisorPrincipal, idSubrevisor, idTrack)
 );
+
 

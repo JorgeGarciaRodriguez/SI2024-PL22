@@ -63,9 +63,9 @@ public class NuevaVersion_Controller {
 				String AutorEnvioString=String.valueOf(AutorEnvio);
 				view.getTF_IdAutorEnvio().setText(AutorEnvioString);
 				if(idAutorLogueado==AutorEnvio) {
-					view.getTA_Resumen().setEnabled(true);
-					view.getTF_PalabrasClave().setEnabled(true);
-					view.getTF_Fichero().setEnabled(true);
+					view.getBotonOK().setEnabled(true);
+				}else {
+					view.getBotonOK().setEnabled(false);
 				}
 			}
 		});

@@ -23,6 +23,7 @@ public class NuevaVersion_View {
 	private JButton btnInicioSesion;
 	private JList<String> listArticulos;
 	private JTextArea TA_Resumen;
+	private JButton btnOK;
 
 	/**
 	 * Launch the application.
@@ -92,7 +93,6 @@ public class NuevaVersion_View {
 		frame.getContentPane().add(lblNewLabel_3);
 		
 		TA_Resumen = new JTextArea();
-		TA_Resumen.setEnabled(false);
 		TA_Resumen.setBounds(416, 37, 136, 61);
 		frame.getContentPane().add(TA_Resumen);
 		
@@ -101,7 +101,6 @@ public class NuevaVersion_View {
 		frame.getContentPane().add(lblNewLabel_4);
 		
 		TF_PalabrasClave = new JTextField();
-		TF_PalabrasClave.setEnabled(false);
 		TF_PalabrasClave.setBounds(416, 124, 136, 20);
 		frame.getContentPane().add(TF_PalabrasClave);
 		TF_PalabrasClave.setColumns(10);
@@ -111,14 +110,14 @@ public class NuevaVersion_View {
 		frame.getContentPane().add(lblNewLabel_5);
 		
 		TF_Fichero = new JTextField();
-		TF_Fichero.setEnabled(false);
 		TF_Fichero.setBounds(416, 163, 136, 20);
 		frame.getContentPane().add(TF_Fichero);
 		TF_Fichero.setColumns(10);
 		
-		JButton btnNewButton_1 = new JButton("OK");
-		btnNewButton_1.setBounds(416, 202, 136, 23);
-		frame.getContentPane().add(btnNewButton_1);
+		btnOK = new JButton("OK");
+		btnOK.setEnabled(false);
+		btnOK.setBounds(416, 202, 136, 23);
+		frame.getContentPane().add(btnOK);
 		
 		TF_IdAutorEnvio = new JTextField();
 		TF_IdAutorEnvio.setEditable(false);
@@ -139,4 +138,5 @@ public class NuevaVersion_View {
 	public JTextArea getTA_Resumen() {return this.TA_Resumen;}
 	public JTextField getTF_PalabrasClave() {return this.TF_PalabrasClave;}
 	public JTextField getTF_Fichero() {return this.TF_Fichero;}
+	public JButton getBotonOK() {return this.btnOK;}
 }
