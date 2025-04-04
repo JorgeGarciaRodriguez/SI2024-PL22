@@ -48,7 +48,8 @@ CREATE TABLE Articulo (
     fecha DATE NOT NULL,
     aceptado INT,
     modificable BOOLEAN,
-    deadline VARCHAR 
+    deadline VARCHAR,
+    vers INT			--Este campo si vale 0 es que es la version original y si es 1 es la nueva
 );
 
 -- Tabla Autor_articulo (depende de Autor y Articulo)
