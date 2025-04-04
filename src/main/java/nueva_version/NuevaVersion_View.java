@@ -16,10 +16,11 @@ import javax.swing.JTextArea;
 public class NuevaVersion_View {
 
 	private JFrame frame;
-	private JTextField textField;
+	private JTextField TF_IdAutor;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JButton btnInicioSesion;
 
 	/**
 	 * Launch the application.
@@ -53,19 +54,19 @@ public class NuevaVersion_View {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(10, 34, 105, 30);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		TF_IdAutor = new JTextField();
+		TF_IdAutor.setBounds(10, 34, 105, 30);
+		frame.getContentPane().add(TF_IdAutor);
+		TF_IdAutor.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Id Autor");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(10, 11, 105, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("OK");
-		btnNewButton.setBounds(7, 75, 108, 23);
-		frame.getContentPane().add(btnNewButton);
+		btnInicioSesion = new JButton("OK");
+		btnInicioSesion.setBounds(7, 75, 108, 23);
+		frame.getContentPane().add(btnInicioSesion);
 		
 		JLabel lblNewLabel_1 = new JLabel("Articulos aceptados");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -124,4 +125,7 @@ public class NuevaVersion_View {
 		lblNewLabel_6.setBounds(181, 169, 105, 14);
 		frame.getContentPane().add(lblNewLabel_6);
 	}
+	public JButton getBotonInicio() {return this.btnInicioSesion;}
+	public JTextField getTF_IdAutor() {return this.TF_IdAutor;}
+	public JFrame getFrame() {return this.frame;}
 }
