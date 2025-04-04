@@ -21,6 +21,7 @@ public class NuevaVersion_View {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JButton btnInicioSesion;
+	private JList<String> listArticulos;
 
 	/**
 	 * Launch the application.
@@ -77,8 +78,8 @@ public class NuevaVersion_View {
 		scrollPane.setBounds(181, 42, 105, 102);
 		frame.getContentPane().add(scrollPane);
 		
-		JList list = new JList();
-		scrollPane.setViewportView(list);
+		listArticulos = new JList();
+		scrollPane.setViewportView(listArticulos);
 		
 		JLabel lblNewLabel_2 = new JLabel("Nueva versión");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -128,4 +129,5 @@ public class NuevaVersion_View {
 	public JButton getBotonInicio() {return this.btnInicioSesion;}
 	public JTextField getTF_IdAutor() {return this.TF_IdAutor;}
 	public JFrame getFrame() {return this.frame;}
+	public JList<String> getListaArticulos() { return this.listArticulos;}
 }

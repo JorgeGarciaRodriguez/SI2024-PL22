@@ -31,21 +31,22 @@ public class NuevaVersion_Controller {
 	                int idAutor = Integer.parseInt(idAutorText);
 	                if (model.isAutorValido(idAutor)) {
 	                    idAutorLogueado = idAutor;
-	                    JOptionPane.showMessageDialog(null, "Se ha registrado el revisor con id: " + idAutorLogueado);
+	                    JOptionPane.showMessageDialog(null, "Se ha registrado el autor con id: " + idAutorLogueado);
+	                    initController();
 	                } else {
-	                    JOptionPane.showMessageDialog(null, "ID de revisor no válido.");
+	                    JOptionPane.showMessageDialog(null, "ID de autor no válido.");
 	                }
 	            } catch (NumberFormatException ex) {
-	                JOptionPane.showMessageDialog(null, "El ID de revisor debe ser un número válido.");
+	                JOptionPane.showMessageDialog(null, "El ID de autor debe ser un número válido.");
 	            }
 	        }
 	    });
-	    
 
-	    initController();
 	}
 
 	private void initController() {
+		System.out.print(idAutorLogueado);
+    	view.getListaArticulos().setListData(model.getListaArticulosAceptadosArray(idAutorLogueado).toArray(new String[0]));
 		
 	}
 }
