@@ -62,4 +62,6 @@ public class NuevaVersion_Model {
 	    return (String) resultados.get(0)[0];
 	}
 	
+	//Hacer la insercion del articulo
+	
 }

@@ -69,6 +69,9 @@ public class NuevaVersion_Controller {
 				}
 			}
 		});
+		
+		//Al tocar el boton OK deberia hacerse la insercion de un nuevo articulo en la BDD con sus campos y version = 1
+		//para esto tendre que sacar con get los textos escritos antes de tocar el boton OK
 	}
 	
 }
