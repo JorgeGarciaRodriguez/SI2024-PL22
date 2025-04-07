@@ -47,7 +47,6 @@ public class NuevaVersion_Controller {
 	}
 
 	private void initController() {
-		System.out.print(idAutorLogueado);
     	view.getListaArticulos().setListData(model.getListaArticulosAceptadosArray(idAutorLogueado).toArray(new String[0]));
 		
 		view.getListaArticulos().addMouseListener(new MouseAdapter() {
@@ -70,8 +69,23 @@ public class NuevaVersion_Controller {
 			}
 		});
 		
-		//Al tocar el boton OK deberia hacerse la insercion de un nuevo articulo en la BDD con sus campos y version = 1
-		//para esto tendre que sacar con get los textos escritos antes de tocar el boton OK
+	    view.getBotonOK().addActionListener(new ActionListener() {
+	        
+	        @Override
+	        public void actionPerformed(ActionEvent e) {	
+	        	String tituloseleccionado=view.getListaArticulos().getSelectedValue();
+				String resumen=view.getTA_Resumen().getText();
+				String palabras_clave=view.getTF_PalabrasClave().getText();
+				String fichero=view.getTF_Fichero().getText();
+			    
+				if(model.noTieneVersion1(tituloseleccionado) && model.antes_deadline(tituloseleccionado)) {
+					model.nueva_version(palabras_clave,resumen,fichero,model.getID(tituloseleccionado));
+				}else {
+					JOptionPane.showMessageDialog(null, "Error, este artículo ya tiene nueva versión o lo estás modificando después del deadline", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+	        }
+	    });
+		
 	}
 	
 }

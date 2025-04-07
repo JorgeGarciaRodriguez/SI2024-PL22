@@ -1,5 +1,9 @@
 package nueva_version;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,6 +66,64 @@ public class NuevaVersion_Model {
 	    return (String) resultados.get(0)[0];
 	}
 	
-	//Hacer la insercion del articulo
+	public int getID(String titulo) {
+		String sql = "SELECT id FROM Articulo WHERE titulo = ? AND vers = 0;";
+	    List<Object[]> resultados = db.executeQueryArray(sql, titulo);
+		return (int) resultados.get(0)[0];
+	}
+	
+	public boolean noTieneVersion1(String titulo) {
+		String sql="SELECT COUNT (*) FROM Articulo " +
+		"WHERE titulo = ?";
+		List<Object[]> resultados = db.executeQueryArray(sql, titulo);
+		return (int)resultados.get(0)[0]<2;
+	}
+	
+	public boolean antes_deadline(String titulo) {
+	    String sql = "SELECT deadline FROM Articulo WHERE titulo = ? AND vers = 0;";
+	    List<Object[]> resultados = db.executeQueryArray(sql,titulo);
+
+	    if (resultados.isEmpty() || resultados.get(0)[0] == null) {
+	        return true; 
+	    }
+
+	    Object resultado = resultados.get(0)[0];
+	    Date deadline;
+
+	    try {
+	        if (resultado instanceof String) {
+	            // Convertimos el String a java.sql.Date usando SimpleDateFormat
+	            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	            java.util.Date parsedDate = format.parse((String) resultado);
+	            deadline = new Date(parsedDate.getTime());
+	        } else if (resultado instanceof Timestamp) {
+	            deadline = new Date(((Timestamp) resultado).getTime());
+	        } else if (resultado instanceof Date) {
+	            deadline = (Date) resultado;
+	        } else {
+	            throw new IllegalArgumentException("Formato de fecha no reconocido: " + resultado.getClass().getName());
+	        }
+	    } catch (ParseException e) {
+	        throw new RuntimeException("Error al parsear la fecha: " + resultado, e);
+	    }
+
+	    Date fechaActual = new Date(System.currentTimeMillis());
+
+	    return !fechaActual.after(deadline);
+	}
+	
+	public int ultimoID() {
+		String sql="SELECT MAX (id) FROM Articulo";
+		List<Object[]> resultado=db.executeQueryArray(sql);
+		return (int) resultado.get(0)[0]+1;
+	}
+	
+	public static final String nueva_version =
+		    "INSERT INTO Articulo(id, titulo, palabras_clave, resumen, fichero, fecha, aceptado, modificable, deadline, vers) " +
+		    "SELECT ?, titulo, ?, ?, ?, fecha, aceptado, modificable, deadline, 1 " +
+		    "FROM Articulo WHERE id = ?";
+	public void nueva_version(String palabras_clave,String resumen,String fichero,int id) {
+		db.executeUpdate(nueva_version,ultimoID(),palabras_clave,resumen,fichero,id);
+	}
 	
 }

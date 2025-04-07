@@ -34,18 +34,18 @@ INSERT INTO Revisor (idRevisor) VALUES
 (12);
 
 -- Insertar datos en la tabla Articulo
-INSERT INTO Articulo (id, titulo, palabras_clave, resumen, fichero, fecha, aceptado, modificable, vers) VALUES
-(1, 'Inteligencia Artificial', 'IA, Machine Learning', 'Resumen IA', 'ia.pdf', '2024-01-10', 2, TRUE,0),
-(2, 'Redes Neuronales', 'Deep Learning, Redes', 'Resumen redes', 'redes.pdf', '2024-02-15', 2, TRUE, 0),
-(3, 'Procesamiento de Lenguaje Natural', 'PLN, NLP', 'Resumen PLN', 'pln.pdf', '2024-03-20', NULL, TRUE, 0),
-(4, 'Visión por Computador', 'Computer Vision, CV', 'Resumen CV', 'cv.pdf', '2024-04-25', NULL, TRUE, 0),
-(5, 'Algoritmos Genéticos', 'Optimización, Evolución', 'Resumen AG', 'ag.pdf', '2024-05-30', 1, TRUE, 0),
-(6, 'Robótica Autónoma', 'Robots, IA', 'Resumen robótica', 'robotica.pdf', '2024-06-12',  NULL, TRUE, 0),
-(7, 'Ciberseguridad en Redes', 'Seguridad, Criptografía', 'Resumen ciberseguridad', 'ciberseguridad.pdf', '2024-07-18', NULL, TRUE, 0),
-(8, 'Blockchain y Finanzas', 'Blockchain, Finanzas', 'Resumen blockchain', 'blockchain.pdf', '2024-08-22', NULL, TRUE, 0),
-(9, 'Computación Cuántica', 'Quantum Computing, Algoritmos Cuánticos', 'Resumen computación cuántica', 'cuantica.pdf', '2024-09-15', -1, TRUE, 0),
-(10, 'Redes 5G y su impacto', '5G, Telecomunicaciones', 'Resumen redes 5G', '5g.pdf', '2024-10-10', -1, TRUE, 0),
-(11, 'Aprendizaje Automático', 'Machine Learning, AI', 'Resumen sobre ML', 'ml.pdf', '2025-01-01', 1, TRUE, 0);
+INSERT INTO Articulo (id, titulo, palabras_clave, resumen, fichero, fecha, aceptado, modificable, vers, deadline) VALUES
+(1, 'Inteligencia Artificial', 'IA, Machine Learning', 'Resumen IA', 'ia.pdf', '2024-01-10', 2, TRUE,0,'2026-04-06'),
+(2, 'Redes Neuronales', 'Deep Learning, Redes', 'Resumen redes', 'redes.pdf', '2024-02-15', 2, TRUE, 0, '2026-01-10'),
+(3, 'Procesamiento de Lenguaje Natural', 'PLN, NLP', 'Resumen PLN', 'pln.pdf', '2024-03-20', NULL, TRUE, 0, '2026-01-10'),
+(4, 'Visión por Computador', 'Computer Vision, CV', 'Resumen CV', 'cv.pdf', '2024-04-25', NULL, TRUE, 0, '2026-01-10'),
+(5, 'Algoritmos Genéticos', 'Optimización, Evolución', 'Resumen AG', 'ag.pdf', '2024-05-30', 1, TRUE, 0, '2026-01-10'),
+(6, 'Robótica Autónoma', 'Robots, IA', 'Resumen robótica', 'robotica.pdf', '2024-06-12',  NULL, TRUE, 0, '2026-01-10'),
+(7, 'Ciberseguridad en Redes', 'Seguridad, Criptografía', 'Resumen ciberseguridad', 'ciberseguridad.pdf', '2026-07-18', NULL, TRUE, 0, '2026-01-10'),
+(8, 'Blockchain y Finanzas', 'Blockchain, Finanzas', 'Resumen blockchain', 'blockchain.pdf', '2024-08-22', NULL, TRUE, 0, '2026-01-10'),
+(9, 'Computación Cuántica', 'Quantum Computing, Algoritmos Cuánticos', 'Resumen computación cuántica', 'cuantica.pdf', '2024-09-15', -1, TRUE, 0, '2026-01-10'),
+(10, 'Redes 5G y su impacto', '5G, Telecomunicaciones', 'Resumen redes 5G', '5g.pdf', '2024-10-10', -1, TRUE, 0, '2026-01-10'),
+(11, 'Aprendizaje Automático', 'Machine Learning, AI', 'Resumen sobre ML', 'ml.pdf', '2025-01-01', 1, TRUE, 0, '2026-01-10');
 
 -- Insertar datos en la tabla Autor_articulo
 INSERT INTO Autor_articulo (idAutor, idArticulo, envia) VALUES

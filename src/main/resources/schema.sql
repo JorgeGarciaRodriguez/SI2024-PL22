@@ -48,8 +48,8 @@ CREATE TABLE Articulo (
     fecha DATE NOT NULL,
     aceptado INT,
     modificable BOOLEAN,
-    deadline VARCHAR,
-    vers INT 
+    vers INT,
+    deadline DATE 
 );
 
 -- Tabla Autor_articulo (depende de Autor y Articulo)
