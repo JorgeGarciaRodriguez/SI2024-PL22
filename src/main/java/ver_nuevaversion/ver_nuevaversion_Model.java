@@ -23,7 +23,13 @@ public class ver_nuevaversion_Model {
 
 	public List<String> getListaArticulosOriginales(int idAutor) {
 		List<String> resultado=new ArrayList<>();
-		String sql = "";
+		String sql = "SELECT a.titulo " +
+	             "FROM Articulo a " +
+	             "JOIN Autor_articulo aa ON a.id = aa.idArticulo " +
+	             "WHERE a.aceptado IN (1, 2) " +
+	             "AND a.vers = 0 " +
+	             "AND aa.envia = TRUE " +
+	             "AND aa.idAutor = ?";
 		List<Object[]> resultados=db.executeQueryArray(sql,idAutor);
 		for(Object[] a:resultados) {
 			resultado.add((String)a[0]);
@@ -33,7 +39,14 @@ public class ver_nuevaversion_Model {
 	
 	public List<String> getListaArticulosNuevos(int idAutor) {
 		List<String> resultado=new ArrayList<>();
-		String sql = "";
+		String sql = "SELECT a.titulo " +
+	             "FROM Articulo a " +
+	             "JOIN Autor_articulo aa ON a.id = aa.idArticulo " +
+	             "WHERE a.aceptado IN (1, 2) " +
+	             "AND a.vers = 1 " +
+	             "AND aa.envia = TRUE " +
+	             "AND aa.idAutor = ?";
+
 		List<Object[]> resultados=db.executeQueryArray(sql,idAutor);
 		for(Object[] a:resultados) {
 			resultado.add((String)a[0]);
@@ -92,10 +105,16 @@ public class ver_nuevaversion_Model {
 	    return !fechaActual.after(deadline);
 	}
 	
-	public static final String update_nuevaversion="UPDATE";
-	public static final String nueva_version ="UPDATE Articulo";
+	public static final String actualizarArticulo = "UPDATE Articulo SET fichero = ?, palabras_clave = ?, resumen = ? WHERE titulo = ? AND vers = 1";
 	public void actualizacion_nueva_version(String palabras_clave,String resumen,String fichero) {
-		db.executeUpdate(nueva_version,palabras_clave,resumen,fichero);
+		db.executeUpdate(actualizarArticulo,palabras_clave,resumen,fichero);
+	}
+	
+	public static final String borrarArticuloYRelacion = 
+		    "DELETE FROM Autor_articulo WHERE idArticulo = (SELECT id FROM Articulo WHERE titulo = ? AND vers = 1);" +
+		    "DELETE FROM Articulo WHERE titulo = ? AND vers = 1";
+	public void borrar_nueva_version(String titulo) {
+		db.executeUpdate(borrarArticuloYRelacion,titulo);
 	}
 
 }

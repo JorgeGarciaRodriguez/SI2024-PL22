@@ -125,5 +125,10 @@ public class NuevaVersion_Model {
 	public void nueva_version(String palabras_clave,String resumen,String fichero,int id) {
 		db.executeUpdate(nueva_version,ultimoID(),palabras_clave,resumen,fichero,id);
 	}
+
+	public static final String nuevo_envioo ="INSERT INTO Autor_Articulo(idAutor,idArticulo,envia) VALUES (?,?,TRUE)";
+	public void nuevo_envio(int idAutorLogueado, int id) {
+		db.executeUpdate(nuevo_envioo,idAutorLogueado,id);	
+	}
 	
 }

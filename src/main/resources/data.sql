@@ -45,7 +45,13 @@ INSERT INTO Articulo (id, titulo, palabras_clave, resumen, fichero, fecha, acept
 (8, 'Blockchain y Finanzas', 'Blockchain, Finanzas', 'Resumen blockchain', 'blockchain.pdf', '2024-08-22', NULL, TRUE, 0, '2026-01-10'),
 (9, 'Computación Cuántica', 'Quantum Computing, Algoritmos Cuánticos', 'Resumen computación cuántica', 'cuantica.pdf', '2024-09-15', -1, TRUE, 0, '2026-01-10'),
 (10, 'Redes 5G y su impacto', '5G, Telecomunicaciones', 'Resumen redes 5G', '5g.pdf', '2024-10-10', -1, TRUE, 0, '2026-01-10'),
-(11, 'Aprendizaje Automático', 'Machine Learning, AI', 'Resumen sobre ML', 'ml.pdf', '2025-01-01', 1, TRUE, 0, '2026-01-10');
+(11, 'Aprendizaje Automático', 'Machine Learning, AI', 'Resumen sobre ML', 'ml.pdf', '2025-01-01', 1, TRUE, 0, '2026-01-10'),
+(12, 'Visión por Computadora', 'Computer Vision, Imagen', 'Resumen sobre detección de objetos', 'nlp.pdf', '2025-02-15', 2, TRUE, 0, '2026-01-10'),
+(13, 'Visión por Computadora', 'Redes Convolucionales, Clasificación', 'Resumen sobre clasificación de imágenes', 'vision.pdf', '2025-02-15', 2, TRUE, 1, '2026-01-10');
+
+
+
+
 
 -- Insertar datos en la tabla Autor_articulo
 INSERT INTO Autor_articulo (idAutor, idArticulo, envia) VALUES
@@ -62,7 +68,9 @@ INSERT INTO Autor_articulo (idAutor, idArticulo, envia) VALUES
 (2, 10, TRUE),
 (6, 2,  FALSE),
 (6, 11,  TRUE),
-(1, 11, FALSE); 
+(1, 11, FALSE),
+(1, 12, TRUE),
+(1, 13, TRUE); 
 
 -- Insertar datos en la tabla Track
 INSERT INTO Track (id, nombre, deadline) VALUES

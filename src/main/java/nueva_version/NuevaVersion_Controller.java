@@ -80,6 +80,7 @@ public class NuevaVersion_Controller {
 			    
 				if(model.noTieneVersion1(tituloseleccionado) && model.antes_deadline(tituloseleccionado)) {
 					model.nueva_version(palabras_clave,resumen,fichero,model.getID(tituloseleccionado));
+					model.nuevo_envio(idAutorLogueado,model.ultimoID()-1);
 				}else {
 					JOptionPane.showMessageDialog(null, "Error, este artículo ya tiene nueva versión o lo estás modificando después del deadline", "Error", JOptionPane.ERROR_MESSAGE);
 				}

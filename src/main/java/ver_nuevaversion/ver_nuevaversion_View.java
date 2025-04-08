@@ -25,6 +25,7 @@ public class ver_nuevaversion_View {
 	private JButton btnOK;
 	private JButton btnOriginal;
 	private JButton btnNueva;
+	private JButton btnBorrar;
 
 	/**
 	 * Launch the application.
@@ -119,7 +120,7 @@ public class ver_nuevaversion_View {
 		btnOK.setBounds(343, 202, 87, 23);
 		frame.getContentPane().add(btnOK);
 		
-		JButton btnBorrar = new JButton("Borrar");
+		btnBorrar = new JButton("Borrar");
 		btnBorrar.setBounds(465, 202, 87, 23);
 		frame.getContentPane().add(btnBorrar);
 		
@@ -141,4 +142,5 @@ public class ver_nuevaversion_View {
 	public JButton getBotonOK() {return this.btnOK;}
 	public JButton getBotonOriginal() {return this.btnOriginal;}
 	public JButton getBotonNueva() {return this.btnNueva;}
+	public JButton getBotonBorrar() {return this.btnBorrar;}
 }

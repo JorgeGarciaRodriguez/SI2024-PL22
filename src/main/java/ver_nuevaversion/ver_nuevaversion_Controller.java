@@ -91,6 +91,19 @@ public class ver_nuevaversion_Controller {
 				}
 	        }
 	    });
+	    
+	    view.getBotonBorrar().addActionListener(new ActionListener() {
+	        
+	        @Override
+	        public void actionPerformed(ActionEvent e) {	
+	        	String tituloseleccionado=view.getListaArticulos().getSelectedValue();
+				if(model.antes_deadline(tituloseleccionado)) {
+					model.borrar_nueva_version(tituloseleccionado);
+				}else {
+					JOptionPane.showMessageDialog(null, "Error, este artículo lo estás borrando después del deadline", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+	        }
+	    });
 		
 	}
 	
