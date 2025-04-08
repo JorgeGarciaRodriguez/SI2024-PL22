@@ -11,6 +11,7 @@ public class ver_nuevaversion_Controller {
 	private ver_nuevaversion_Model model;
 	private ver_nuevaversion_View view;
 	private int idAutorLogueado;
+	private int version;
 	
 	public ver_nuevaversion_Controller(ver_nuevaversion_Model m, ver_nuevaversion_View v) {
 		this.model = m;
@@ -50,7 +51,8 @@ public class ver_nuevaversion_Controller {
 	    view.getBotonOriginal().addActionListener(new ActionListener() {
 	        
 	        @Override
-	        public void actionPerformed(ActionEvent e) {	
+	        public void actionPerformed(ActionEvent e) {
+	        	version=0;
 	        	view.getListaArticulos().setListData(model.getListaArticulosOriginales(idAutorLogueado).toArray(new String[0]));
 	        }
 	    });
@@ -58,7 +60,8 @@ public class ver_nuevaversion_Controller {
 	    view.getBotonNueva().addActionListener(new ActionListener() {
 	        
 	        @Override
-	        public void actionPerformed(ActionEvent e) {	
+	        public void actionPerformed(ActionEvent e) {
+	        	version=1;
 	        	view.getListaArticulos().setListData(model.getListaArticulosNuevos(idAutorLogueado).toArray(new String[0]));
 	        }
 	    });
@@ -68,9 +71,9 @@ public class ver_nuevaversion_Controller {
 			public void mouseReleased(MouseEvent e) {
 				String tituloseleccionado=view.getListaArticulos().getSelectedValue();
 				
-				view.getTA_Resumen().setText(model.getResumen(tituloseleccionado));
-				view.getTF_PalabrasClave().setText(model.getPalabrasClave(tituloseleccionado));
-				view.getTF_Fichero().setText(model.getFichero(tituloseleccionado));
+				view.getTA_Resumen().setText(model.getResumen(tituloseleccionado,version));
+				view.getTF_PalabrasClave().setText(model.getPalabrasClave(tituloseleccionado,version));
+				view.getTF_Fichero().setText(model.getFichero(tituloseleccionado,version));
 				
 			}
 		});

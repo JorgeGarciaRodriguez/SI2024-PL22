@@ -54,21 +54,21 @@ public class ver_nuevaversion_Model {
 		return resultado;
 	}
 	
-	public String getResumen(String titulo) {
-		String sql = "SELECT resumen FROM Articulo WHERE titulo = ? AND vers = 0;";
-	    List<Object[]> resultados = db.executeQueryArray(sql, titulo);
+	public String getResumen(String titulo,int version) {
+		String sql = "SELECT resumen FROM Articulo WHERE titulo = ? AND vers = ?;";
+	    List<Object[]> resultados = db.executeQueryArray(sql, titulo, version);
 	    return (String) resultados.get(0)[0];
 	}
 	
-	public String getPalabrasClave(String titulo) {
-		String sql = "SELECT palabras_clave FROM Articulo WHERE titulo = ? AND vers = 0;";
-	    List<Object[]> resultados = db.executeQueryArray(sql, titulo);
+	public String getPalabrasClave(String titulo,int version) {
+		String sql = "SELECT palabras_clave FROM Articulo WHERE titulo = ? AND vers = ?;";
+	    List<Object[]> resultados = db.executeQueryArray(sql, titulo, version);
 	    return (String) resultados.get(0)[0];
 	}
 	
-	public String getFichero(String titulo) {
-		String sql = "SELECT fichero FROM Articulo WHERE titulo = ? AND vers = 0;";
-	    List<Object[]> resultados = db.executeQueryArray(sql, titulo);
+	public String getFichero(String titulo,int version) {
+		String sql = "SELECT fichero FROM Articulo WHERE titulo = ? AND vers = ?;";
+	    List<Object[]> resultados = db.executeQueryArray(sql, titulo, version);
 	    return (String) resultados.get(0)[0];
 	}
 	
