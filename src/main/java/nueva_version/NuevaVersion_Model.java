@@ -37,6 +37,37 @@ public class NuevaVersion_Model {
 		return resultado;
 	}
 	
+	public List<String> getListaArticulosOriginales(int idAutor) {
+		List<String> resultado=new ArrayList<>();
+		String sql = "SELECT a.titulo " +
+	             "FROM Articulo a " +
+	             "JOIN Autor_articulo aa ON a.id = aa.idArticulo " +
+	             "WHERE a.aceptado IN (1, 2) " +
+	             "AND a.vers = 0 " +
+	             "AND aa.idAutor = ?";
+		List<Object[]> resultados=db.executeQueryArray(sql,idAutor);
+		for(Object[] a:resultados) {
+			resultado.add((String)a[0]);
+		}
+		return resultado;
+	}
+	
+	public List<String> getListaArticulosNuevos(int idAutor) {
+		List<String> resultado=new ArrayList<>();
+		String sql = "SELECT a.titulo " +
+	             "FROM Articulo a " +
+	             "JOIN Autor_articulo aa ON a.id = aa.idArticulo " +
+	             "WHERE a.aceptado IN (1, 2) " +
+	             "AND a.vers = 1 " +
+	             "AND aa.idAutor = ?";
+
+		List<Object[]> resultados=db.executeQueryArray(sql,idAutor);
+		for(Object[] a:resultados) {
+			resultado.add((String)a[0]);
+		}
+		return resultado;
+	}
+	
 	public int getAutorEnvio(String titulo) {
 		String sql = "SELECT p.id " +
 	               "FROM Persona p " +
@@ -48,21 +79,21 @@ public class NuevaVersion_Model {
 	    return (int) resultados.get(0)[0];
 	}
 	
-	public String getResumen(String titulo) {
-		String sql = "SELECT resumen FROM Articulo WHERE titulo = ? AND vers = 0;";
-	    List<Object[]> resultados = db.executeQueryArray(sql, titulo);
+	public String getResumen(String titulo,int version) {
+		String sql = "SELECT resumen FROM Articulo WHERE titulo = ? AND vers = ?;";
+	    List<Object[]> resultados = db.executeQueryArray(sql, titulo, version);
 	    return (String) resultados.get(0)[0];
 	}
 	
-	public String getPalabrasClave(String titulo) {
-		String sql = "SELECT palabras_clave FROM Articulo WHERE titulo = ? AND vers = 0;";
-	    List<Object[]> resultados = db.executeQueryArray(sql, titulo);
+	public String getPalabrasClave(String titulo,int version) {
+		String sql = "SELECT palabras_clave FROM Articulo WHERE titulo = ? AND vers = ?;";
+	    List<Object[]> resultados = db.executeQueryArray(sql, titulo, version);
 	    return (String) resultados.get(0)[0];
 	}
 	
-	public String getFichero(String titulo) {
-		String sql = "SELECT fichero FROM Articulo WHERE titulo = ? AND vers = 0;";
-	    List<Object[]> resultados = db.executeQueryArray(sql, titulo);
+	public String getFichero(String titulo,int version) {
+		String sql = "SELECT fichero FROM Articulo WHERE titulo = ? AND vers = ?;";
+	    List<Object[]> resultados = db.executeQueryArray(sql, titulo, version);
 	    return (String) resultados.get(0)[0];
 	}
 	
@@ -129,6 +160,23 @@ public class NuevaVersion_Model {
 	public static final String nuevo_envioo ="INSERT INTO Autor_Articulo(idAutor,idArticulo,envia) VALUES (?,?,TRUE)";
 	public void nuevo_envio(int idAutorLogueado, int id) {
 		db.executeUpdate(nuevo_envioo,idAutorLogueado,id);	
+	}
+	
+	public static final String actualizarArticulo = "UPDATE Articulo SET fichero = ?, palabras_clave = ?, resumen = ? WHERE titulo = ? AND vers = 1";
+	public void actualizacion_nueva_version(String fichero,String palabras_clave,String resumen, String titulo) {
+		db.executeUpdate(actualizarArticulo,fichero,palabras_clave,resumen,titulo);
+	}
+	
+	public static final String borrarRelacion = 
+		    "DELETE FROM Autor_articulo WHERE idArticulo = (SELECT id FROM Articulo WHERE titulo = ? AND vers = 1);";
+	public void borrar_nueva_version_relacion(String titulo) {
+		db.executeUpdate(borrarRelacion,titulo);
+	}
+	
+	public static final String borrarArticulo = 
+			 "DELETE FROM Articulo WHERE titulo = ? AND vers = 1";
+	public void borrar_nueva_version_articulo(String titulo) {
+		db.executeUpdate(borrarArticulo,titulo);
 	}
 	
 }

@@ -12,6 +12,8 @@ import javax.swing.JList;
 import javax.swing.JSeparator;
 import java.awt.Color;
 import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class NuevaVersion_View {
 
@@ -24,6 +26,9 @@ public class NuevaVersion_View {
 	private JList<String> listArticulos;
 	private JTextArea TA_Resumen;
 	private JButton btnOK;
+	private JButton btnOriginal;
+	private JButton btnNuevo;
+	private JButton btnBorrar;
 
 	/**
 	 * Launch the application.
@@ -53,7 +58,7 @@ public class NuevaVersion_View {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 600, 300);
+		frame.setBounds(100, 100, 600, 330);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -77,7 +82,7 @@ public class NuevaVersion_View {
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(181, 42, 105, 102);
+		scrollPane.setBounds(181, 109, 105, 102);
 		frame.getContentPane().add(scrollPane);
 		
 		listArticulos = new JList();
@@ -116,19 +121,36 @@ public class NuevaVersion_View {
 		
 		btnOK = new JButton("OK");
 		btnOK.setEnabled(false);
-		btnOK.setBounds(416, 202, 136, 23);
+		btnOK.setBounds(458, 219, 94, 20);
 		frame.getContentPane().add(btnOK);
 		
 		TF_IdAutorEnvio = new JTextField();
 		TF_IdAutorEnvio.setEditable(false);
-		TF_IdAutorEnvio.setBounds(181, 203, 105, 20);
+		TF_IdAutorEnvio.setBounds(181, 247, 105, 20);
 		frame.getContentPane().add(TF_IdAutorEnvio);
 		TF_IdAutorEnvio.setColumns(10);
 		
 		JLabel lblNewLabel_6 = new JLabel("IdAutor Envio");
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_6.setBounds(181, 169, 105, 14);
+		lblNewLabel_6.setBounds(181, 222, 105, 14);
 		frame.getContentPane().add(lblNewLabel_6);
+		
+		btnBorrar = new JButton("Borrar");
+		btnBorrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnBorrar.setEnabled(false);
+		btnBorrar.setBounds(343, 218, 105, 23);
+		frame.getContentPane().add(btnBorrar);
+		
+		btnOriginal = new JButton("Originales");
+		btnOriginal.setBounds(181, 38, 105, 23);
+		frame.getContentPane().add(btnOriginal);
+		
+		btnNuevo = new JButton("Nuevos");
+		btnNuevo.setBounds(181, 75, 105, 23);
+		frame.getContentPane().add(btnNuevo);
 	}
 	public JButton getBotonInicio() {return this.btnInicioSesion;}
 	public JTextField getTF_IdAutor() {return this.TF_IdAutor;}
@@ -139,4 +161,7 @@ public class NuevaVersion_View {
 	public JTextField getTF_PalabrasClave() {return this.TF_PalabrasClave;}
 	public JTextField getTF_Fichero() {return this.TF_Fichero;}
 	public JButton getBotonOK() {return this.btnOK;}
+	public JButton getBotonOriginal() {return this.btnOriginal;}
+	public JButton getBotonNuevo() {return this.btnNuevo;}
+	public JButton getBotonBorrar() {return this.btnBorrar;}
 }
