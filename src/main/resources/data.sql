@@ -49,10 +49,6 @@ INSERT INTO Articulo (id, titulo, palabras_clave, resumen, fichero, fecha, acept
 (12, 'Visión por Computadora', 'Computer Vision, Imagen', 'Resumen sobre detección de objetos', 'nlp.pdf', '2025-02-15', 2, TRUE, 0, '2026-01-10'),
 (13, 'Visión por Computadora', 'Redes Convolucionales, Clasificación', 'Resumen sobre clasificación de imágenes', 'vision.pdf', '2025-02-15', 2, TRUE, 1, '2026-01-10');
 
-
-
-
-
 -- Insertar datos en la tabla Autor_articulo
 INSERT INTO Autor_articulo (idAutor, idArticulo, envia) VALUES
 (1, 1, TRUE),
@@ -125,7 +121,6 @@ INSERT INTO RevisorTrack (idRevisor, idTrack) VALUES
 (11, 3),
 (11, 1);
 
-
 -- Insertar datos en la tabla Revision
 INSERT INTO Revision (idRevision, idRevisor, idArticulo, experto, decision, coment_autor, coment_coor) VALUES
 (1, 4, 1, 'Alto', 2, 'El artículo es excelente y bien fundamentado.', 'Recomiendo su publicación inmediata.'),
@@ -145,4 +140,3 @@ INSERT INTO Revision (idRevision, idRevisor, idArticulo, experto, decision, come
 (15, 11, 10, 'Alto', 2, 'ejemplo', 'ejemplo'),
 (16, 4, 5, 'Alto', -2, 'ejemplo', 'ejemplo'),
 (17, 11, 2, 'Medio', 2, 'ejemplo', 'ejemplo');
-
