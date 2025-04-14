@@ -138,4 +138,8 @@ INSERT INTO Revision (idRevision, idRevisor, idArticulo, experto, decision, come
 (16, 4, 5, 'Alto', -2, 'ejemplo', 'ejemplo'),
 (17, 11, 2, 'Medio', 2, 'ejemplo', 'ejemplo');
 
+-- Crear una discusión asociada al artículo 1
+INSERT INTO Discusion (id_articulo, estado) VALUES 
+(1, 'cerrada');
+
 
