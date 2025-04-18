@@ -26,6 +26,7 @@ import ver_revisiones.Ver_revisionesModel;
 import ver_revisiones.Ver_revisionesView;
 import Discusiones.*;
 import modificar_articulos.*;
+import nuevo_envio.H29222_Model;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -209,9 +210,10 @@ public class SwingMain {
 		
 		btnModificar_articulos.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
             public void actionPerformed(ActionEvent e) {
+            	H29222_Model m = new H29222_Model();
             	Modificar_articulos_View v=new Modificar_articulos_View();
-            	@SuppressWarnings("unused")
-            	Modificar_articulos_Controller controller=new Modificar_articulos_Controller(new Modificar_articulos_Model(), v);
+            	Cambios_View c= new Cambios_View(m);
+            	Modificar_articulos_Controller controller=new Modificar_articulos_Controller(new Modificar_articulos_Model(), v, c);
                 v.getFrame().setVisible(true);
             }
         });
