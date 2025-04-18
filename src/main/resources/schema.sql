@@ -48,7 +48,8 @@ CREATE TABLE Articulo (
     fecha DATE NOT NULL,
     aceptado INT,
     modificable BOOLEAN,
-    deadline VARCHAR 
+    vers INT,
+    deadline DATE 
 );
 
 -- Tabla Autor_articulo (depende de Autor y Articulo)
@@ -160,4 +161,5 @@ CREATE TABLE NotificacionSubrevisor (
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (idRevisorPrincipal, idSubrevisor, idTrack) REFERENCES Subrevisor(idRevisorPrincipal, idSubrevisor, idTrack)
 );
+
 

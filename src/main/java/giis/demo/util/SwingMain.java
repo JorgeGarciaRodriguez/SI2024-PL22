@@ -25,6 +25,9 @@ import ver_revisiones.Ver_revisionesController;
 import ver_revisiones.Ver_revisionesModel;
 import ver_revisiones.Ver_revisionesView;
 import Discusiones.*;
+import HU29798.Controller;
+import HU29798.Model;
+import HU29798.View;
 import modificar_articulos.*;
 import nuevo_envio.H29222_Model;
 
@@ -121,7 +124,7 @@ public class SwingMain {
 		frame.getContentPane().add(btn29511);
 		
 		JButton btnModificar_articulos = new JButton("Modificar Articulos");
-		btnModificar_articulos.setBounds(10, 130, 120, 23);
+		btnModificar_articulos.setBounds(10, 119, 120, 23);
 		frame.getContentPane().add(btnModificar_articulos);
 		
 		JButton btnHU29229 = new JButton("Asignar revisores");
@@ -159,6 +162,14 @@ public class SwingMain {
 		JButton btnSubrevisor = new JButton("Subrevisor");
 		btnSubrevisor.setBounds(150, 155, 134, 23);
 		frame.getContentPane().add(btnSubrevisor);
+		
+		JButton btnverdis = new JButton("Ver discusiones");
+		btnverdis.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnverdis.setBounds(312, 217, 120, 23);
+		frame.getContentPane().add(btnverdis);
 
 		
 		btnHU29229.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
@@ -249,6 +260,15 @@ public class SwingMain {
 		    public void actionPerformed(ActionEvent e) {
 		        Ver_revisionesView v = new Ver_revisionesView();
 		        Ver_revisionesController controller = new Ver_revisionesController(new Ver_revisionesModel(), v);
+		        v.getFrame().setVisible(true);
+		    }
+		});
+		
+		btnverdis.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	
+		        View v = new View(new Model());
+		        Controller controller = new Controller(new Model(), v);
 		        v.getFrame().setVisible(true);
 		    }
 		});
