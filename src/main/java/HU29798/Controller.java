@@ -9,5 +9,7 @@ public class Controller {
         this.view = view;
         // No se necesitan listeners adicionales ya que la vista ya los tiene configurados
     }
+    
+    
 }
 

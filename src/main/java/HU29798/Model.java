@@ -83,7 +83,11 @@ public class Model {
             };
         }
     }
-
+	public static final String cerrar_discusion = "UPDATE Discusion SET estado = 'cerrada' WHERE id_articulo = ?";
+	public void updateDiscusion(int id) {
+		db.executeUpdate(cerrar_discusion, id);
+	}
+    
     public List<Discusion> obtenerTodasLasDiscusiones() {
         List<Discusion> discusiones = new ArrayList<>();
         String queryDiscusiones = "SELECT d.id_discusion, d.id_articulo, a.titulo, d.estado " +

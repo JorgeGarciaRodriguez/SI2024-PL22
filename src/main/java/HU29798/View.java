@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -15,6 +17,7 @@ public class View {
     private JPanel panelDetalles;
     private Model model;
     private JComboBox<String> comboFiltro;
+    private JButton btncerrarDisc;
 
     public View(Model model) {
         this.model = model;
@@ -74,9 +77,18 @@ public class View {
         btnActualizar.setBackground(new Color(70, 130, 180));
         btnActualizar.setForeground(Color.WHITE);
         btnActualizar.addActionListener(e -> actualizarVista());
+        
+        btncerrarDisc = new JButton("Cerrar Discusion");
+        btncerrarDisc.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        btncerrarDisc.setBackground(new Color(70, 130, 180));
+        btncerrarDisc.setForeground(Color.WHITE);
+        btncerrarDisc.addActionListener(e -> actualizarVista());
+        btncerrarDisc.setEnabled(false);
+        
 
         JPanel panelBoton = new JPanel();
         panelBoton.add(btnActualizar);
+        panelBoton.add(btncerrarDisc);
         mainPanel.add(panelBoton, BorderLayout.SOUTH);
 
         frame.getContentPane().add(mainPanel);
@@ -88,6 +100,7 @@ public class View {
                 int selectedRow = tableDiscusiones.getSelectedRow();
                 if (selectedRow >= 0) {
                     int idDiscusion = (int) tableDiscusiones.getValueAt(selectedRow, 0);
+                   
                     mostrarDetallesDiscusion(idDiscusion);
                 }
             }
@@ -111,7 +124,8 @@ public class View {
                 });
             }
         }
-
+        enableBtnCerrarDisc();
+        cerrarDisc();
         panelDetalles.removeAll();
         panelDetalles.revalidate();
         panelDetalles.repaint();
@@ -125,7 +139,7 @@ public class View {
             case "Abiertas":
                 return "abierta".equals(estado);
             case "Cerradas":
-                return "Cerrada".equals(estado);
+                return "cerrada".equals(estado);
             case "Finalizadas por revisores":
                 return "Finalizada por revisores".equals(estado);
             case "Cumplido deadline":
@@ -134,7 +148,26 @@ public class View {
                 return true;
         }
     }
-
+    private void enableBtnCerrarDisc() {
+    	if(comboFiltro.getSelectedItem().toString().equals("Cumplido deadline") ||
+    			comboFiltro.getSelectedItem().toString().equals("Finalizadas por revisores")) btncerrarDisc.setEnabled(true);
+    	else btncerrarDisc.setEnabled(false);
+    }
+    private void cerrarDisc() {
+    	btncerrarDisc.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+		        int selectedRow = tableDiscusiones.getSelectedRow();
+		        if (selectedRow >= 0) {
+		            int idDiscusion = (int) tableDiscusiones.getValueAt(selectedRow, 0);
+		            model.updateDiscusion(idDiscusion);
+		        }
+		        
+			}
+		});
+    }
     private void mostrarDetallesDiscusion(int idDiscusion) {
         panelDetalles.removeAll();
 
@@ -216,6 +249,9 @@ public class View {
 
     public JFrame getFrame() {
         return frame;
+    }
+    public JButton getbtncerrarDisc() {
+    	return btncerrarDisc;
     }
 
     public static void main(String[] args) {

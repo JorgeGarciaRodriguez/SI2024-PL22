@@ -79,7 +79,7 @@ CREATE TABLE Revision (
 CREATE TABLE Discusion (
     id_discusion INTEGER PRIMARY KEY AUTOINCREMENT,
     id_articulo INT,
-    estado VARCHAR(20) CHECK (estado IN ('abierta', 'cerrada')),
+    estado VARCHAR(20),
     FOREIGN KEY (id_articulo) REFERENCES Articulo(id) ON DELETE CASCADE,
     CONSTRAINT unique_discusion UNIQUE(id_articulo)
 );

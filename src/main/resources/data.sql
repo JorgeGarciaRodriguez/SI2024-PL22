@@ -143,4 +143,7 @@ INSERT INTO Revision (idRevision, idRevisor, idArticulo, experto, decision, come
 
 -- Crear una discusión asociada al artículo 1
 INSERT INTO Discusion (id_articulo, estado) VALUES 
-(1, 'cerrada');
+(1, 'cerrada'),
+(2, 'abierta'),
+(3, 'Finalizada por revisores'),
+(4, 'Cumplido deadline');
