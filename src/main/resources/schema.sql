@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS Revisor;
 DROP TABLE IF EXISTS Persona;
 DROP TABLE IF EXISTS Subrevisor;
 DROP TABLE IF EXISTS NotificacionSubrevisor;
+DROP TABLE IF EXISTS Anotaciones;
 
 -- Crear tablas en orden correcto (de maestro a detalle)
 
@@ -160,6 +161,13 @@ CREATE TABLE NotificacionSubrevisor (
     mensaje VARCHAR(255) NOT NULL,
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (idRevisorPrincipal, idSubrevisor, idTrack) REFERENCES Subrevisor(idRevisorPrincipal, idSubrevisor, idTrack)
+);
+
+CREATE TABLE Anotaciones(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	id_discusion INT,
+	anotacion VARCHAR(255) NOT NULL,
+	FOREIGN KEY (id_discusion) REFERENCES Discusion(id_discusion) ON DELETE CASCADE
 );
 
 
