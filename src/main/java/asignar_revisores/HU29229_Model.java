@@ -204,6 +204,38 @@ public class HU29229_Model {
 		return resultado;
 	}
 	
-	
+	public List<String> getRevisoresEspecializados(String titulo) {
+		List<String> resultado = new ArrayList<>();
+		String sql = "SELECT DISTINCT p.nombre "
+		           + "FROM Revisor r "
+		           + "JOIN Persona p ON r.idRevisor = p.id "
+		           + "JOIN PalabrasClaveRevisor pkr ON r.idRevisor = pkr.idRevisor "
+		           + "WHERE EXISTS ("
+		           + "    SELECT 1 "
+		           + "    FROM Articulo art "
+		           + "    WHERE art.titulo = ? "
+		           + "    AND (',' || LOWER(art.palabras_clave) || ',') LIKE ('%,' || LOWER(pkr.palabra_clave) || ',%')"
+		           + ")";
+		List<Object[]> resultados = db.executeQueryArray(sql, titulo);
+		for (Object[] a : resultados) {
+			resultado.add((String) a[0]);
+		}
+		return resultado;
+	}
+
+	public List<String> getPalabrasClaveRevisor(String nombreRevisor) {
+		List<String> resultado = new ArrayList<>();
+		String sql = "SELECT pkr.palabra_clave "
+		           + "FROM PalabrasClaveRevisor pkr "
+		           + "JOIN Revisor r ON pkr.idRevisor = r.idRevisor "
+		           + "JOIN Persona p ON r.idRevisor = p.id "
+		           + "WHERE p.nombre = ?";
+		List<Object[]> resultados = db.executeQueryArray(sql, nombreRevisor);
+		for (Object[] a : resultados) {
+			resultado.add((String) a[0]);
+		}
+		return resultado;
+	}
+
 
 }

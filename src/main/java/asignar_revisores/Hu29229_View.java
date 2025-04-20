@@ -28,6 +28,9 @@ public class Hu29229_View {
 	private JButton BotonDesasignar;
 	private JButton BotonSinRevisores;
 	private JButton BotonRevisores;
+	private JButton botonRevisoresEspecializados;
+	private JList<String> listaPalabrasClaveRevisor;
+
 
 	/**
 	 * Launch the application.
@@ -57,7 +60,7 @@ public class Hu29229_View {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 634, 350);
+		frame.setBounds(100, 100, 834, 350);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		frame.getContentPane().setLayout(null);
@@ -157,12 +160,16 @@ public class Hu29229_View {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
-		panel_2.setBounds(468, 0, 156, 311);
+		panel_2.setBounds(468, 0, 300, 311);
 		frame.getContentPane().add(panel_2);
 		
 		BotonAsignar = new JButton("ASIGNAR");
-		BotonAsignar.setBounds(10, 167, 129, 14);
+		BotonAsignar.setBounds(10, 160, 129, 14);
 		panel_2.add(BotonAsignar);
+		
+		botonRevisoresEspecializados = new JButton("Revisores especializados");
+		botonRevisoresEspecializados.setBounds(10, 180, 129, 14);
+		panel_2.add(botonRevisoresEspecializados);
 		
 		JLabel lblNewLabel_10 = new JLabel("Revisores:");
 		lblNewLabel_10.setBounds(48, 11, 70, 14);
@@ -178,6 +185,15 @@ public class Hu29229_View {
 		scrollPane_1.setBounds(10, 34, 129, 122);
 		panel_2.add(scrollPane_1);
 		
+		JLabel lblNewLabel_12 = new JLabel("Palabras clave:");
+		lblNewLabel_12.setBounds(170, 11, 90, 14);
+		panel_2.add(lblNewLabel_12);
+		
+		listaPalabrasClaveRevisor=new JList<>();
+		JScrollPane scrollPane_2 = new JScrollPane(listaPalabrasClaveRevisor);
+		scrollPane_2.setBounds(150, 34, 129, 122);
+		panel_2.add(scrollPane_2);
+		
 		lstRevisoresAsignados = new JList<>();
 		lstRevisoresAsignados.setBounds(10, 217, 129, 58);
 		panel_2.add(lstRevisoresAsignados);
@@ -185,6 +201,8 @@ public class Hu29229_View {
 		BotonDesasignar = new JButton("DESASIGNAR");
 		BotonDesasignar.setBounds(10, 286, 129, 14);
 		panel_2.add(BotonDesasignar);
+		
+		
 	}
 	
 	public JFrame getFrame() {return frame;}
@@ -198,5 +216,12 @@ public class Hu29229_View {
 	public JButton getBotonDesasignar() {return BotonDesasignar;}
 	public JButton getBotonSinRevisores() {return BotonSinRevisores;}
 	public JButton getBotonRevisores() {return BotonRevisores;}
+	public JButton getBotonRevisoresEspecializados() {
+		return botonRevisoresEspecializados;
+	}
+
+	public JList<String> getListaPalabrasClaveRevisor() {
+		return listaPalabrasClaveRevisor;
+	}
 }
 

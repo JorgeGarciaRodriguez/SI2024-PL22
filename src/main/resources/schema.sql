@@ -15,6 +15,7 @@ DROP TABLE IF EXISTS Persona;
 DROP TABLE IF EXISTS Subrevisor;
 DROP TABLE IF EXISTS NotificacionSubrevisor;
 DROP TABLE IF EXISTS Anotaciones;
+DROP TABLE IF EXISTS PalabrasClaveRevisor;
 
 -- Crear tablas en orden correcto (de maestro a detalle)
 
@@ -168,6 +169,13 @@ CREATE TABLE Anotaciones(
 	id_discusion INT,
 	anotacion VARCHAR(255) NOT NULL,
 	FOREIGN KEY (id_discusion) REFERENCES Discusion(id_discusion) ON DELETE CASCADE
+);
+
+CREATE TABLE PalabrasClaveRevisor (
+    idRevisor INTEGER,
+    palabra_clave TEXT,
+    PRIMARY KEY (idRevisor, palabra_clave),
+    FOREIGN KEY (idRevisor) REFERENCES Revisor(idRevisor)
 );
 
 

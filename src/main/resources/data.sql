@@ -147,3 +147,36 @@ INSERT INTO Discusion (id_articulo, estado) VALUES
 (2, 'abierta'),
 (3, 'Finalizada por revisores'),
 (4, 'Cumplido deadline');
+
+-- Revisor 4: experto en Computer Vision y Deep Learning
+INSERT INTO PalabrasClaveRevisor (idRevisor, palabra_clave) VALUES
+(4, 'Computer Vision'),
+(4, 'Deep Learning'),
+(4, 'IA');
+
+-- Revisor 5: experto en PLN y Machine Learning
+INSERT INTO PalabrasClaveRevisor (idRevisor, palabra_clave) VALUES
+(5, 'PLN'),
+(5, 'Machine Learning'),
+(5, 'Optimización');
+
+-- Revisor 7: experto en Criptografía y Blockchain
+INSERT INTO PalabrasClaveRevisor (idRevisor, palabra_clave) VALUES
+(7, 'Criptografía'),
+(7, 'Blockchain'),
+(7, 'Finanzas');
+
+-- Revisor 10: experto en Visión por Computador y Redes Convolucionales
+INSERT INTO PalabrasClaveRevisor (idRevisor, palabra_clave) VALUES
+(10, 'Visión por Computador'),
+(10, 'Redes Convolucionales'),
+(10, 'Clasificación');
+
+-- Revisor 11: experto en Robótica, Algoritmos Genéticos y Seguridad
+INSERT INTO PalabrasClaveRevisor (idRevisor, palabra_clave) VALUES
+(11, 'Robots'),
+(11, 'Evolución'),
+(11, 'Seguridad');
+
+
+
