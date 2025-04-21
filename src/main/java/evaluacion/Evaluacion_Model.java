@@ -107,4 +107,25 @@ public class Evaluacion_Model {
             e.printStackTrace();
         }
     }
+    
+	public List<String> getListaArticulosArray(int idRevisor) {
+		List<String> resultado=new ArrayList<>();
+		String sql = "SELECT DISTINCT A.titulo " +
+	             "FROM Revision R " +
+	             "JOIN Articulo A ON R.idArticulo = A.id " +
+	             "JOIN ArticuloTrack AT ON A.id = AT.idArticulo " +
+	             "JOIN PalabraClaveTrack PCT ON AT.idTrack = PCT.idTrack " +
+	             "JOIN PalabrasClaveRevisor PCR ON R.idRevisor = PCR.idRevisor " +
+	             "WHERE PCT.palabra_clave = PCR.palabra_clave " +
+	             "AND R.idRevisor = ?";
+
+		
+		List<Object[]> resultados=db.executeQueryArray(sql,idRevisor);
+		for(Object[] a:resultados) {
+			resultado.add((String)a[0]);
+		}
+		return resultado;
+	}
+    
+    
 }

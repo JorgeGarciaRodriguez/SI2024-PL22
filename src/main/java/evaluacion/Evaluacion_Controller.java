@@ -38,6 +38,17 @@ public class Evaluacion_Controller {
                 enviarDecision();
             }
         });
+        
+        vista.getBtnFiltro().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	String revisorSeleccionado = (String) vista.getComboRevisores().getSelectedItem();
+                if (revisorSeleccionado != null) {
+                    int idRevisor = Integer.parseInt(revisorSeleccionado.split(" - ")[0]);
+                    filtrar(idRevisor);
+                }
+            }
+        });
     }
 
     private void cargarRevisores() {
@@ -82,5 +93,10 @@ public class Evaluacion_Controller {
 
         // Mostrar mensaje de éxito
         JOptionPane.showMessageDialog(vista.getFrame(), "Decisión registrada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public void filtrar(int idRevisor) {
+        List<String> articulos = model.getListaArticulosArray(idRevisor);
+        vista.mostrarArticulos(articulos);
     }
 }

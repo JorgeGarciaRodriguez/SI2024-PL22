@@ -10,6 +10,7 @@ public class Evaluacion_View {
     private JComboBox<String> comboDecisiones;
     private JComboBox<String> comboRevisores;
     private JButton btnEnviarDecision;
+    private JButton btnFiltro;
 
     public Evaluacion_View() {
         initialize();
@@ -80,6 +81,10 @@ public class Evaluacion_View {
         btnEnviarDecision.setFocusPainted(false);
         btnEnviarDecision.setEnabled(false);
         frame.getContentPane().add(btnEnviarDecision);
+        
+        btnFiltro = new JButton("Filtro Palabras");
+        btnFiltro.setBounds(10, 286, 120, 24);
+        frame.getContentPane().add(btnFiltro);
     }
 
     // Métodos originales sin cambios
@@ -112,4 +117,5 @@ public class Evaluacion_View {
     public JComboBox<String> getComboDecisiones() { return comboDecisiones; }
     public JComboBox<String> getComboRevisores() { return comboRevisores; }
     public JButton getBtnEnviarDecision() { return btnEnviarDecision; }
+    public JButton getBtnFiltro() { return btnFiltro; }
 }
