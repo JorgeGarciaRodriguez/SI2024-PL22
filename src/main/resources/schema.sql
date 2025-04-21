@@ -14,6 +14,8 @@ DROP TABLE IF EXISTS Revisor;
 DROP TABLE IF EXISTS Persona;
 DROP TABLE IF EXISTS Subrevisor;
 DROP TABLE IF EXISTS NotificacionSubrevisor;
+DROP TABLE IF EXISTS Anotaciones;
+DROP TABLE IF EXISTS PalabrasClaveRevisor;
 
 -- Crear tablas en orden correcto (de maestro a detalle)
 
@@ -48,7 +50,8 @@ CREATE TABLE Articulo (
     fecha DATE NOT NULL,
     aceptado INT,
     modificable BOOLEAN,
-    deadline VARCHAR 
+    vers INT,
+    deadline DATE 
 );
 
 -- Tabla Autor_articulo (depende de Autor y Articulo)
@@ -78,7 +81,7 @@ CREATE TABLE Revision (
 CREATE TABLE Discusion (
     id_discusion INTEGER PRIMARY KEY AUTOINCREMENT,
     id_articulo INT,
-    estado VARCHAR(20) CHECK (estado IN ('abierta', 'cerrada')),
+    estado VARCHAR(20),
     FOREIGN KEY (id_articulo) REFERENCES Articulo(id) ON DELETE CASCADE,
     CONSTRAINT unique_discusion UNIQUE(id_articulo)
 );
@@ -162,4 +165,19 @@ CREATE TABLE NotificacionSubrevisor (
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (idRevisorPrincipal, idSubrevisor, idTrack) REFERENCES Subrevisor(idRevisorPrincipal, idSubrevisor, idTrack)
 );
+
+CREATE TABLE Anotaciones(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	id_discusion INT,
+	anotacion VARCHAR(255) NOT NULL,
+	FOREIGN KEY (id_discusion) REFERENCES Discusion(id_discusion) ON DELETE CASCADE
+);
+
+CREATE TABLE PalabrasClaveRevisor (
+    idRevisor INTEGER,
+    palabra_clave TEXT,
+    PRIMARY KEY (idRevisor, palabra_clave),
+    FOREIGN KEY (idRevisor) REFERENCES Revisor(idRevisor)
+);
+
 

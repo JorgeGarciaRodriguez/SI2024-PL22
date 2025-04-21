@@ -95,6 +95,26 @@ public class HU29229_Controller {
             }
         });
         
+        view.getBotonRevisoresEspecializados().addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		String articuloSeleccionado = view.getListaArticulos().getSelectedValue();
+        		if (articuloSeleccionado != null) {
+        			view.getListaRevisores().setListData(model.getRevisoresEspecializados(articuloSeleccionado).toArray(new String[0]));
+        		}
+        	}
+        });
+
+        view.getListaRevisores().addListSelectionListener(e -> {
+        	if (!e.getValueIsAdjusting()) {
+        		String revisorSeleccionado = view.getListaRevisores().getSelectedValue();
+        		if (revisorSeleccionado != null) {
+        			List<String> palabrasClave = model.getPalabrasClaveRevisor(revisorSeleccionado);
+        			view.getListaPalabrasClaveRevisor().setListData(palabrasClave.toArray(new String[0]));
+        		}
+        	}
+        });
+        
 	}
 	
 	public void updateDetail() {

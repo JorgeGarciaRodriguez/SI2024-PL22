@@ -10,129 +10,141 @@ import java.util.List;
 import giis.demo.util.Database;
 
 public class Model {
-    private Database db = new Database();
+	private Database db = new Database();
 
-    public Model() {
-        // Constructor vacío
-    }
+	public Model() {
+		// Constructor vacío
+	}
 
-    // Clase interna para representar una discusión
-    public static class Discusion {
-        private int idDiscusion;
-        private int idArticulo;
-        private String tituloArticulo;
-        private String estado;
-        private List<Revision> revisiones;
+	// Clase interna para representar una discusión
+	public static class Discusion {
+		private int idDiscusion;
+		private int idArticulo;
+		private String tituloArticulo;
+		private String estado;
+		private List<Revision> revisiones;
 
-        public Discusion(int idDiscusion, int idArticulo, String tituloArticulo, String estado) {
-            this.idDiscusion = idDiscusion;
-            this.idArticulo = idArticulo;
-            this.tituloArticulo = tituloArticulo;
-            this.estado = estado;
-            this.revisiones = new ArrayList<>();
-        }
+		public Discusion(int idDiscusion, int idArticulo, String tituloArticulo, String estado) {
+			this.idDiscusion = idDiscusion;
+			this.idArticulo = idArticulo;
+			this.tituloArticulo = tituloArticulo;
+			this.estado = estado;
+			this.revisiones = new ArrayList<>();
+		}
 
-        public int getIdDiscusion() { return idDiscusion; }
-        public int getIdArticulo() { return idArticulo; }
-        public String getTituloArticulo() { return tituloArticulo; }
-        public String getEstado() { return estado; }
-        public List<Revision> getRevisiones() { return revisiones; }
+		public int getIdDiscusion() { return idDiscusion; }
+		public int getIdArticulo() { return idArticulo; }
+		public String getTituloArticulo() { return tituloArticulo; }
+		public String getEstado() { return estado; }
+		public List<Revision> getRevisiones() { return revisiones; }
 
-        public void agregarRevision(Revision revision) {
-            this.revisiones.add(revision);
-        }
-    }
+		public void agregarRevision(Revision revision) {
+			this.revisiones.add(revision);
+		}
+	}
 
-    // Clase interna para representar una revisión
-    public static class Revision {
-        private int idRevision;
-        private int idRevisor;
-        private String nombreRevisor;
-        private String experto;
-        private Integer decision;
-        private String comentAutor;
-        private String comentCoor;
+	// Clase interna para representar una revisión
+	public static class Revision {
+		private int idRevision;
+		private int idRevisor;
+		private String nombreRevisor;
+		private String experto;
+		private Integer decision;
+		private String comentAutor;
+		private String comentCoor;
 
-        public Revision(int idRevision, int idRevisor, String nombreRevisor, String experto,
-                        Integer decision, String comentAutor, String comentCoor) {
-            this.idRevision = idRevision;
-            this.idRevisor = idRevisor;
-            this.nombreRevisor = nombreRevisor;
-            this.experto = experto;
-            this.decision = decision;
-            this.comentAutor = comentAutor;
-            this.comentCoor = comentCoor;
-        }
+		public Revision(int idRevision, int idRevisor, String nombreRevisor, String experto,
+				Integer decision, String comentAutor, String comentCoor) {
+			this.idRevision = idRevision;
+			this.idRevisor = idRevisor;
+			this.nombreRevisor = nombreRevisor;
+			this.experto = experto;
+			this.decision = decision;
+			this.comentAutor = comentAutor;
+			this.comentCoor = comentCoor;
+		}
 
-        public int getIdRevision() { return idRevision; }
-        public int getIdRevisor() { return idRevisor; }
-        public String getNombreRevisor() { return nombreRevisor; }
-        public String getExperto() { return experto; }
-        public Integer getDecision() { return decision; }
-        public String getComentAutor() { return comentAutor; }
-        public String getComentCoor() { return comentCoor; }
+		public int getIdRevision() { return idRevision; }
+		public int getIdRevisor() { return idRevisor; }
+		public String getNombreRevisor() { return nombreRevisor; }
+		public String getExperto() { return experto; }
+		public Integer getDecision() { return decision; }
+		public String getComentAutor() { return comentAutor; }
+		public String getComentCoor() { return comentCoor; }
 
-        public String getDecisionTexto() {
-            if (decision == null) return "Pendiente";
-            return switch (decision) {
-                case 2 -> "Aceptado (Fuerte)";
-                case 1 -> "Aceptado (Débil)";
-                case -1 -> "Rechazado (Débil)";
-                case -2 -> "Rechazado (Fuerte)";
-                default -> "Desconocido";
-            };
-        }
-    }
+		public String getDecisionTexto() {
+			if (decision == null) return "Pendiente";
+			return switch (decision) {
+			case 2 -> "Aceptado (Fuerte)";
+			case 1 -> "Aceptado (Débil)";
+			case -1 -> "Rechazado (Débil)";
+			case -2 -> "Rechazado (Fuerte)";
+			default -> "Desconocido";
+			};
+		}
+	}
+	public static final String cerrar_discusion = "UPDATE Discusion SET estado = 'cerrada' WHERE id_discusion = ?";
+	public static final String anotacion = "INSERT INTO Anotaciones (id_discusion, anotacion) VALUES (?, ?)";
+	public void updateDiscusion(int id) {
+		db.executeUpdate(cerrar_discusion, id);
+	}
+	public void insertAnotacion(int id, String texto) {
+		db.executeUpdate(anotacion, id, texto);
+	}
+	public String getEstado(int id) {
+		String sql="SELECT estado FROM Discusion WHERE id_discusion = ?";
+		List<Object[]> resultado= db.executeQueryArray(sql, id);
+		return (String) resultado.get(0)[0];
+	}
+	public List<Discusion> obtenerTodasLasDiscusiones() {
+		List<Discusion> discusiones = new ArrayList<>();
+		String queryDiscusiones = "SELECT d.id_discusion, d.id_articulo, a.titulo, d.estado " +
+				"FROM Discusion d JOIN Articulo a ON d.id_articulo = a.id " +
+				"ORDER BY d.id_discusion DESC";
 
-    public List<Discusion> obtenerTodasLasDiscusiones() {
-        List<Discusion> discusiones = new ArrayList<>();
-        String queryDiscusiones = "SELECT d.id_discusion, d.id_articulo, a.titulo, d.estado " +
-                                  "FROM Discusion d JOIN Articulo a ON d.id_articulo = a.id " +
-                                  "ORDER BY d.id_discusion DESC";
+		try (Connection conn = db.getConnection();
+				PreparedStatement ps = conn.prepareStatement(queryDiscusiones);
+				ResultSet rs = ps.executeQuery()) {
 
-        try (Connection conn = db.getConnection();
-             PreparedStatement ps = conn.prepareStatement(queryDiscusiones);
-             ResultSet rs = ps.executeQuery()) {
+			while (rs.next()) {
+				int idDiscusion = rs.getInt("id_discusion");
+				int idArticulo = rs.getInt("id_articulo");
+				String titulo = rs.getString("titulo");
+				String estado = rs.getString("estado");
 
-            while (rs.next()) {
-                int idDiscusion = rs.getInt("id_discusion");
-                int idArticulo = rs.getInt("id_articulo");
-                String titulo = rs.getString("titulo");
-                String estado = rs.getString("estado");
+				Discusion discusion = new Discusion(idDiscusion, idArticulo, titulo, estado);
 
-                Discusion discusion = new Discusion(idDiscusion, idArticulo, titulo, estado);
+				String queryRevisiones = "SELECT r.idRevision, r.idRevisor, p.nombre, r.experto, " +
+						"r.decision, r.coment_autor, r.coment_coor " +
+						"FROM Revision r JOIN Persona p ON r.idRevisor = p.id " +
+						"WHERE r.idArticulo = ? ORDER BY r.idRevision";
 
-                String queryRevisiones = "SELECT r.idRevision, r.idRevisor, p.nombre, r.experto, " +
-                                         "r.decision, r.coment_autor, r.coment_coor " +
-                                         "FROM Revision r JOIN Persona p ON r.idRevisor = p.id " +
-                                         "WHERE r.idArticulo = ? ORDER BY r.idRevision";
+				try (PreparedStatement psRev = conn.prepareStatement(queryRevisiones)) {
+					psRev.setInt(1, idArticulo);
+					try (ResultSet rsRev = psRev.executeQuery()) {
+						while (rsRev.next()) {
+							int idRevision = rsRev.getInt("idRevision");
+							int idRevisor = rsRev.getInt("idRevisor");
+							String nombreRevisor = rsRev.getString("nombre");
+							String experto = rsRev.getString("experto");
+							Integer decision = rsRev.getInt("decision");
+							if (rsRev.wasNull()) decision = null;
+							String comentAutor = rsRev.getString("coment_autor");
+							String comentCoor = rsRev.getString("coment_coor");
 
-                try (PreparedStatement psRev = conn.prepareStatement(queryRevisiones)) {
-                    psRev.setInt(1, idArticulo);
-                    try (ResultSet rsRev = psRev.executeQuery()) {
-                        while (rsRev.next()) {
-                            int idRevision = rsRev.getInt("idRevision");
-                            int idRevisor = rsRev.getInt("idRevisor");
-                            String nombreRevisor = rsRev.getString("nombre");
-                            String experto = rsRev.getString("experto");
-                            Integer decision = rsRev.getInt("decision");
-                            if (rsRev.wasNull()) decision = null;
-                            String comentAutor = rsRev.getString("coment_autor");
-                            String comentCoor = rsRev.getString("coment_coor");
+							Revision revision = new Revision(idRevision, idRevisor, nombreRevisor,
+									experto, decision, comentAutor, comentCoor);
+							discusion.agregarRevision(revision);
+						}
+					}
+				}
 
-                            Revision revision = new Revision(idRevision, idRevisor, nombreRevisor,
-                                                             experto, decision, comentAutor, comentCoor);
-                            discusion.agregarRevision(revision);
-                        }
-                    }
-                }
+				discusiones.add(discusion);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-                discusiones.add(discusion);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return discusiones;
-    }
+		return discusiones;
+	}
 }
