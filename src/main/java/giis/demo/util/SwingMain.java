@@ -285,6 +285,15 @@ public class SwingMain {
 		    }
 		});
 		
+		btnverdis.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	Model m=new Model();
+		        View v = new View(m);
+		        Controller controller = new Controller(m, v);
+		        v.getFrame().setVisible(true);
+		    }
+		});
+		
 	}
 	
 	
