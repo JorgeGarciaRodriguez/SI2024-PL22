@@ -141,12 +141,14 @@ CREATE TABLE Subrevisor (
     idRevisorPrincipal INT NOT NULL,
     idSubrevisor INT NOT NULL,
     idTrack INT NOT NULL,
+    idArticulo INT NOT NULL,
     estado_invitacion VARCHAR(20) DEFAULT 'pendiente' CHECK (estado_invitacion IN ('pendiente', 'aceptada', 'rechazada')),
     fecha_invitacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (idRevisorPrincipal, idSubrevisor, idTrack),
+    PRIMARY KEY (idRevisorPrincipal, idSubrevisor, idTrack, idArticulo),
     FOREIGN KEY (idRevisorPrincipal) REFERENCES Revisor(idRevisor),
     FOREIGN KEY (idSubrevisor) REFERENCES Revisor(idRevisor),
     FOREIGN KEY (idTrack) REFERENCES Track(id),
+    FOREIGN KEY (idArticulo) REFERENCES Articulo(id),
     CONSTRAINT no_auto_invitacion CHECK (idRevisorPrincipal != idSubrevisor)
 );
 

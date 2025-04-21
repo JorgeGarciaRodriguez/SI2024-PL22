@@ -28,6 +28,9 @@ import Discusiones.*;
 import HU29798.Controller;
 import HU29798.Model;
 import HU29798.View;
+import HU29806.SubrevisorController;
+import HU29806.SubrevisorModel;
+import HU29806.SubrevisorView;
 import modificar_articulos.*;
 
 import javax.swing.JButton;
@@ -80,7 +83,7 @@ public class SwingMain {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("Main");
-		frame.setBounds(0, 0, 500, 300);
+		frame.setBounds(0, 0, 630, 300);
 		frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		
 			
@@ -169,6 +172,15 @@ public class SwingMain {
 		});
 		btnverdis.setBounds(312, 217, 120, 23);
 		frame.getContentPane().add(btnverdis);
+		
+		JLabel lblNewLabel_2_1 = new JLabel("SUBREVISOR");
+		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2_1.setBounds(472, 62, 134, 14);
+		frame.getContentPane().add(lblNewLabel_2_1);
+		
+		JButton btnVerPeticiones = new JButton("Ver peticiones");
+		btnVerPeticiones.setBounds(482, 87, 120, 23);
+		frame.getContentPane().add(btnVerPeticiones);
 
 		
 		btnHU29229.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
@@ -262,11 +274,11 @@ public class SwingMain {
 		    }
 		});
 		
-		btnverdis.addActionListener(new ActionListener() {
+		btnVerPeticiones.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	
-		        View v = new View(new Model());
-		        Controller controller = new Controller(new Model(), v);
+		        SubrevisorView v = new SubrevisorView();
+		        SubrevisorController controller = new SubrevisorController(new SubrevisorModel(), v);
 		        v.getFrame().setVisible(true);
 		    }
 		});

@@ -16,9 +16,10 @@ public class H29222_View {
     private JTable table;
     private JTextField tfTitulo, tfPalabrasClave, tfArticulo, tfResumen;
     private JTextField tfNombre, tfCorreo, tfOrganizacion, tfGrupInvs;
-    private JButton btnAñadir, btnEnviar;
+    private JTextField tfBuscarAutor;
+    private JButton btnAñadir, btnEnviar, btnBuscarAutor;
     private JLabel lblNumeroAleatorio;
-    private JList<String> listaTracks, listaPalabrasClave;
+    private JList<String> listaTracks, listaPalabrasClave, listaAutores;
     private JCheckBox chkModificable;
     private H29222_Model model;
 
@@ -40,7 +41,6 @@ public class H29222_View {
         List<String> nombresTracks = model.obtenerNombresTracks();
         actualizarListaTracks(nombresTracks);
         
-        // Listener para mostrar palabras clave cuando se selecciona un track
         listaTracks.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -56,27 +56,22 @@ public class H29222_View {
     }
 
     private void initialize() {
-        // Configuración del frame principal
         frame = new JFrame("Sistema de Envío de Artículos Científicos");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(1000, 750);
+        frame.setSize(1200, 800); // Aumentamos el tamaño para la nueva funcionalidad
         frame.setLocationRelativeTo(null);
         
-        // Panel principal
         JPanel mainPanel = new JPanel();
         mainPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
         mainPanel.setLayout(new BorderLayout(15, 15));
         frame.getContentPane().add(mainPanel);
 
-        // Panel superior - Información del artículo
         JPanel articlePanel = createArticlePanel();
         mainPanel.add(articlePanel, BorderLayout.NORTH);
 
-        // Panel central - Autores y Tracks
         JPanel centerPanel = createCenterPanel();
         mainPanel.add(centerPanel, BorderLayout.CENTER);
 
-        // Panel inferior - Número de artículo y botón enviar
         JPanel bottomPanel = createBottomPanel();
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
     }
@@ -92,7 +87,6 @@ public class H29222_View {
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        // Título
         gbc.gridx = 0;
         gbc.gridy = 0;
         JLabel lblTitulo = createLabel("Título:");
@@ -103,7 +97,6 @@ public class H29222_View {
         tfTitulo = createTextField();
         panel.add(tfTitulo, gbc);
 
-        // Palabras clave
         gbc.gridx = 0;
         gbc.gridy = 1;
         JLabel lblPalabrasClave = createLabel("Palabras clave:");
@@ -113,7 +106,6 @@ public class H29222_View {
         tfPalabrasClave = createTextField();
         panel.add(tfPalabrasClave, gbc);
 
-        // Artículo
         gbc.gridx = 0;
         gbc.gridy = 2;
         JLabel lblArticulo = createLabel("Artículo:");
@@ -123,7 +115,6 @@ public class H29222_View {
         tfArticulo = createTextField();
         panel.add(tfArticulo, gbc);
 
-        // Resumen
         gbc.gridx = 0;
         gbc.gridy = 3;
         JLabel lblResumen = createLabel("Resumen:");
@@ -136,7 +127,6 @@ public class H29222_View {
         tfResumen.setPreferredSize(new Dimension(300, 60));
         panel.add(tfResumen, gbc);
         
-     // CheckBox "Modificable"
         gbc.gridx = 0;
         gbc.gridy = 5;
         gbc.gridheight = 1;
@@ -152,15 +142,14 @@ public class H29222_View {
     }
 
     private JPanel createCenterPanel() {
-        JPanel panel = new JPanel(new GridLayout(1, 2, 20, 0));
+        JPanel panel = new JPanel(new GridLayout(1, 3, 20, 0)); // Cambiamos a 3 columnas
         panel.setBackground(Color.WHITE);
         
-        // Panel de Autores
+        // Panel de Autores (original)
         JPanel authorsPanel = new JPanel(new BorderLayout(10, 10));
         authorsPanel.setBorder(createTitledBorder("Autores", new Color(70, 130, 180)));
         authorsPanel.setBackground(Color.WHITE);
         
-        // Tabla de autores
         DefaultTableModel tableModel = new DefaultTableModel();
         tableModel.addColumn("Nombre");
         tableModel.addColumn("Correo");
@@ -177,16 +166,38 @@ public class H29222_View {
         tableScroll.setPreferredSize(new Dimension(400, 200));
         authorsPanel.add(tableScroll, BorderLayout.CENTER);
         
-        // Panel para añadir nuevo autor
         JPanel newAuthorPanel = createNewAuthorPanel();
         authorsPanel.add(newAuthorPanel, BorderLayout.SOUTH);
         
-        // Panel de Tracks
+        // Nuevo panel de búsqueda de coautores
+        JPanel searchPanel = new JPanel(new BorderLayout(10, 10));
+        searchPanel.setBorder(createTitledBorder("Buscar Coautores", new Color(100, 149, 237)));
+        searchPanel.setBackground(Color.WHITE);
+        
+        JPanel searchControls = new JPanel(new BorderLayout(5, 5));
+        tfBuscarAutor = createTextField();
+        btnBuscarAutor = createButton("Buscar", new Color(70, 130, 180));
+        btnBuscarAutor.setPreferredSize(new Dimension(80, 25));
+        searchControls.add(new JLabel("Buscar por nombre o correo:"), BorderLayout.NORTH);
+        searchControls.add(tfBuscarAutor, BorderLayout.CENTER);
+        searchControls.add(btnBuscarAutor, BorderLayout.EAST);
+        
+        listaAutores = new JList<>();
+        listaAutores.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        listaAutores.setBackground(new Color(240, 240, 240));
+        listaAutores.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        JScrollPane autoresScroll = new JScrollPane(listaAutores);
+        autoresScroll.setPreferredSize(new Dimension(300, 150));
+        
+        searchPanel.add(searchControls, BorderLayout.NORTH);
+        searchPanel.add(autoresScroll, BorderLayout.CENTER);
+        
+        // Panel de Tracks (original)
         JPanel tracksPanel = new JPanel(new BorderLayout(10, 10));
         tracksPanel.setBorder(createTitledBorder("Tracks", new Color(70, 130, 180)));
         tracksPanel.setBackground(Color.WHITE);
         
-        // Lista de Tracks
         listaTracks = new JList<>();
         listaTracks.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listaTracks.setFont(new Font("Segoe UI", Font.PLAIN, 13));
@@ -196,7 +207,6 @@ public class H29222_View {
         tracksScroll.setPreferredSize(new Dimension(300, 200));
         tracksPanel.add(tracksScroll, BorderLayout.CENTER);
         
-        // Panel de palabras clave del track
         JPanel keywordsPanel = new JPanel(new BorderLayout());
         keywordsPanel.setBorder(createTitledBorder("Palabras clave del track seleccionado", new Color(100, 149, 237)));
         keywordsPanel.setBackground(Color.WHITE);
@@ -211,8 +221,9 @@ public class H29222_View {
         
         tracksPanel.add(keywordsPanel, BorderLayout.SOUTH);
         
-        // Añadir ambos paneles al panel central
+        // Añadimos los tres paneles al centro
         panel.add(authorsPanel);
+        panel.add(searchPanel);
         panel.add(tracksPanel);
         
         return panel;
@@ -229,7 +240,6 @@ public class H29222_View {
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         
-        // Nombre
         gbc.gridx = 0;
         gbc.gridy = 0;
         JLabel lblNombre = createLabel("Nombre:");
@@ -240,7 +250,6 @@ public class H29222_View {
         tfNombre = createTextField();
         panel.add(tfNombre, gbc);
 
-        // Correo
         gbc.gridx = 0;
         gbc.gridy = 1;
         JLabel lblCorreo = createLabel("Correo:");
@@ -250,7 +259,6 @@ public class H29222_View {
         tfCorreo = createTextField();
         panel.add(tfCorreo, gbc);
 
-        // Organización
         gbc.gridx = 0;
         gbc.gridy = 2;
         JLabel lblOrganizacion = createLabel("Organización:");
@@ -260,7 +268,6 @@ public class H29222_View {
         tfOrganizacion = createTextField();
         panel.add(tfOrganizacion, gbc);
 
-        // Grupo Invst
         gbc.gridx = 0;
         gbc.gridy = 3;
         JLabel lblGrupinvs = createLabel("Grupo Invst:");
@@ -270,7 +277,6 @@ public class H29222_View {
         tfGrupInvs = createTextField();
         panel.add(tfGrupInvs, gbc);
 
-        // Botón Añadir
         gbc.gridx = 1;
         gbc.gridy = 4;
         gbc.anchor = GridBagConstraints.EAST;
@@ -303,7 +309,6 @@ public class H29222_View {
         return panel;
     }
 
-    // Métodos auxiliares para crear componentes con estilo consistente
     private TitledBorder createTitledBorder(String title, Color color) {
         return BorderFactory.createTitledBorder(
             BorderFactory.createLineBorder(color), 
@@ -337,7 +342,6 @@ public class H29222_View {
         return button;
     }
 
-    // Métodos para actualizar la vista
     public void actualizarListaTracks(List<String> tracks) {
         listaTracks.setListData(tracks.toArray(new String[0]));
     }
@@ -345,8 +349,11 @@ public class H29222_View {
     public void actualizarPalabrasClaveTrack(List<String> palabrasClave) {
         listaPalabrasClave.setListData(palabrasClave.toArray(new String[0]));
     }
+    
+    public void actualizarListaAutores(List<String> autores) {
+        listaAutores.setListData(autores.toArray(new String[0]));
+    }
 
-    // Getters para los componentes
     public JFrame getFrame() { return frame; }
     public JTextField getTfNombre() { return tfNombre; }
     public JTextField getTfOrganizacion() { return tfOrganizacion; }
@@ -354,13 +361,16 @@ public class H29222_View {
     public JTextField getTfCorreo() { return tfCorreo; }
     public JButton getBtnNewButton() { return btnAñadir; }
     public JButton getBtnNewButton1() { return btnEnviar; }
+    public JButton getBtnBuscarAutor() { return btnBuscarAutor; }
     public JLabel getLb() { return lblNumeroAleatorio; }
     public DefaultTableModel getTableModel() { return (DefaultTableModel) table.getModel(); }
     public JTextField getTfTitulo() { return tfTitulo; }
     public JTextField getTfPalabrasClave() { return tfPalabrasClave; }
     public JTextField getTfArticulo() { return tfArticulo; }
     public JTextField getTfResumen() { return tfResumen; }
+    public JTextField getTfBuscarAutor() { return tfBuscarAutor; }
     public JList<String> getListaTracks() { return listaTracks; }
+    public JList<String> getListaAutores() { return listaAutores; }
     public boolean isModificable() {return chkModificable.isSelected();}
     public JList<String> getListaPalabrasClave() { return listaPalabrasClave; }
 }

@@ -10,6 +10,7 @@ public class subrevisor_View {
     private JComboBox<String> comboRevisoresPrincipales;
     private JComboBox<String> comboRevisores;
     private JComboBox<String> comboTracks;
+    private JComboBox<String> comboArticulos;
     private JButton btnEnviarInvitacion;
 
     public subrevisor_View() {
@@ -17,19 +18,16 @@ public class subrevisor_View {
     }
 
     private void initialize() {
-        // Configuración del frame principal
         frame = new JFrame("Gestión de Subrevisores");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(500, 350); // Tamaño más adecuado
-        frame.setLocationRelativeTo(null); // Centrar en pantalla
+        frame.setSize(600, 400);
+        frame.setLocationRelativeTo(null);
         
-        // Panel principal con márgenes
         JPanel mainPanel = new JPanel();
         mainPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
         mainPanel.setLayout(new BorderLayout(10, 10));
         frame.getContentPane().add(mainPanel);
         
-        // Panel de título
         JPanel titlePanel = new JPanel();
         titlePanel.setBackground(new Color(70, 130, 180));
         JLabel titleLabel = new JLabel("ASIGNACIÓN DE SUBREVISORES");
@@ -38,7 +36,6 @@ public class subrevisor_View {
         titlePanel.add(titleLabel);
         mainPanel.add(titlePanel, BorderLayout.NORTH);
         
-        // Panel de formulario
         JPanel formPanel = new JPanel();
         formPanel.setLayout(new GridBagLayout());
         formPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -48,8 +45,7 @@ public class subrevisor_View {
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         
-        // Configuración común para combobox
-        Dimension comboSize = new Dimension(300, 30);
+        Dimension comboSize = new Dimension(350, 30);
         Font comboFont = new Font("Segoe UI", Font.PLAIN, 14);
         
         // Revisor Principal
@@ -65,22 +61,9 @@ public class subrevisor_View {
         comboRevisoresPrincipales.addItem("");
         formPanel.add(comboRevisoresPrincipales, gbc);
         
-        // Subrevisores disponibles
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        JLabel lblSubrevisores = createLabel("Subrevisores disponibles:");
-        formPanel.add(lblSubrevisores, gbc);
-        
-        gbc.gridx = 1;
-        comboRevisores = new JComboBox<>();
-        comboRevisores.setFont(comboFont);
-        comboRevisores.setPreferredSize(comboSize);
-        comboRevisores.setEnabled(false);
-        formPanel.add(comboRevisores, gbc);
-        
         // Track
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 1;
         JLabel lblTrack = createLabel("Track:");
         formPanel.add(lblTrack, gbc);
         
@@ -91,9 +74,35 @@ public class subrevisor_View {
         comboTracks.setEnabled(false);
         formPanel.add(comboTracks, gbc);
         
-        // Botón Enviar Invitación
+        // Artículo
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        JLabel lblArticulo = createLabel("Artículo:");
+        formPanel.add(lblArticulo, gbc);
+        
+        gbc.gridx = 1;
+        comboArticulos = new JComboBox<>();
+        comboArticulos.setFont(comboFont);
+        comboArticulos.setPreferredSize(comboSize);
+        comboArticulos.setEnabled(false);
+        formPanel.add(comboArticulos, gbc);
+        
+        // Subrevisores disponibles
         gbc.gridx = 0;
         gbc.gridy = 3;
+        JLabel lblSubrevisores = createLabel("Subrevisores disponibles:");
+        formPanel.add(lblSubrevisores, gbc);
+        
+        gbc.gridx = 1;
+        comboRevisores = new JComboBox<>();
+        comboRevisores.setFont(comboFont);
+        comboRevisores.setPreferredSize(comboSize);
+        comboRevisores.setEnabled(false);
+        formPanel.add(comboRevisores, gbc);
+        
+        // Botón Enviar Invitación
+        gbc.gridx = 0;
+        gbc.gridy = 4;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.CENTER;
         btnEnviarInvitacion = createButton("Enviar Invitación", new Color(34, 139, 34));
@@ -103,7 +112,6 @@ public class subrevisor_View {
         mainPanel.add(formPanel, BorderLayout.CENTER);
     }
 
-    // Métodos auxiliares para crear componentes con estilo consistente
     private JLabel createLabel(String text) {
         JLabel label = new JLabel(text);
         label.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -123,6 +131,7 @@ public class subrevisor_View {
 
     public void setControlesHabilitados(boolean habilitado) {
         comboTracks.setEnabled(habilitado);
+        comboArticulos.setEnabled(habilitado);
         comboRevisores.setEnabled(habilitado);
         btnEnviarInvitacion.setEnabled(habilitado);
     }
@@ -149,10 +158,21 @@ public class subrevisor_View {
         tracks.forEach(comboTracks::addItem);
     }
 
-    // Getters
+    public void mostrarArticulos(List<String> articulos) {
+        comboArticulos.removeAllItems();
+        if (articulos.isEmpty()) {
+            comboArticulos.addItem("No hay artículos disponibles");
+            comboArticulos.setEnabled(false);
+        } else {
+            articulos.forEach(comboArticulos::addItem);
+            comboArticulos.setEnabled(true);
+        }
+    }
+
     public JComboBox<String> getComboRevisoresPrincipales() { return comboRevisoresPrincipales; }
     public JComboBox<String> getComboRevisores() { return comboRevisores; }
     public JComboBox<String> getComboTracks() { return comboTracks; }
+    public JComboBox<String> getComboArticulos() { return comboArticulos; }
     public JButton getBtnEnviarInvitacion() { return btnEnviarInvitacion; }
     public JFrame getFrame() { return frame; }
 }
