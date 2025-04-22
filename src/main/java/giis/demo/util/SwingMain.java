@@ -32,6 +32,9 @@ import HU29806.SubrevisorController;
 import HU29806.SubrevisorModel;
 import HU29806.SubrevisorView;
 import modificar_articulos.*;
+import nueva_version.NuevaVersion_Controller;
+import nueva_version.NuevaVersion_Model;
+import nueva_version.NuevaVersion_View;
 import nuevo_envio.H29222_Model;
 
 import javax.swing.JButton;
@@ -182,6 +185,10 @@ public class SwingMain {
 		JButton btnVerPeticiones = new JButton("Ver peticiones");
 		btnVerPeticiones.setBounds(482, 87, 120, 23);
 		frame.getContentPane().add(btnVerPeticiones);
+		
+		JButton btnNuevaVersion = new JButton("Nueva version");
+		btnNuevaVersion.setBounds(10, 153, 120, 23);
+		frame.getContentPane().add(btnNuevaVersion);
 
 		
 		btnHU29229.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
@@ -293,6 +300,15 @@ public class SwingMain {
 		        v.getFrame().setVisible(true);
 		    }
 		});
+		
+		btnNuevaVersion.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
+            public void actionPerformed(ActionEvent e) {
+            	NuevaVersion_View v=new NuevaVersion_View();
+            	@SuppressWarnings("unused")
+            	NuevaVersion_Controller controller=new NuevaVersion_Controller(new NuevaVersion_Model(), v);
+                v.getFrame().setVisible(true);
+            }
+        });
 		
 	}
 	
