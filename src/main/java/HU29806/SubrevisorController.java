@@ -21,6 +21,7 @@ public class SubrevisorController {
         
         view.getCbSubrevisores().addActionListener(e -> {
             actualizarTracksYInvitaciones();
+            cargarArticulosColaboracion();
         });
         
         view.getBtnFiltrar().addActionListener(e -> {
@@ -29,6 +30,14 @@ public class SubrevisorController {
         
         view.getBtnResponder().addActionListener(e -> {
             responderInvitacion();
+        });
+        
+        view.getCbArticulos().addActionListener(e -> {
+            cargarComentariosArticulo();
+        });
+        
+        view.getBtnAgregarComentario().addActionListener(e -> {
+            agregarComentario();
         });
     }
 
@@ -59,6 +68,65 @@ public class SubrevisorController {
         view.cargarInvitaciones(invitaciones);
     }
 
+    private void cargarArticulosColaboracion() {
+        int idSubrevisor = view.getSelectedSubrevisorId();
+        if (idSubrevisor != -1) {
+            List<Map<String, Object>> articulos = model.obtenerArticulosColaboracion(idSubrevisor);
+            view.cargarArticulosColaboracion(articulos);
+        }
+    }
+
+    private void cargarComentariosArticulo() {
+        int idSubrevisor = view.getSelectedSubrevisorId();
+        int idArticulo = view.getSelectedArticuloId();
+        if (idSubrevisor != -1 && idArticulo != -1) {
+            List<Map<String, Object>> comentarios = model.obtenerComentarios(idSubrevisor, idArticulo);
+            view.mostrarComentarios(comentarios);
+        }
+    }
+
+    private void agregarComentario() {
+        int idSubrevisor = view.getSelectedSubrevisorId();
+        int idArticulo = view.getSelectedArticuloId();
+        String comentario = view.getNuevoComentario();
+        
+        if (idSubrevisor == -1 || idArticulo == -1) {
+            JOptionPane.showMessageDialog(view.getFrame(), 
+                "Seleccione un artículo para agregar comentarios", 
+                "Advertencia", 
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        if (comentario.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(view.getFrame(), 
+                "El comentario no puede estar vacío", 
+                "Advertencia", 
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        boolean resultado = model.agregarComentario(
+            idSubrevisor, 
+            idArticulo, 
+            comentario
+        );
+        
+        if (resultado) {
+            JOptionPane.showMessageDialog(view.getFrame(), 
+                "Comentario agregado correctamente", 
+                "Éxito", 
+                JOptionPane.INFORMATION_MESSAGE);
+            view.taNuevoComentario.setText("");
+            cargarComentariosArticulo();
+        } else {
+            JOptionPane.showMessageDialog(view.getFrame(), 
+                "Error al agregar el comentario", 
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     private void responderInvitacion() {
         int filaSeleccionada = view.getTableInvitaciones().getSelectedRow();
         if (filaSeleccionada == -1) {
@@ -86,10 +154,8 @@ public class SubrevisorController {
         if (respuesta == JOptionPane.YES_OPTION || respuesta == JOptionPane.NO_OPTION) {
             boolean aceptar = (respuesta == JOptionPane.YES_OPTION);
             
-            // Obtener los datos directamente del modelo de datos en lugar de parsear la vista
             int idArticulo = (int) view.getTableModel().getValueAt(filaSeleccionada, 0);
             
-            // Obtener el ID del track del modelo subyacente
             int idTrack = -1;
             Object trackObj = view.getTableModel().getValueAt(filaSeleccionada, 2);
             if (trackObj instanceof Map) {
@@ -109,7 +175,6 @@ public class SubrevisorController {
             
             int idSubrevisor = view.getSelectedSubrevisorId();
             
-            // Obtener el ID del revisor principal del modelo subyacente
             int idRevisorPrincipal = -1;
             Object revisorObj = view.getTableModel().getValueAt(filaSeleccionada, 3);
             if (revisorObj instanceof Map) {
@@ -149,4 +214,4 @@ public class SubrevisorController {
             }
         }
     }
-   }
+}

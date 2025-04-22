@@ -16,6 +16,11 @@ public class SubrevisorView {
     private JComboBox<String> cbFiltroTrack;
     private JButton btnFiltrar;
     private JButton btnResponder;
+    private JPanel panelColaboracion;
+    private JComboBox<String> cbArticulos;
+    private JTextArea taComentarios;
+    JTextArea taNuevoComentario;
+    private JButton btnAgregarComentario;
 
     public SubrevisorView() {
         initialize();
@@ -24,7 +29,7 @@ public class SubrevisorView {
     private void initialize() {
         frame = new JFrame("Gestión de Subrevisores - HU29806");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 650);
+        frame.setSize(1200, 650);
         frame.setLocationRelativeTo(null);
         
         JPanel mainPanel = new JPanel();
@@ -103,6 +108,62 @@ public class SubrevisorView {
         
         bottomPanel.add(btnResponder);
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
+
+        // Panel de colaboración
+        panelColaboracion = new JPanel(new BorderLayout(10, 10));
+        panelColaboracion.setBorder(createTitledBorder("Colaboración en Artículos", new Color(70, 130, 180)));
+        panelColaboracion.setBackground(Color.WHITE);
+
+        JPanel panelArticulos = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelArticulos.setBackground(Color.WHITE);
+        JLabel lblArticulos = new JLabel("Artículos en colaboración:");
+        lblArticulos.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        cbArticulos = new JComboBox<>();
+        cbArticulos.setPreferredSize(new Dimension(400, 25));
+        cbArticulos.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        panelArticulos.add(lblArticulos);
+        panelArticulos.add(cbArticulos);
+
+        JPanel panelComentarios = new JPanel(new BorderLayout(10, 10));
+        panelComentarios.setBackground(Color.WHITE);
+
+        taComentarios = new JTextArea();
+        taComentarios.setEditable(false);
+        taComentarios.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        taComentarios.setLineWrap(true);
+        taComentarios.setWrapStyleWord(true);
+        JScrollPane scrollComentarios = new JScrollPane(taComentarios);
+        scrollComentarios.setBorder(BorderFactory.createTitledBorder("Comentarios existentes"));
+
+        JPanel panelNuevoComentario = new JPanel(new BorderLayout(10, 10));
+        panelNuevoComentario.setBackground(Color.WHITE);
+
+        taNuevoComentario = new JTextArea();
+        taNuevoComentario.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        taNuevoComentario.setLineWrap(true);
+        taNuevoComentario.setWrapStyleWord(true);
+        JScrollPane scrollNuevoComentario = new JScrollPane(taNuevoComentario);
+        scrollNuevoComentario.setBorder(BorderFactory.createTitledBorder("Nuevo comentario"));
+
+        JPanel panelControles = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 5));
+        panelControles.setBackground(Color.WHITE);
+        btnAgregarComentario = new JButton("Agregar Comentario");
+        btnAgregarComentario.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        btnAgregarComentario.setBackground(new Color(70, 130, 180));
+        btnAgregarComentario.setForeground(Color.WHITE);
+        btnAgregarComentario.setFocusPainted(false);
+        panelControles.add(btnAgregarComentario);
+
+        panelNuevoComentario.add(scrollNuevoComentario, BorderLayout.CENTER);
+        panelNuevoComentario.add(panelControles, BorderLayout.SOUTH);
+
+        panelComentarios.add(scrollComentarios, BorderLayout.CENTER);
+        panelComentarios.add(panelNuevoComentario, BorderLayout.SOUTH);
+
+        panelColaboracion.add(panelArticulos, BorderLayout.NORTH);
+        panelColaboracion.add(panelComentarios, BorderLayout.CENTER);
+
+        mainPanel.add(panelColaboracion, BorderLayout.EAST);
     }
 
     private TitledBorder createTitledBorder(String title, Color color) {
@@ -133,7 +194,6 @@ public class SubrevisorView {
     public void cargarInvitaciones(List<Map<String, Object>> invitaciones) {
         tableModel.setRowCount(0);
         for (Map<String, Object> invitacion : invitaciones) {
-            // Crear strings descriptivas para mostrar en la tabla
             String trackDisplay = invitacion.get("idTrack") + " - " + invitacion.get("track");
             String revisorDisplay = invitacion.get("idRevisorPrincipal") + " - " + invitacion.get("revisor_principal");
             
@@ -145,6 +205,22 @@ public class SubrevisorView {
                 invitacion.get("estado_invitacion")
             });
         }
+    }
+
+    public void cargarArticulosColaboracion(List<Map<String, Object>> articulos) {
+        cbArticulos.removeAllItems();
+        for (Map<String, Object> articulo : articulos) {
+            cbArticulos.addItem(articulo.get("id") + " - " + articulo.get("titulo") + " (" + articulo.get("track") + ")");
+        }
+    }
+
+    public void mostrarComentarios(List<Map<String, Object>> comentarios) {
+        StringBuilder sb = new StringBuilder();
+        for (Map<String, Object> comentario : comentarios) {
+            sb.append("[").append(comentario.get("fecha")).append("]\n");
+            sb.append(comentario.get("comentario")).append("\n\n");
+        }
+        taComentarios.setText(sb.toString());
     }
 
     public int getSelectedSubrevisorId() {
@@ -159,6 +235,16 @@ public class SubrevisorView {
             return null;
         }
         return Integer.parseInt(selected.split(" - ")[0]);
+    }
+
+    public int getSelectedArticuloId() {
+        String selected = (String) cbArticulos.getSelectedItem();
+        if (selected == null) return -1;
+        return Integer.parseInt(selected.split(" - ")[0]);
+    }
+
+    public String getNuevoComentario() {
+        return taNuevoComentario.getText();
     }
 
     public JFrame getFrame() {
@@ -187,5 +273,13 @@ public class SubrevisorView {
 
     public JTable getTableInvitaciones() {
         return tableInvitaciones;
+    }
+
+    public JComboBox<String> getCbArticulos() {
+        return cbArticulos;
+    }
+
+    public JButton getBtnAgregarComentario() {
+        return btnAgregarComentario;
     }
 }

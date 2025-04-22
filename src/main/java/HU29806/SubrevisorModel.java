@@ -171,4 +171,84 @@ public class SubrevisorModel {
             }
         }
     }
+
+    public List<Map<String, Object>> obtenerArticulosColaboracion(int idSubrevisor) {
+        List<Map<String, Object>> articulos = new ArrayList<>();
+        String query = """
+            SELECT DISTINCT a.id, a.titulo, t.nombre as track
+            FROM Subrevisor s
+            JOIN Articulo a ON s.idArticulo = a.id
+            JOIN Track t ON s.idTrack = t.id
+            WHERE s.idSubrevisor = ? AND s.estado_invitacion = 'aceptada'
+            ORDER BY a.titulo
+            """;
+        
+        try (Connection conn = db.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            
+            ps.setInt(1, idSubrevisor);
+            
+            try (ResultSet rs = ps.executeQuery()) {
+                ResultSetMetaData metaData = rs.getMetaData();
+                int columnCount = metaData.getColumnCount();
+                
+                while (rs.next()) {
+                    Map<String, Object> row = new HashMap<>();
+                    for (int i = 1; i <= columnCount; i++) {
+                        row.put(metaData.getColumnName(i), rs.getObject(i));
+                    }
+                    articulos.add(row);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return articulos;
+    }
+
+    public boolean agregarComentario(int idSubrevisor, int idArticulo, String comentario) {
+        String query = "INSERT INTO ComentariosSubrevisor (idSubrevisor, idArticulo, comentario) VALUES (?, ?, ?)";
+        
+        try (Connection conn = db.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            
+            ps.setInt(1, idSubrevisor);
+            ps.setInt(2, idArticulo);
+            ps.setString(3, comentario);
+            
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public List<Map<String, Object>> obtenerComentarios(int idSubrevisor, int idArticulo) {
+        List<Map<String, Object>> comentarios = new ArrayList<>();
+        String query = """
+            SELECT comentario, fecha 
+            FROM ComentariosSubrevisor 
+            WHERE idSubrevisor = ? AND idArticulo = ?
+            ORDER BY fecha DESC
+            """;
+        
+        try (Connection conn = db.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            
+            ps.setInt(1, idSubrevisor);
+            ps.setInt(2, idArticulo);
+            
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Map<String, Object> comentario = new HashMap<>();
+                    comentario.put("comentario", rs.getString("comentario"));
+                    comentario.put("fecha", rs.getTimestamp("fecha"));
+                    comentarios.add(comentario);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return comentarios;
+    }
 }

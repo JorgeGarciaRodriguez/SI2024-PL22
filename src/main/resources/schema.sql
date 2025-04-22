@@ -16,6 +16,7 @@ DROP TABLE IF EXISTS Subrevisor;
 DROP TABLE IF EXISTS NotificacionSubrevisor;
 DROP TABLE IF EXISTS Anotaciones;
 DROP TABLE IF EXISTS PalabrasClaveRevisor;
+DROP TABLE IF EXISTS ComentariosSubrevisor;
 
 -- Crear tablas en orden correcto (de maestro a detalle)
 
@@ -66,17 +67,17 @@ CREATE TABLE Autor_articulo (
 
 -- Tabla Revision (depende de Revisor y Articulo)
 CREATE TABLE Revision (
-    idRevision INT NOT NULL,
+    idRevision INTEGER PRIMARY KEY,
     idRevisor INT NOT NULL,
     idArticulo INT NOT NULL,
     experto VARCHAR,
     decision INT,
     coment_autor VARCHAR,
     coment_coor VARCHAR,
-    deadline DATE NOT NULL DEFAULT '2025-03-27',
-    PRIMARY KEY (idRevisor, idArticulo)
+    deadline DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (idRevisor) REFERENCES Revisor(idRevisor),
+    FOREIGN KEY (idArticulo) REFERENCES Articulo(id)
 );
-
 -- Tabla Discusion (depende de Articulo)
 CREATE TABLE Discusion (
     id_discusion INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -180,4 +181,13 @@ CREATE TABLE PalabrasClaveRevisor (
     FOREIGN KEY (idRevisor) REFERENCES Revisor(idRevisor)
 );
 
+CREATE TABLE ComentariosSubrevisor (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    idSubrevisor INT NOT NULL,
+    idArticulo INT NOT NULL,
+    comentario TEXT NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (idSubrevisor) REFERENCES Revisor(idRevisor),
+    FOREIGN KEY (idArticulo) REFERENCES Articulo(id)
+);
 
