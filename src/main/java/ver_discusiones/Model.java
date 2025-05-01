@@ -1,4 +1,4 @@
-package HU29798;
+package ver_discusiones;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

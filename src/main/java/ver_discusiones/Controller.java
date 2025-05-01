@@ -1,4 +1,4 @@
-package HU29798;
+package ver_discusiones;
 
 public class Controller {
     private Model model;

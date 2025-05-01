@@ -25,9 +25,6 @@ import ver_revisiones.Ver_revisionesController;
 import ver_revisiones.Ver_revisionesModel;
 import ver_revisiones.Ver_revisionesView;
 import Discusiones.*;
-import HU29798.Controller;
-import HU29798.Model;
-import HU29798.View;
 import HU29806.SubrevisorController;
 import HU29806.SubrevisorModel;
 import HU29806.SubrevisorView;
@@ -45,6 +42,9 @@ import javax.swing.SwingConstants;
 
 import subrevisores.subrevisor_Controller;
 import subrevisores.subrevisor_View;
+import ver_discusiones.Controller;
+import ver_discusiones.Model;
+import ver_discusiones.View;
 import subrevisores.subrevisor_Model;
 
 /**

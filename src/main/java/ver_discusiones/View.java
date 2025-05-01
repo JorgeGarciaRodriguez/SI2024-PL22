@@ -1,4 +1,4 @@
-package HU29798;
+package ver_discusiones;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
