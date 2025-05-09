@@ -48,7 +48,7 @@ CREATE TABLE Articulo (
     palabras_clave VARCHAR NOT NULL,
     resumen VARCHAR NOT NULL,
     fichero VARCHAR NOT NULL,
-    fecha DATE NOT NULL,
+    fecha DATE,
     aceptado INT,
     modificable BOOLEAN,
     vers INT,
